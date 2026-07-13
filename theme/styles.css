@@ -1,0 +1,117 @@
+/**
+ * Palette aligned with hunea-docs (Quartz / GitHub-like neutrals).
+ *
+ * darkMode reference:
+ *   light #22272e | lightgray #373e47 | gray #545d68
+ *   darkgray #adbac7 | dark #cdd9e5
+ *   secondary #539bf5 | tertiary #768390
+ *
+ * lightMode reference:
+ *   light #faf8f8 | lightgray #e5e5e5 | gray #b8b8b8
+ *   darkgray #4e4e4e | dark #2b2b2b
+ *   secondary #284b63 | tertiary #84a59d
+ */
+
+/* ---- Dark mode surfaces & text ---- */
+:where(html.rp-dark) {
+  /* Surfaces: cool blue-gray, not pure black */
+  --rp-c-bg: #22272e;
+  --rp-c-bg-soft: #2d333b;
+  --rp-c-bg-mute: #373e47;
+  --rp-c-bg-alt: #1c2128;
+
+  /* Borders */
+  --rp-c-divider: #545d68a6;
+  --rp-c-divider-light: #373e47;
+
+  /* Text: primary readable on #22272e, muted secondary */
+  --rp-c-text-0: #ffffff;
+  --rp-c-text-1: #cdd9e5;
+  --rp-c-text-2: #adbac7;
+  --rp-c-text-3: #768390;
+  --rp-c-text-4: #545d68;
+
+  /* Inline code */
+  --rp-c-text-code: #adbac7;
+  --rp-c-text-code-bg: #ffffff0f;
+  --rp-c-text-code-border: #ffffff0a;
+
+  /* Brand / links → secondary blue */
+  --rp-c-brand: #539bf5;
+  --rp-c-brand-light: #6cb6ff;
+  --rp-c-brand-lighter: #316dca;
+  --rp-c-brand-dark: #4184e4;
+  --rp-c-brand-darker: #316dca;
+  --rp-c-brand-tint: rgba(83, 155, 245, 0.12);
+  --rp-c-link: var(--rp-c-brand-light);
+
+  /* Code blocks sit slightly above page bg */
+  --rp-code-title-bg: #2d333b;
+  --rp-code-block-color: #adbac7;
+  --rp-code-block-bg: #1c2128;
+}
+
+/* ---- Light mode: soft paper reading palette ---- */
+:where(html:not(.rp-dark)) {
+  /*
+   * Avoid pure white + pure black (harsh glare).
+   * Warm-neutral paper bg with soft charcoal type,
+   * aligned to hunea-docs lightMode but tuned for long-form docs.
+   */
+  --rp-c-bg: #f7f5f3;
+  --rp-c-bg-soft: #efece9;
+  --rp-c-bg-mute: #e5e1dc;
+  --rp-c-bg-alt: #fbfaf9;
+
+  /* Hairline borders — low contrast, less visual noise */
+  --rp-c-divider: #2b2b2b24;
+  --rp-c-divider-light: #2b2b2b14;
+
+  /* Type: soft near-black primary, readable secondary */
+  --rp-c-text-0: #1a1816;
+  --rp-c-text-1: #2c2926;
+  --rp-c-text-2: #5c574f;
+  --rp-c-text-3: #8a847a;
+  --rp-c-text-4: #b8b2a8;
+
+  /* Inline code: muted ink on warm wash */
+  --rp-c-text-code: #3a5568;
+  --rp-c-text-code-bg: #284b6312;
+  --rp-c-text-code-border: #284b6314;
+
+  /* Brand: deep slate-blue; links a touch brighter for scanability */
+  --rp-c-brand: #2f5a74;
+  --rp-c-brand-light: #3d7394;
+  --rp-c-brand-lighter: #84a59d;
+  --rp-c-brand-dark: #24485e;
+  --rp-c-brand-darker: #1a3545;
+  --rp-c-brand-tint: rgba(47, 90, 116, 0.1);
+  --rp-c-link: #2f5a74;
+
+  /* Code blocks: soft surface, not pure white flash */
+  --rp-code-title-bg: #efece9;
+  --rp-code-block-color: #2c2926;
+  --rp-code-block-bg: #fbfaf9;
+
+  /* Soften elevation shadows for light chrome */
+  --rp-shadow-1: 0 1px 2px #2b2b2b06, 0 1px 0 #2b2b2b0a;
+  --rp-shadow-2: 0 3px 12px #2b2b2b0a, 0 1px 4px #2b2b2b0c;
+  --rp-shadow-3: 0 12px 32px #2b2b2b0e, 0 2px 6px #2b2b2b0c;
+}
+
+/* Light-mode reading comfort: selection + subtle page chrome */
+:where(html:not(.rp-dark)) ::selection {
+  background: color-mix(in srgb, var(--rp-c-brand) 22%, transparent);
+  color: var(--rp-c-text-0);
+}
+
+:where(html:not(.rp-dark)) .rp-nav {
+  background: color-mix(in srgb, var(--rp-c-bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--rp-c-divider-light);
+}
+
+:where(html:not(.rp-dark)) .rp-doc {
+  /* Slightly looser measure for long reading sessions */
+  line-height: 1.75;
+}

@@ -1,8 +1,9 @@
 .fd-home {
-  --fd-brand: #6b7785;
-  --fd-brand-strong: #3f4a57;
+  /* Align with site palette (GitHub-like cool neutrals + brand blue) */
+  --fd-brand: #539bf5;
+  --fd-brand-strong: #4184e4;
   --fd-brand-border: color-mix(in srgb, var(--fd-brand) 40%, transparent);
-  --fd-card-border: color-mix(in srgb, #8b95a1 26%, transparent);
+  --fd-card-border: color-mix(in srgb, #545d68 40%, transparent);
   --fd-muted: var(--rp-c-text-2);
   --fd-fg: var(--rp-c-text-1);
   --fd-radius: 1.35rem;
@@ -14,10 +15,12 @@
   --fd-page-pad-x: max(
     calc(
       (
-          100vw - var(--rp-content-max-width) - var(--rp-sidebar-width) -
-            var(--rp-outline-width)
-        ) /
-        2
+        100vw -
+        var(--rp-content-max-width) -
+        var(--rp-sidebar-width) -
+        var(--rp-outline-width)
+      ) /
+      2
     ),
     20px
   );
@@ -58,12 +61,9 @@
   border-radius: calc(var(--fd-radius) + 0.15rem);
   overflow: hidden;
   padding: 1.5rem 1rem 2rem;
-  background: #0e1114;
+  /* Dark hero surface: one step below page bg (#22272e) */
+  background: #1c2128;
   text-align: left;
-}
-
-html:not(.rp-dark) .fd-hero {
-  background: #f4f6f8;
 }
 
 .fd-hero__shaders {
@@ -86,6 +86,35 @@ html:not(.rp-dark) .fd-hero {
     radial-gradient(
       90% 70% at 0% 100%,
       color-mix(in srgb, #7d8a98 16%, transparent),
+      transparent 55%
+    );
+}
+
+html:not(.rp-dark) .fd-home {
+  --fd-brand: #2f5a74;
+  --fd-brand-strong: #24485e;
+  --fd-brand-border: color-mix(in srgb, var(--fd-brand) 32%, transparent);
+  --fd-card-border: color-mix(in srgb, #8a847a 28%, transparent);
+}
+
+html:not(.rp-dark) .fd-hero {
+  /* Soft elevated card on paper bg — avoid pure white glare */
+  background: #fbfaf9;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
+    0 12px 40px color-mix(in srgb, #2b2b2b 6%, transparent);
+}
+
+html:not(.rp-dark) .fd-hero__shader-fallback {
+  background:
+    radial-gradient(
+      120% 90% at 100% 0%,
+      color-mix(in srgb, #84a59d 22%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      90% 70% at 0% 100%,
+      color-mix(in srgb, #2f5a74 10%, transparent),
       transparent 55%
     );
 }
