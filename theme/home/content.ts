@@ -1,5 +1,4 @@
 export interface HomeContent {
-  badge: string;
   titleBefore: string;
   titleAccent: string;
   titleAfter: string;
@@ -17,7 +16,6 @@ const GITHUB = 'https://github.com/yunxinx/hunea';
 
 export const homeContent = {
   en: {
-    badge: 'built with Rust + Ratatui.',
     titleBefore: 'A terminal AI assistant,',
     titleAccent: 'your',
     titleAfter: 'workflow.',
@@ -36,7 +34,6 @@ export const homeContent = {
     },
   },
   zh: {
-    badge: '基于 Rust + Ratatui 构建。',
     titleBefore: '终端 AI 助手，',
     titleAccent: '贴合你的',
     titleAfter: '工作流。',

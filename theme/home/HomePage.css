@@ -46,7 +46,7 @@
   text-decoration: none;
 }
 
-/* Full-width surface aligned with nav content; content sits top-left inside */
+/* Full-width surface; centered copy for a clean landing layout */
 .fd-hero {
   position: relative;
   width: 100%;
@@ -55,15 +55,15 @@
   height: min(74vh, 940px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   border: 1px solid var(--fd-card-border);
   border-radius: calc(var(--fd-radius) + 0.15rem);
   overflow: hidden;
-  padding: 1.5rem 1rem 2rem;
+  padding: 2rem 1.25rem;
   /* Dark hero surface: one step below page bg (#22272e) */
   background: #1c2128;
-  text-align: left;
+  text-align: center;
 }
 
 .fd-hero__shaders {
@@ -146,28 +146,14 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
   z-index: 1;
   max-width: 44rem;
   width: 100%;
-  margin-top: 3rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-.fd-badge {
-  display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--fd-brand-border);
-  color: var(--fd-brand);
-  background: color-mix(in srgb, var(--fd-brand) 8%, transparent);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  backdrop-filter: blur(8px);
 }
 
 .fd-hero__title {
-  margin: 1.5rem 0 1rem;
+  margin: 0 0 1rem;
   font-size: clamp(2.1rem, 5vw, 3.25rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -179,8 +165,8 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
 }
 
 .fd-hero__desc {
-  margin: 0;
-  max-width: 40rem;
+  margin: 0 auto;
+  max-width: 36rem;
   color: var(--fd-muted);
   font-size: 1.02rem;
   line-height: 1.7;
@@ -278,7 +264,7 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
 .fd-hero__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 1.35rem;
 }
@@ -348,11 +334,7 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
   }
 
   .fd-hero {
-    padding: 3rem 2.5rem 2.75rem;
-  }
-
-  .fd-hero__inner {
-    margin-top: 3.5rem;
+    padding: 3rem 2.5rem;
   }
 
   .fd-cmd {

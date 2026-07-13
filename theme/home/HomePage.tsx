@@ -110,7 +110,6 @@ export function HomePage() {
       <section className="fd-hero" aria-labelledby="fd-hero-title">
         <HeroShaders />
         <div className="fd-hero__inner">
-          <p className="fd-badge">{content.badge}</p>
           <h1 id="fd-hero-title" className="fd-hero__title">
             {content.titleBefore}
             <br />
