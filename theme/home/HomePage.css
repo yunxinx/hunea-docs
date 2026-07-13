@@ -1,0 +1,347 @@
+.fd-home {
+  --fd-brand: #6b7785;
+  --fd-brand-strong: #3f4a57;
+  --fd-brand-border: color-mix(in srgb, var(--fd-brand) 40%, transparent);
+  --fd-card-border: color-mix(in srgb, #8b95a1 26%, transparent);
+  --fd-muted: var(--rp-c-text-2);
+  --fd-fg: var(--rp-c-text-1);
+  --fd-radius: 1.35rem;
+  /* Match Rspress nav content metrics (DocLayout defaults) */
+  --rp-content-max-width: 1000px;
+  --rp-sidebar-width: 320px;
+  --rp-outline-width: 268px;
+  /* Same horizontal inset as .rp-nav --rp-nav-padding-x */
+  --fd-page-pad-x: max(
+    calc(
+      (
+          100vw - var(--rp-content-max-width) - var(--rp-sidebar-width) -
+            var(--rp-outline-width)
+        ) /
+        2
+    ),
+    20px
+  );
+  color: var(--fd-fg);
+  background: var(--rp-c-bg);
+  /* Center the hero card as a whole on the page */
+  min-height: calc(100vh - var(--rp-nav-height, 4rem));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem var(--fd-page-pad-x);
+}
+
+.fd-home *,
+.fd-home *::before,
+.fd-home *::after {
+  box-sizing: border-box;
+}
+
+.fd-home a.fd-btn,
+.fd-home a.rp-link.fd-btn {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Full-width surface aligned with nav content; content sits top-left inside */
+.fd-hero {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 640px;
+  height: min(74vh, 940px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid var(--fd-card-border);
+  border-radius: calc(var(--fd-radius) + 0.15rem);
+  overflow: hidden;
+  padding: 1.5rem 1rem 2rem;
+  background: #0e1114;
+  text-align: left;
+}
+
+html:not(.rp-dark) .fd-hero {
+  background: #f4f6f8;
+}
+
+.fd-hero__shaders {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fd-hero__shader-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      120% 90% at 100% 0%,
+      color-mix(in srgb, #a8b3c0 34%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      90% 70% at 0% 100%,
+      color-mix(in srgb, #7d8a98 16%, transparent),
+      transparent 55%
+    );
+}
+
+.fd-hero__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: fd-fade-in 0.8s ease forwards;
+}
+
+.fd-hero__grain > * {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fd-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fd-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.fd-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--fd-brand-border);
+  color: var(--fd-brand);
+  background: color-mix(in srgb, var(--fd-brand) 8%, transparent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(8px);
+}
+
+.fd-hero__title {
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.fd-hero__accent {
+  color: var(--fd-brand);
+}
+
+.fd-hero__desc {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--fd-muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+/* Soft install chip — whole row is the copy control */
+.fd-cmd {
+  appearance: none;
+  margin: 1.45rem 0 0;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 0.75rem 0.65rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--fd-card-border) 85%, #fff 8%);
+  background: color-mix(in srgb, var(--rp-c-bg) 42%, transparent);
+  color: var(--fd-fg);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 8%, transparent) inset,
+    0 8px 24px color-mix(in srgb, #000 8%, transparent);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.fd-cmd:hover {
+  border-color: color-mix(in srgb, var(--fd-brand) 36%, var(--fd-card-border));
+  background: color-mix(in srgb, var(--rp-c-bg) 58%, transparent);
+}
+
+.fd-cmd:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--fd-brand) 65%, #fff);
+  outline-offset: 3px;
+}
+
+.fd-cmd--copied {
+  border-color: color-mix(in srgb, #6b7785 45%, var(--fd-card-border));
+}
+
+.fd-cmd__code {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  min-width: 0;
+  font-family: var(--rp-font-family-mono, ui-monospace, monospace);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  font-weight: 500;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.fd-cmd__prompt {
+  color: color-mix(in srgb, var(--fd-muted) 88%, transparent);
+  user-select: none;
+}
+
+.fd-cmd__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fd-cmd__action {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  color: var(--fd-muted);
+  background: color-mix(in srgb, var(--fd-brand) 10%, transparent);
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.fd-cmd:hover .fd-cmd__action,
+.fd-cmd--copied .fd-cmd__action {
+  color: var(--fd-fg);
+  background: color-mix(in srgb, var(--fd-brand) 18%, transparent);
+}
+
+.fd-cmd__icon {
+  display: block;
+}
+
+.fd-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.fd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.6rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.fd-btn:hover {
+  transform: translateY(-1px);
+}
+
+.fd-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--fd-brand) 70%, #fff);
+  outline-offset: 2px;
+}
+
+.fd-home a.fd-btn.fd-btn--primary,
+.fd-home a.rp-link.fd-btn.fd-btn--primary {
+  background: var(--fd-brand-strong);
+  color: #f8fafc;
+}
+
+.fd-home a.fd-btn.fd-btn--primary:hover,
+.fd-home a.rp-link.fd-btn.fd-btn--primary:hover {
+  background: color-mix(in srgb, var(--fd-brand-strong) 88%, #000);
+}
+
+.fd-btn--primary {
+  background: var(--fd-brand-strong);
+  color: #f8fafc;
+}
+
+.fd-btn--primary:hover {
+  background: color-mix(in srgb, var(--fd-brand-strong) 88%, #000);
+}
+
+.fd-btn--ghost {
+  background: color-mix(in srgb, var(--rp-c-bg) 55%, transparent);
+  border-color: var(--fd-card-border);
+  color: var(--fd-fg);
+  backdrop-filter: blur(8px);
+}
+
+.fd-btn--ghost:hover {
+  border-color: color-mix(in srgb, var(--fd-brand) 40%, var(--fd-card-border));
+}
+
+@media (min-width: 768px) {
+  .fd-home {
+    padding-top: 1.5rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .fd-hero {
+    padding: 3rem 2.5rem 2.75rem;
+  }
+
+  .fd-hero__inner {
+    margin-top: 3.5rem;
+  }
+
+  .fd-cmd {
+    padding: 0.7rem 0.8rem 0.7rem 1.05rem;
+  }
+
+  .fd-cmd__code {
+    font-size: 0.92rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fd-hero__grain {
+    animation: none;
+    opacity: 1;
+  }
+
+  .fd-btn:hover {
+    transform: none;
+  }
+}
