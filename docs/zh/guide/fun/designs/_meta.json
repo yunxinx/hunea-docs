@@ -1,0 +1,12 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "前言"
+  },
+  {
+    "type": "file",
+    "name": "composer",
+    "label": "输入框"
+  }
+]

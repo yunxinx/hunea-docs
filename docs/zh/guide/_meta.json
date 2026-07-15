@@ -2,11 +2,11 @@
   {
     "type": "dir-section-header",
     "name": "start",
-    "label": "快速开始"
+    "label": "开始"
   },
   {
     "type": "dir-section-header",
-    "name": "use-mdx",
-    "label": "Markdown 与 MDX"
+    "name": "fun",
+    "label": "Hunea 功能介绍"
   }
 ]

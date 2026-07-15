@@ -1,0 +1,12 @@
+[
+  {
+    "type": "dir",
+    "name": "menu",
+    "label": "斜杠菜单"
+  },
+  {
+    "type": "dir",
+    "name": "designs",
+    "label": "设计与取舍"
+  }
+]

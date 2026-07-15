@@ -1,0 +1,57 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "前言"
+  },
+  {
+    "type": "file",
+    "name": "quit",
+    "label": "/exit"
+  },
+  {
+    "type": "file",
+    "name": "resume",
+    "label": "/resume"
+  },
+  {
+    "type": "file",
+    "name": "context",
+    "label": "/context"
+  },
+  {
+    "type": "file",
+    "name": "copy",
+    "label": "/copy"
+  },
+  {
+    "type": "file",
+    "name": "resend",
+    "label": "/resend"
+  },
+  {
+    "type": "file",
+    "name": "tree",
+    "label": "/tree"
+  },
+  {
+    "type": "file",
+    "name": "sends-back",
+    "label": "/sends-back"
+  },
+  {
+    "type": "file",
+    "name": "models",
+    "label": "/models"
+  },
+  {
+    "type": "file",
+    "name": "prompt",
+    "label": "/prompt"
+  },
+  {
+    "type": "file",
+    "name": "clear",
+    "label": "/clear"
+  }
+]

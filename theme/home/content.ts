@@ -11,7 +11,7 @@ export interface HomeContent {
 }
 
 /** Locale-neutral internal paths — language prefix applied at render time. */
-const GUIDE_START = '/guide/start/introduction';
+const GUIDE_START = '/guide/start/getting-started';
 const GITHUB = 'https://github.com/yunxinx/hunea';
 
 export const homeContent = {
