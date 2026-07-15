@@ -1,0 +1,12 @@
+[
+  {
+    "type": "dir",
+    "name": "menu",
+    "label": "Slash Menu"
+  },
+  {
+    "type": "dir",
+    "name": "designs",
+    "label": "Design & Trade-offs"
+  }
+]

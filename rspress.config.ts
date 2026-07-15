@@ -28,7 +28,7 @@ export default defineConfig({
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/yunxinx/hunea',
+        content: 'https://github.com/yunxinx/hunea-docs',
       },
     ],
   },

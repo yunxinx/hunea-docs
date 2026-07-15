@@ -12,16 +12,16 @@ export interface HomeContent {
 
 /** Locale-neutral internal paths — language prefix applied at render time. */
 const GUIDE_START = '/guide/start/getting-started';
-const GITHUB = 'https://github.com/yunxinx/hunea';
+const GITHUB = 'https://github.com/yunxinx/hunea-docs';
 
 export const homeContent = {
   en: {
-    titleBefore: 'A terminal AI assistant,',
-    titleAccent: 'your',
-    titleAfter: 'workflow.',
+    titleBefore: 'Hunea',
+    titleAccent: 'built for',
+    titleAfter: ' your workflow.',
     description:
-      'A terminal-based AI assistant client built with Rust and Ratatui. Official documentation for Hunea.',
-    tryCommand: 'npm install --global hunea',
+      'Building a polished, easy-to-use terminal agent experience.',
+    tryCommand: 'npm install -g hunea@alpha',
     tryCopy: 'Copy',
     tryCopied: 'Copied',
     primaryCta: {
@@ -29,17 +29,16 @@ export const homeContent = {
       href: GUIDE_START,
     },
     secondaryCta: {
-      text: 'Open GitHub',
+      text: 'View on GitHub',
       href: GITHUB,
     },
   },
   zh: {
-    titleBefore: '终端 AI 助手，',
+    titleBefore: 'Hunea',
     titleAccent: '贴合你的',
-    titleAfter: '工作流。',
-    description:
-      '基于 Rust + Ratatui 构建的终端 AI 助手客户端。Hunea 官方文档。',
-    tryCommand: 'npm install --global hunea',
+    titleAfter: '工作流',
+    description: '致力于打造美观易用的终端 Agent 体验',
+    tryCommand: 'npm install -g hunea@alpha',
     tryCopy: '复制',
     tryCopied: '已复制',
     primaryCta: {
@@ -47,7 +46,7 @@ export const homeContent = {
       href: GUIDE_START,
     },
     secondaryCta: {
-      text: '打开 GitHub',
+      text: '在 GitHub 上查看',
       href: GITHUB,
     },
   },
