@@ -2,15 +2,13 @@
   /* Align with site palette (GitHub-like cool neutrals + brand blue) */
   --fd-brand: #539bf5;
   --fd-brand-strong: #4184e4;
-  --fd-brand-border: color-mix(in srgb, var(--fd-brand) 40%, transparent);
   --fd-card-border: color-mix(in srgb, #545d68 40%, transparent);
   --fd-muted: var(--rp-c-text-2);
   --fd-fg: var(--rp-c-text-1);
-  --fd-radius: 1.35rem;
-  /* Match Rspress nav content metrics (DocLayout defaults) */
+  /* Match Rspress nav content metrics (see theme/styles.css overrides) */
   --rp-content-max-width: 1000px;
-  --rp-sidebar-width: 320px;
-  --rp-outline-width: 268px;
+  --rp-sidebar-width: 288px;
+  --rp-outline-width: 248px;
   /* Same horizontal inset as .rp-nav --rp-nav-padding-x */
   --fd-page-pad-x: max(
     calc(
@@ -46,23 +44,22 @@
   text-decoration: none;
 }
 
-/* Full-width surface; centered copy for a clean landing layout */
+/*
+ * Full-bleed hero: no card, no border — the shader wash sits directly
+ * on the page background. Whitespace and type carry the layout.
+ */
 .fd-hero {
   position: relative;
   width: 100%;
   margin: 0 auto;
   min-height: 640px;
-  height: min(74vh, 940px);
+  height: min(78vh, 940px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--fd-card-border);
-  border-radius: calc(var(--fd-radius) + 0.15rem);
   overflow: hidden;
   padding: 2rem 1.25rem;
-  /* Dark hero surface: one step below page bg (#22272e) */
-  background: #1c2128;
   text-align: center;
 }
 
@@ -93,16 +90,7 @@
 html:not(.rp-dark) .fd-home {
   --fd-brand: #2f5a74;
   --fd-brand-strong: #24485e;
-  --fd-brand-border: color-mix(in srgb, var(--fd-brand) 32%, transparent);
   --fd-card-border: color-mix(in srgb, #8a847a 28%, transparent);
-}
-
-html:not(.rp-dark) .fd-hero {
-  /* Soft elevated card on paper bg — avoid pure white glare */
-  background: #fbfaf9;
-  box-shadow:
-    0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
-    0 12px 40px color-mix(in srgb, #2b2b2b 6%, transparent);
 }
 
 html:not(.rp-dark) .fd-hero__shader-fallback {
@@ -152,24 +140,62 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
   align-items: center;
 }
 
-.fd-hero__title {
-  margin: 0 0 1rem;
-  font-size: clamp(2.1rem, 5vw, 3.25rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  font-weight: 600;
+/* Staggered rise-in on first paint — one paint, no scroll listeners */
+.fd-hero__inner > * {
+  animation: fd-rise 0.7s cubic-bezier(0.21, 0.6, 0.35, 1) both;
 }
 
+.fd-hero__inner > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.fd-hero__inner > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.fd-hero__inner > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+@keyframes fd-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fd-hero__title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(2.3rem, 5.6vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+
+/* Gradient wash over the accent word — same palette, brand → brand-strong */
 .fd-hero__accent {
-  color: var(--fd-brand);
+  background: linear-gradient(
+    115deg,
+    var(--fd-brand) 10%,
+    var(--fd-brand-strong) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .fd-hero__desc {
   margin: 0 auto;
   max-width: 36rem;
   color: var(--fd-muted);
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   line-height: 1.7;
+  text-wrap: balance;
 }
 
 /* Soft install chip — whole row is the copy control */
@@ -181,7 +207,7 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
   align-items: center;
   gap: 0.7rem;
   padding: 0.65rem 0.75rem 0.65rem 0.95rem;
-  border-radius: 999px;
+  border-radius: 10px;
   border: 1px solid color-mix(in srgb, var(--fd-card-border) 85%, #fff 8%);
   background: color-mix(in srgb, var(--rp-c-bg) 42%, transparent);
   color: var(--fd-fg);
@@ -275,20 +301,15 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
   justify-content: center;
   gap: 0.4rem;
   min-height: 2.6rem;
-  padding: 0.55rem 1.15rem;
-  border-radius: 999px;
+  padding: 0.55rem 1.35rem;
+  border-radius: 10px;
   border: 1px solid transparent;
   font-size: 0.95rem;
   font-weight: 600;
   transition:
-    transform 0.15s ease,
     background 0.15s ease,
     border-color 0.15s ease,
     color 0.15s ease;
-}
-
-.fd-btn:hover {
-  transform: translateY(-1px);
 }
 
 .fd-btn:focus-visible {
@@ -325,6 +346,7 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
 
 .fd-btn--ghost:hover {
   border-color: color-mix(in srgb, var(--fd-brand) 40%, var(--fd-card-border));
+  background: color-mix(in srgb, var(--rp-c-bg) 78%, transparent);
 }
 
 @media (min-width: 768px) {
@@ -352,7 +374,7 @@ html:not(.rp-dark) .fd-hero__shader-fallback {
     opacity: 1;
   }
 
-  .fd-btn:hover {
-    transform: none;
+  .fd-hero__inner > * {
+    animation: none;
   }
 }

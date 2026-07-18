@@ -1,5 +1,8 @@
 /**
- * Palette aligned with hunea-docs (Quartz / GitHub-like neutrals).
+ * Hunea docs theme overrides.
+ *
+ * Section 1 keeps the site palette (Quartz / GitHub-like neutrals) — do not
+ * retune colors here without a deliberate rebrand.
  *
  * darkMode reference:
  *   light #22272e | lightgray #373e47 | gray #545d68
@@ -11,6 +14,10 @@
  *   darkgray #4e4e4e | dark #2b2b2b
  *   secondary #284b63 | tertiary #84a59d
  */
+
+/* ============================================================
+   1. Palette (unchanged)
+   ============================================================ */
 
 /* ---- Dark mode surfaces & text ---- */
 :where(html.rp-dark) {
@@ -99,19 +106,309 @@
   --rp-shadow-3: 0 12px 32px #2b2b2b0e, 0 2px 6px #2b2b2b0c;
 }
 
-/* Light-mode reading comfort: selection + subtle page chrome */
-:where(html:not(.rp-dark)) ::selection {
+/* ============================================================
+   2. Design tokens — type, radius, motion (no colors here)
+   ============================================================ */
+
+:root {
+  /*
+   * Modern system-first sans stack. The default Rspress stack has no
+   * CJK fallbacks, so Chinese copy renders inconsistently off-macOS —
+   * PingFang / Hiragino / YaHei / Noto close that gap.
+   */
+  --rp-font-family-base:
+    "Inter var", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+
+  /* Modern mono stack (Cascadia/JetBrains before legacy fallbacks) */
+  --rp-font-family-mono:
+    ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Slightly tighter radii than default (1rem) — cleaner, less bubbly */
+  --rp-radius: 10px;
+  --rp-radius-small: 8px;
+  --rp-radius-large: 14px;
+
+  /* Shared easing for interactive chrome */
+  --rp-ease-out: cubic-bezier(0.21, 0.6, 0.35, 1);
+}
+
+/*
+ * Layout metrics — tighter rails, airier page.
+ * These vars live on DocLayout's `:root`, which bundles AFTER user styles,
+ * so `html:root` (0,1,1) is required to beat it regardless of source order.
+ */
+html:root {
+  --rp-sidebar-width: 288px;
+  --rp-outline-width: 248px;
+  --rp-content-padding-y: 56px;
+}
+
+body {
+  /* Soft crossfade when toggling color scheme */
+  transition: background-color 0.25s ease;
+}
+
+/* ============================================================
+   3. Reading experience — selection, focus, keyboard nav
+   ============================================================ */
+
+::selection {
   background: color-mix(in srgb, var(--rp-c-brand) 22%, transparent);
   color: var(--rp-c-text-0);
 }
 
-:where(html:not(.rp-dark)) .rp-nav {
-  background: color-mix(in srgb, var(--rp-c-bg) 88%, transparent);
-  backdrop-filter: blur(12px);
+:where(html.rp-dark) ::selection {
+  background: color-mix(in srgb, var(--rp-c-brand) 38%, transparent);
+}
+
+/* Single, consistent focus ring site-wide (base theme strips outlines) */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--rp-c-brand) 72%, transparent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   4. Chrome — nav, sidebar, outline
+   ============================================================ */
+
+/*
+ * Frosted nav in both color schemes.
+ * NOTE: the `html` prefix is deliberate — Rspress can bundle default
+ * component CSS after user styles, so overrides need a specificity
+ * edge over the stock `.rp-nav` (0,1,0), not just source order.
+ */
+html .rp-nav {
+  /* Write unprefixed only — the build adds -webkit- for Safari itself; */
+  /* a hand-written -webkit- line gets merged and the standard prop is lost. */
+  backdrop-filter: blur(12px) saturate(1.4);
   border-bottom-color: var(--rp-c-divider-light);
 }
 
-:where(html:not(.rp-dark)) .rp-doc {
+html:not(.rp-dark) .rp-nav {
+  background: color-mix(in srgb, var(--rp-c-bg) 86%, transparent);
+}
+
+html.rp-dark .rp-nav {
+  background: color-mix(in srgb, var(--rp-c-bg) 80%, transparent);
+}
+
+.rp-nav__title {
+  letter-spacing: -0.01em;
+}
+
+.rp-nav-menu__item__container,
+.rp-social-links__item {
+  transition: color 0.18s var(--rp-ease-out);
+}
+
+/* Sidebar: calmer text, clearer active trail */
+html .rp-sidebar-item {
+  transition:
+    color 0.15s var(--rp-ease-out),
+    background-color 0.15s var(--rp-ease-out);
+}
+
+/* Section headers: editorial small-caps instead of another bold row */
+html .rp-sidebar-section-header {
+  margin-top: 24px;
+}
+
+html .rp-sidebar-section-header__left {
+  color: var(--rp-c-text-3);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Outline: quiet until active, smooth color handoff */
+.rp-toc-item__text {
+  transition: color 0.18s var(--rp-ease-out);
+}
+
+.rp-toc-item--active .rp-toc-item__text {
+  font-weight: 500;
+}
+
+html .rp-outline__title {
+  color: var(--rp-c-text-3);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   5. Doc typography — rhythm, tracking, affordances
+   ============================================================ */
+
+.rp-doc {
   /* Slightly looser measure for long reading sessions */
   line-height: 1.75;
+}
+
+.rp-doc h1,
+.rp-doc h2,
+.rp-doc h3,
+.rp-doc h4,
+.rp-doc h5,
+.rp-doc h6 {
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* Tightened heading scale — default jumps feel shouty at 1.75/1.5rem */
+.rp-doc h1 {
+  font-size: 2rem;
+  letter-spacing: -0.025em;
+}
+
+.rp-doc h2 {
+  margin-top: 3rem;
+  font-size: 1.6rem;
+}
+
+/* Whitespace separates sections now — retire the stray divider on h2 */
+.rp-doc h2:first-of-type::before {
+  content: none;
+}
+
+.rp-doc h3 {
+  font-size: 1.3rem;
+}
+
+.rp-doc h4 {
+  font-size: 1.12rem;
+}
+
+.rp-doc p {
+  text-wrap: pretty;
+}
+
+/*
+ * Links: always-on tinted underline instead of the default hover
+ * border-bottom (which shifts layout and reads as an afterthought).
+ */
+.rp-doc a.rp-link:not(.rp-header-anchor) {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--rp-c-link) 32%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition:
+    text-decoration-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.rp-doc a.rp-link:not(.rp-header-anchor):hover {
+  opacity: 1;
+  border-bottom: none;
+  text-decoration-color: var(--rp-c-link);
+}
+
+/* Quieter list markers keep the eye on the text */
+.rp-doc ::marker {
+  color: var(--rp-c-text-3);
+}
+
+/* Blockquote: soft card wash instead of a bare gutter bar */
+.rp-doc blockquote {
+  border-left: 3px solid var(--rp-c-divider);
+  border-radius: 0 var(--rp-radius-small) var(--rp-radius-small) 0;
+  background: var(--rp-c-bg-soft);
+  padding: 0.5rem 1rem;
+}
+
+.rp-doc hr {
+  margin: 2.5rem 0;
+}
+
+/* ============================================================
+   6. Components — code, tables, tabs, callouts, pager
+   ============================================================ */
+
+html .rp-codeblock {
+  margin: 1.25rem 0;
+}
+
+html .rp-codeblock__title {
+  font-size: 0.8125rem;
+  color: var(--rp-c-text-2);
+}
+
+/* Thin, unobtrusive scrollbars on wide code / table containers */
+.rp-codeblock__content__scroll-container,
+.rp-doc .rp-table-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rp-c-divider) transparent;
+}
+
+.rp-codeblock__content__scroll-container::-webkit-scrollbar,
+.rp-doc .rp-table-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.rp-codeblock__content__scroll-container::-webkit-scrollbar-thumb,
+.rp-doc .rp-table-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--rp-c-divider);
+  border-radius: 999px;
+}
+
+.rp-codeblock__content__scroll-container::-webkit-scrollbar-track,
+.rp-doc .rp-table-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html .rp-tabs__label__item {
+  transition:
+    color 0.15s var(--rp-ease-out),
+    background-color 0.15s var(--rp-ease-out);
+}
+
+html .rp-callout {
+  padding: 16px 20px 8px;
+}
+
+/* Prev / next pager: quiet cards — border and tint respond, nothing moves */
+html .rp-prev-next-page {
+  gap: 0.75rem;
+}
+
+html .rp-prev-next-page__item {
+  border: 1px solid var(--rp-c-divider-light);
+  border-radius: var(--rp-radius);
+  padding: 0.875rem 1rem;
+  transition:
+    border-color 0.18s var(--rp-ease-out),
+    background-color 0.18s var(--rp-ease-out);
+}
+
+html .rp-prev-next-page__item:hover {
+  opacity: 1;
+  background-color: var(--rp-c-bg-soft);
+  border-color: color-mix(
+    in srgb,
+    var(--rp-c-brand) 45%,
+    var(--rp-c-divider-light)
+  );
+}
+
+/* Footer divider: retire the default double-gap rhythm */
+html .rp-doc-footer__divider {
+  margin: 2.5rem 0 1.5rem;
+}
+
+/* ============================================================
+   7. Motion safety
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }
