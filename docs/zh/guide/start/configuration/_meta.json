@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "preface",
+    "label": "总览"
+  },
+  {
+    "type": "file",
+    "name": "models",
+    "label": "models.toml"
+  },
+  {
+    "type": "file",
+    "name": "config",
+    "label": "config.toml"
+  },
+  {
+    "type": "file",
+    "name": "phrases",
+    "label": "phrases.toml"
+  }
+]

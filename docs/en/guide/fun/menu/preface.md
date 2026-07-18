@@ -16,16 +16,16 @@ Built-in commands (click a **Command** cell to open its page):
 
 | Command | Alias | Purpose |
 | --- | --- | --- |
-| [`/exit`](/guide/fun/menu/quit.html) | `/quit` | Quit the app |
-| [`/resume`](/guide/fun/menu/resume.html) | — | Resume a previous session |
-| [`/context`](/guide/fun/menu/context.html) | — | Inspect next-turn context usage (estimate) |
-| [`/copy`](/guide/fun/menu/copy.html) | — | Pick messages and copy them |
-| [`/resend`](/guide/fun/menu/resend.html) | — | Refill a previously sent message into the input |
-| [`/tree`](/guide/fun/menu/tree.html) | — | Rewind precisely to a message node (default mode) |
-| [`/sends-back`](/guide/fun/menu/sends-back.html) | — | Edit a specific prior user message (mutually exclusive with `/tree`; see below) |
-| [`/models`](/guide/fun/menu/models.html) | — | Choose a model for the current session |
-| [`/prompt`](/guide/fun/menu/prompt.html) | — | Inspect prompt assembly for the next new session |
-| [`/clear`](/guide/fun/menu/clear.html) | `/new` | Clear the current conversation context |
+| [`/exit`](/guide/fun/menu/quit) | `/quit` | Quit the app |
+| [`/resume`](/guide/fun/menu/resume) | — | Resume a previous session |
+| [`/context`](/guide/fun/menu/context) | — | Inspect next-turn context usage (estimate) |
+| [`/copy`](/guide/fun/menu/copy) | — | Pick messages and copy them |
+| [`/resend`](/guide/fun/menu/resend) | — | Refill a previously sent message into the input |
+| [`/tree`](/guide/fun/menu/tree) | — | Rewind precisely to a message node (default mode) |
+| [`/sends-back`](/guide/fun/menu/sends-back) | — | Edit a specific prior user message (mutually exclusive with `/tree`; see below) |
+| [`/models`](/guide/fun/menu/models) | — | Choose a model for the current session |
+| [`/prompt`](/guide/fun/menu/prompt) | — | Inspect prompt assembly for the next new session |
+| [`/clear`](/guide/fun/menu/clear) | `/new` | Clear the current conversation context |
 
 ## Notes
 

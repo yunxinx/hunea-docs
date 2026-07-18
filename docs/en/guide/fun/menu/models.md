@@ -79,7 +79,7 @@ Multiple `kind` types can be configured in `models.toml` (configuration parsing 
 
 Other kinds may still appear in the panel and configuration validation, but will return "unsupported" at the request stage when selected. Automatic model list syncing from `/models` currently covers mostly OpenAI-compatible providers. When configuring providers, it's recommended to prioritize the three types above to avoid "visible in list but can't send request" situations.
 
-For more complete field documentation, see [Configuration](/guide/start/configuration).
+For more complete field documentation, see [models.toml](/guide/start/configuration/models).
 
 ## Refreshing the model list (U)
 
@@ -108,11 +108,11 @@ At the configuration level, you can think of it like this:
 
 Note that seeing a model in the panel doesn't guarantee requests for that model will succeed. Currently, only `openai_compatible` / `openai_responses` / `openai` kinds work for chat.
 
-For more complete `models.toml` writing, `default`, and context window configuration, see [Configuration](/guide/start/configuration).
+For more complete `models.toml` writing, `default`, and context window configuration, see [models.toml](/guide/start/configuration/models).
 
 ## Usage tips
 
 - You just want to confirm "which model are we using now": open `/models` and check the `Current Model` line, then `Esc` to exit.
 - When there are many models: first `←` / `→` or `Tab`/`Shift + Tab` to the right provider, then type id keywords directly to filter — faster than scrolling up and down.
 - Local service just changed model list: switch to that provider, press `U` to refresh, then `Enter` to select.
-- You also want to check how much context remains: after selecting a model, you can use [`/context`](/guide/fun/menu/context.html); the context upper limit also depends on configuration in `models.toml`.
+- You also want to check how much context remains: after selecting a model, you can use [`/context`](/guide/fun/menu/context); the context upper limit also depends on configuration in `models.toml`.

@@ -20,7 +20,7 @@ Default send semantics (you can swap Enter with Shift+Enter / Ctrl+J using `swap
 | `Ctrl + C` | With a draft, defaults to clearing the draft (`ctrl_c_clears_input`); with empty input, enters exit confirmation |
 | `Esc` | During streaming: interrupt the current request after `esc_interrupt_presses` (default 2) presses; with empty input and no streaming: double-press enters backtracking (see below) |
 | `Ctrl + G` | Edit the current draft in an external editor |
-| `Ctrl + R` | Open global message history (same as [`/resend`](/guide/fun/menu/resend.html)) |
+| `Ctrl + R` | Open global message history (same as [`/resend`](/guide/fun/menu/resend)) |
 | `Ctrl + T` | Open full-screen transcript details |
 | `Ctrl + Z` / `Ctrl + Y` | Undo draft edit / yank most recent kill |
 | `PageUp` / `PageDown` | Prioritize scrolling the document, then handle paging inside the input box |
@@ -33,13 +33,13 @@ When the input box is empty and **there is no** streaming output, double-press `
 | `coarse` (default) | Edit/resend by user message round (same as `/sends-back`) | `/tree` |
 | `entry` | Open `/tree` | `/sends-back` |
 
-Editing keys mostly follow readline conventions (like `Ctrl + A/E/B/F/K/U/W`, word movement and deletion, etc.), see [Composer](/guide/fun/designs/composer.html) for details.
+Editing keys mostly follow readline conventions (like `Ctrl + A/E/B/F/K/U/W`, word movement and deletion, etc.), see [Composer](/designs/composer) for details.
 
 ### Prefix popups
 
 | Prefix | Purpose |
 | --- | --- |
-| `/` (typed when input box is empty) | [Slash Menu](/guide/fun/menu/) |
+| `/` (typed when input box is empty) | [Slash Menu](/guide/fun/menu/preface) |
 | `@` | File / image path |
 | `$` | [Skill](/guide/fun/skills) |
 | `#` | Custom prompt |
@@ -56,7 +56,7 @@ Common operations inside popups: continue typing to filter, `↑` / `↓` to mov
 | `Enter` | Execute |
 | `Esc` | Close menu |
 
-See the [slash menu overview](/guide/fun/menu/) for the full command list.
+See the [slash menu overview](/guide/fun/menu/preface) for the full command list.
 
 ## Session resume `/resume`, message copy `/copy`, history `/resend`
 
@@ -84,7 +84,7 @@ Navigation for these full-screen lists is generally similar (follow the hint at 
 | `Enter` | Backtrack to restorable node, or switch branch |
 | `Esc` | Go back level by level / close |
 
-See [`/tree`](/guide/fun/menu/tree.html) for more detailed layered operations (branch preview, Branch Tree).
+See [`/tree`](/guide/fun/menu/tree) for more detailed layered operations (branch preview, Branch Tree).
 
 ## User message backtracking (default double Esc / `/sends-back`)
 
@@ -95,7 +95,7 @@ See [`/tree`](/guide/fun/menu/tree.html) for more detailed layered operations (b
 | `Enter` | Truncate content after this message and refill this user message into the input box (doesn't auto-send) |
 | `Esc` / `Ctrl + T` / `Ctrl + C` | Close overlay, doesn't modify the session |
 
-See [`/sends-back`](/guide/fun/menu/sends-back.html) for details.
+See [`/sends-back`](/guide/fun/menu/sends-back) for details.
 
 ## Full-screen Transcript (`Ctrl + T`)
 
@@ -118,8 +118,8 @@ For option meaning and hints when the panel is invisible, see [Tools & Approval]
 
 ## Other panels: Models / Prompt
 
-- [`/models`](/guide/fun/menu/models.html): type directly to filter, `Enter` to select; `U` to refresh model list (if provider supports)  
-- [`/prompt`](/guide/fun/menu/prompt.html): two-column with tabs; `Space` to preview single item, `p` to see assembled result, `?` to see panel help, `Ctrl + G` to edit body in external editor  
+- [`/models`](/guide/fun/menu/models): type directly to filter, `Enter` to select; `U` to refresh model list (if provider supports)  
+- [`/prompt`](/guide/fun/menu/prompt): two-column with tabs; `Space` to preview single item, `p` to see assembled result, `?` to see panel help, `Ctrl + G` to edit body in external editor  
 
 Each panel generally shows operation hints for the current context at the bottom. Specific operations follow the interface hints; this page only summarizes the most commonly used keys.
 

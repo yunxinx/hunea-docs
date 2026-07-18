@@ -8,7 +8,7 @@ A short tour of how Hunea thinks about design.
 
 These choices may still change later, but they are relatively stable for now. Docs will follow if they shift.
 
-If you mainly care about how to operate things, start with the [Slash Menu](/guide/fun/menu/).
+If you mainly care about how to operate things, start with the [Slash Menu](/guide/fun/menu/preface).
 
 ## Why altscreen
 
@@ -17,7 +17,7 @@ Hunea’s main UI runs in the terminal’s **alternate screen** (often called al
 In short: once altscreen is entered, the app — Hunea — gets an **independent full-screen canvas**. Frame refreshes, full-screen panels, overlays, and the status line can all paint to their own layout. Leaving altscreen on exit hands the terminal back to the primary screen. The main shell session is not polluted by intermediate TUI frames, clears, or partial redraws, and the exit path stays clean.
 
 1. **Full-screen modal layers need a controllable surface**  
-   Interfaces like [`/tree`](/guide/fun/menu/tree.html), [`/copy`](/guide/fun/menu/copy.html), [`/prompt`](/guide/fun/menu/prompt.html), and the session resume list are not small bottom popovers — they take over the whole screen for lists, previews, and paging. Altscreen lets those layers fill the terminal instead of fighting the shell’s scrollback history.
+   Interfaces like [`/tree`](/guide/fun/menu/tree), [`/copy`](/guide/fun/menu/copy), [`/prompt`](/guide/fun/menu/prompt), and the session resume list are not small bottom popovers — they take over the whole screen for lists, previews, and paging. Altscreen lets those layers fill the terminal instead of fighting the shell’s scrollback history.
 2. **The input can grow and scroll with the document, instead of sitting fixed at the bottom**  
    The main view lays out transcript and composer as one scrollable document. The composer can grow without bound and never opens a second scroll region inside the input box. That layout is hard to keep clean under a primary-screen + fixed bottom-bar model; in altscreen it can be recomputed every frame.
 3. **“Review after exit” can be an explicit choice**  
@@ -60,7 +60,7 @@ The main UI defaults to **app capture**. Reasons are straightforward:
 - Dragging on the transcript should produce a **semantic selection** — body text, not left chrome, indent, or status margins
 - Lists should move the cursor on click without accidentally becoming “half a garbled terminal selection ready to paste”
 
-So main-UI selection is computed by Hunea: hit testing and copy range are separate — left prompts and visual indent can still be easy to click, but copy does not take the decoration with it. Whether a finished selection auto-writes the clipboard is controlled by `copy_on_mouse_selection_release` (default off). Middle-click can also copy the current selection. Whole-message copy goes through [`/copy`](/guide/fun/menu/copy.html) — a different path from screen drag-select.
+So main-UI selection is computed by Hunea: hit testing and copy range are separate — left prompts and visual indent can still be easy to click, but copy does not take the decoration with it. Whether a finished selection auto-writes the clipboard is controlled by `copy_on_mouse_selection_release` (default off). Middle-click can also copy the current selection. Whole-message copy goes through [`/copy`](/guide/fun/menu/copy) — a different path from screen drag-select.
 
 Full-screen layers are not all-or-nothing. Hunea picks mouse mode by whether the layer needs click navigation or reading/copying right now:
 

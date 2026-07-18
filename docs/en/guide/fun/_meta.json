@@ -18,10 +18,5 @@
     "type": "file",
     "name": "shortcuts",
     "label": "Keyboard Shortcuts"
-  },
-  {
-    "type": "dir",
-    "name": "designs",
-    "label": "Design & Trade-offs"
   }
 ]

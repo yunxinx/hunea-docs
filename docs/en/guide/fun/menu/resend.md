@@ -99,4 +99,4 @@ The data lives in Hunea's data directory (usually `~/.config/hunea/`), and it's 
 - You already have a half-written input and want to compare with an old message: open with `Ctrl + R`, your draft is kept; and before refill, your draft will be saved to history anyway.
 - You just want the text, don't want to refill the input: press `c` to copy in the list or preview.
 
-If you actually want to **select and copy user/assistant messages from the current session**, [`/copy`](/guide/fun/menu/copy.html) is more appropriate than `/resend`.
+If you actually want to **select and copy user/assistant messages from the current session**, [`/copy`](/guide/fun/menu/copy) is more appropriate than `/resend`.

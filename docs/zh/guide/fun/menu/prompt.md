@@ -210,10 +210,10 @@ description: 介绍 Hunea 的 /prompt 斜杠命令的作用
 | 你想做的事 | 更合适的命令 |
 | --- | --- |
 | 查看/调整“下一轮新会话”的 `system`（系统）拼装清单 | `/prompt` |
-| 看上下文大概占了多少、还剩多少 | [`/context`](/guide/fun/menu/context.html) |
-| 切换当前会话模型 | [`/models`](/guide/fun/menu/models.html) |
+| 看上下文大概占了多少、还剩多少 | [`/context`](/guide/fun/menu/context) |
+| 切换当前会话模型 | [`/models`](/guide/fun/menu/models) |
 | 清空当前对话、开一条新会话 | `/clear`（别名 `/new`） |
-| 从当前会话拷用户/助手消息 | [`/copy`](/guide/fun/menu/copy.html) |
+| 从当前会话拷用户/助手消息 | [`/copy`](/guide/fun/menu/copy) |
 
 `/context` 回答的是“预算还剩多少”；`/prompt` 回答的是“这些预算里的 `system`（系统）侧，究竟由哪些来源拼出来、能不能改”。
 

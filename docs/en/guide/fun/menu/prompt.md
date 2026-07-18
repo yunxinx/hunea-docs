@@ -210,10 +210,10 @@ You don't need to manually write all files before using `/prompt`: many custom i
 | What you want to do | More appropriate command |
 | --- | --- |
 | Inspect/adjust the system assembly list for the next new session | `/prompt` |
-| Check how much context is used / remaining | [`/context`](/guide/fun/menu/context.html) |
-| Switch model for current session | [`/models`](/guide/fun/menu/models.html) |
+| Check how much context is used / remaining | [`/context`](/guide/fun/menu/context) |
+| Switch model for current session | [`/models`](/guide/fun/menu/models) |
 | Clear current conversation, start a new session | `/clear` (alias `/new`) |
-| Copy user/assistant messages from current session | [`/copy`](/guide/fun/menu/copy.html) |
+| Copy user/assistant messages from current session | [`/copy`](/guide/fun/menu/copy) |
 
 `/context` answers "how much budget is left"; `/prompt` answers "among this budget, what sources make up the system side, and can it be modified".
 

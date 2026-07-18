@@ -8,7 +8,7 @@ description: 介绍 Hunea 的 /tree 斜杠命令的作用
 
 当你想回到某一条用户消息、助手回复，或者某次工具结果附近，从那里接着聊、修改后重发，或者切换到另一条分支，都可以使用它。输入 `/tree` 确认后，会打开一个全屏的会话树面板，标题是 `Session Tree`。
 
-默认 `esc_rewind_mode = "coarse"` 时，斜杠菜单中显示的是 `/tree`。需要注意：空输入框连按两次 `Esc` **并不会**打开 `/tree`，而是会进入另一套「按某轮用户消息编辑/重发」的交互（截断该条之后的内容，并将正文回填到输入框，见 [`/sends-back`](/guide/fun/menu/sends-back.html)）。
+默认 `esc_rewind_mode = "coarse"` 时，斜杠菜单中显示的是 `/tree`。需要注意：空输入框连按两次 `Esc` **并不会**打开 `/tree`，而是会进入另一套「按某轮用户消息编辑/重发」的交互（截断该条之后的内容，并将正文回填到输入框，见 [`/sends-back`](/guide/fun/menu/sends-back)）。
 
 只有将 `esc_rewind_mode` 配置为 `"entry"` 时，双击 `Esc` 才会打开 `/tree`；与此同时菜单会改为显示 `/sends-back`，二者不会同时出现在斜杠菜单中。也就是说，菜单项与双击 `Esc` 分别对应两种回溯方式，修改配置只是交换入口。
 
@@ -157,12 +157,12 @@ branch_picker_list_rows = 7
 | 你想做的事 | 更合适的命令 |
 | --- | --- |
 | 在当前会话里精确回到某个消息节点 / 开分支 | `/tree` |
-| 按某轮用户消息去改/重发（默认 coarse 下双击 `Esc`；`entry` 时菜单显示 `/sends-back`） | [`/sends-back`](/guide/fun/menu/sends-back.html) |
-| 只回填以前发过的用户输入，不改会话树 | [`/resend`](/guide/fun/menu/resend.html) |
-| 从当前会话挑用户/助手消息复制出去 | [`/copy`](/guide/fun/menu/copy.html) |
-| 切换到另一条已保存会话 | [`/resume`](/guide/fun/menu/resume.html) |
+| 按某轮用户消息去改/重发（默认 coarse 下双击 `Esc`；`entry` 时菜单显示 `/sends-back`） | [`/sends-back`](/guide/fun/menu/sends-back) |
+| 只回填以前发过的用户输入，不改会话树 | [`/resend`](/guide/fun/menu/resend) |
+| 从当前会话挑用户/助手消息复制出去 | [`/copy`](/guide/fun/menu/copy) |
+| 切换到另一条已保存会话 | [`/resume`](/guide/fun/menu/resume) |
 
-与 `/sends-back` 的菜单互斥关系，也写在[斜杠菜单前言](/guide/fun/menu/)里。
+与 `/sends-back` 的菜单互斥关系，也写在[斜杠菜单前言](/guide/fun/menu/preface)里。
 
 ## 相关配置
 

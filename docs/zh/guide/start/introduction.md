@@ -12,7 +12,7 @@ Hunea 是一个基于 rust 和 ratatui 开发的 TUI Agent 工具。我将其命
 
 前往 [快速开始](/guide/start/getting-started) 了解如何和 Hunea 一起协作。
 
-或者前往 [慢速开始](/guide/start/slow/index) 来从最开始了解如何和 Hunea 一起协作。
+或者前往 [慢速开始](/guide/start/slow/preface) 来从最开始了解如何和 Hunea 一起协作。
 
 ## 闲言碎语
 

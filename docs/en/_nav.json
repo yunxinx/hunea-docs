@@ -3,5 +3,10 @@
     "text": "Guide",
     "link": "/guide/start/introduction",
     "activeMatch": "/guide/"
+  },
+  {
+    "text": "Design & Trade-offs",
+    "link": "/designs/preface",
+    "activeMatch": "/designs/"
   }
 ]

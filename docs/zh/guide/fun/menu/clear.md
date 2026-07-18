@@ -39,24 +39,24 @@ description: 介绍 Hunea 的 /clear 斜杠命令的作用
   一般会继续沿用，不必重新 `/models` 选一遍（当然你也可以再换）。
 
 - **已经保存过的历史会话**  
-  之前聊过并落盘的会话，通常仍可在 [`/resume`](/guide/fun/menu/resume.html) 列表里找回来；`/clear` 更像“切到新的空会话”，不是批量删除存档。
+  之前聊过并落盘的会话，通常仍可在 [`/resume`](/guide/fun/menu/resume) 列表里找回来；`/clear` 更像“切到新的空会话”，不是批量删除存档。
 
 - **全局用户消息历史**  
-  [`/resend`](/guide/fun/menu/resend.html) 用的那份跨项目历史，不会因为 `/clear` 被清空。
+  [`/resend`](/guide/fun/menu/resend) 用的那份跨项目历史，不会因为 `/clear` 被清空。
 
 - **`models.toml`、prompt assembly、配置文件**  
-  供应商/模型配置、以及你在 [`/prompt`](/guide/fun/menu/prompt.html) 里维护的装配状态，都不会被 `/clear` 直接改掉。
+  供应商/模型配置、以及你在 [`/prompt`](/guide/fun/menu/prompt) 里维护的装配状态，都不会被 `/clear` 直接改掉。
 
 ## 和相邻命令的区别
 
 | 你想做的事 | 更合适的命令 |
 | --- | --- |
 | 清空当前对话、开一条新会话，但继续留在应用里 | `/clear`（别名 `/new`） |
-| 退出整个应用 | [`/exit`](/guide/fun/menu/quit.html)（别名 `/quit`） |
-| 回到某条已保存的旧会话 | [`/resume`](/guide/fun/menu/resume.html) |
-| 只回填以前发过的用户输入 | [`/resend`](/guide/fun/menu/resend.html) |
-| 在当前会话里精确回到某个消息节点 / 开分支 | [`/tree`](/guide/fun/menu/tree.html) |
-| 查看上下文大概占了多少 | [`/context`](/guide/fun/menu/context.html) |
+| 退出整个应用 | [`/exit`](/guide/fun/menu/quit)（别名 `/quit`） |
+| 回到某条已保存的旧会话 | [`/resume`](/guide/fun/menu/resume) |
+| 只回填以前发过的用户输入 | [`/resend`](/guide/fun/menu/resend) |
+| 在当前会话里精确回到某个消息节点 / 开分支 | [`/tree`](/guide/fun/menu/tree) |
+| 查看上下文大概占了多少 | [`/context`](/guide/fun/menu/context) |
 
 简单说：
 
@@ -66,7 +66,7 @@ description: 介绍 Hunea 的 /clear 斜杠命令的作用
 
 ## 一点使用建议
 
-- 上下文快满、模型开始“忘事”或答非所问：先看一眼 [`/context`](/guide/fun/menu/context.html)，需要时直接 `/clear` 开干净会话。
-- 刚在 [`/prompt`](/guide/fun/menu/prompt.html) 里改过提示词装配：多数改动面向“下一次新会话”；关面板后再 `/clear`，更容易立刻验证新装配是否生效。
-- 当前会话里还有想带走的内容：先用 [`/copy`](/guide/fun/menu/copy.html) 拷出去，再 `/clear`。
-- 只是想复用某条旧提示词、并不想丢掉当前对话：使用 [`/resend`](/guide/fun/menu/resend.html)，它不会清空当前对话。
+- 上下文快满、模型开始“忘事”或答非所问：先看一眼 [`/context`](/guide/fun/menu/context)，需要时直接 `/clear` 开干净会话。
+- 刚在 [`/prompt`](/guide/fun/menu/prompt) 里改过提示词装配：多数改动面向“下一次新会话”；关面板后再 `/clear`，更容易立刻验证新装配是否生效。
+- 当前会话里还有想带走的内容：先用 [`/copy`](/guide/fun/menu/copy) 拷出去，再 `/clear`。
+- 只是想复用某条旧提示词、并不想丢掉当前对话：使用 [`/resend`](/guide/fun/menu/resend)，它不会清空当前对话。

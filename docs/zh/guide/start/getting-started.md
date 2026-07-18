@@ -22,7 +22,7 @@ npm i -g hunea
 
 这样会安装到旧版本。
 
-> 其中 -g 表示全局安装，安装好后就可以在任意路径执行启动 Hunea（只要 npm 环境配置正确，一般都能成功）。如果你不太清楚 npm 是什么，建议阅读[慢速开始](/guide/start/slow/index)
+> 其中 -g 表示全局安装，安装好后就可以在任意路径执行启动 Hunea（只要 npm 环境配置正确，一般都能成功）。如果你不太清楚 npm 是什么，建议阅读[慢速开始](/guide/start/slow/preface)
 
 Hunea 目前还在开发，暂未有正式版本，主要精力都花在打磨 TUI 的稳定性、流畅性、美观度和易用性上。核心功能也是最近这段时间才整合完成，我希望能把易用性基础打牢，提供流畅稳定的体验。
 
@@ -75,7 +75,7 @@ base_url = "https://xxx/v1"
 models = ["xxx"]
 ```
 
-更完整的 `models.toml` 字段说明、上下文窗口配置，以及 `config.toml` / `phrases.toml`，见[配置文件](/guide/start/configuration)。
+更完整的 `models.toml` 字段说明、上下文窗口配置，见 [models.toml](/guide/start/configuration/models)；`config.toml` / `phrases.toml` 见 [配置总览](/guide/start/configuration/preface)。
 
 配置好后就可以重启 Hunea，然后输入使用 `/models` 斜杠命令打开模型选择 TUI 菜单进行模型的选择：
 
@@ -85,7 +85,7 @@ models = ["xxx"]
 
 ## 推荐配置
 
-对于 `config.toml`，一般不需要做太多配置，默认值已经适合绝大部分使用情况。完整字段说明见[配置文件](/guide/start/configuration)。
+对于 `config.toml`，一般不需要做太多配置，默认值已经适合绝大部分使用情况。完整字段说明见 [config.toml](/guide/start/configuration/config)。
 
 我个人自用的配置文件如下：
 
@@ -97,15 +97,15 @@ show_reasoning_content = true
 reasoning_content_display = "expanded-simplified"
 ```
 
-`phrases.toml` 我个人使用的是内置默认的提示；完整示例与说明同样见[配置文件](/guide/start/configuration)。
+`phrases.toml` 我个人使用的是内置默认的提示；完整示例与说明见 [phrases.toml](/guide/start/configuration/phrases)。
 
 ## 下一步
 
 到目前为止，安装、启动和基本配置已经足够开始使用了。如果需要继续了解，可以按需阅读：
 
-- [配置文件](/guide/start/configuration)：`models.toml` / `config.toml` / `phrases.toml` 的完整说明
-- [斜杠菜单](/guide/fun/menu/index)：内置命令与会话相关交互
+- [配置文件](/guide/start/configuration/preface)：`models.toml` / `config.toml` / `phrases.toml` 的完整说明
+- [斜杠菜单](/guide/fun/menu/preface)：内置命令与会话相关交互
 - [工具与审批](/guide/fun/tools)：Agent 可调用的工具，以及需要审批的操作
 - [技能与指令文件](/guide/fun/skills)：`$skill`、`AGENTS.md` / `CLAUDE.md` 如何参与提示词组装
 - [快捷键一览](/guide/fun/shortcuts)：主界面、输入框与覆盖层的常用按键
-- [设计与取舍](/guide/fun/designs/)：altscreen 与输入框等设计说明
+- [设计与取舍](/designs/preface)：altscreen 与输入框等设计说明

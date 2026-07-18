@@ -56,4 +56,4 @@ The **total** (shown in the summary line or on the right side of the panel) is p
 2. `defaults.context_window` (global default)
 3. Built-in rules: match by model family; unrecognized models fall back to a built-in default value
 
-All of these can be configured in `models.toml`. If the context length of your local model is non-standard, it's recommended to explicitly set `context_window` in the corresponding `model_profiles`, otherwise the `/context` budget bar may render with a larger default upper limit that doesn't match the real window. For more complete configuration instructions, see [Configuration](/guide/start/configuration).
+All of these can be configured in `models.toml`. If the context length of your local model is non-standard, it's recommended to explicitly set `context_window` in the corresponding `model_profiles`, otherwise the `/context` budget bar may render with a larger default upper limit that doesn't match the real window. For more complete configuration instructions, see [models.toml](/guide/start/configuration/models).

@@ -8,7 +8,7 @@ description: What the /tree slash command does in Hunea
 
 Use it when you want to go back to a user message, assistant reply, or tool result node, continue chatting from there, modify and resend, or switch to another branch. After typing `/tree` and confirming, it opens a full-screen session tree panel titled `Session Tree`.
 
-With the default `esc_rewind_mode = "coarse"`, `/tree` appears in the slash menu. Note: double-pressing `Esc` in an empty input box **does not** open `/tree` — instead it enters another "edit/resend by user message round" interaction (truncates after that message and refills the content into the input box, see [`/sends-back`](/guide/fun/menu/sends-back.html)).
+With the default `esc_rewind_mode = "coarse"`, `/tree` appears in the slash menu. Note: double-pressing `Esc` in an empty input box **does not** open `/tree` — instead it enters another "edit/resend by user message round" interaction (truncates after that message and refills the content into the input box, see [`/sends-back`](/guide/fun/menu/sends-back)).
 
 Only when `esc_rewind_mode` is configured to `"entry"` does double-pressing `Esc` open `/tree`; at the same time, the menu changes to show `/sends-back` — the two don't appear in the slash menu at the same time. That means the menu item and double-`Esc` correspond to the two backtracking modes separately; changing configuration just swaps their entry points.
 
@@ -157,12 +157,12 @@ It roughly looks like this:
 | What you want to do | More appropriate command |
 | --- | --- |
 | Precisely go back to a message node / open a branch in the current session | `/tree` |
-| Edit/resend by user message round (double `Esc` in default coarse mode; `/sends-back` in menu when entry mode) | [`/sends-back`](/guide/fun/menu/sends-back.html) |
-| Only refill a previously sent user input, don't change the session tree | [`/resend`](/guide/fun/menu/resend.html) |
-| Select and copy user/assistant messages from current session | [`/copy`](/guide/fun/menu/copy.html) |
-| Switch to another saved session | [`/resume`](/guide/fun/menu/resume.html) |
+| Edit/resend by user message round (double `Esc` in default coarse mode; `/sends-back` in menu when entry mode) | [`/sends-back`](/guide/fun/menu/sends-back) |
+| Only refill a previously sent user input, don't change the session tree | [`/resend`](/guide/fun/menu/resend) |
+| Select and copy user/assistant messages from current session | [`/copy`](/guide/fun/menu/copy) |
+| Switch to another saved session | [`/resume`](/guide/fun/menu/resume) |
 
-The menu mutual exclusion with `/sends-back` is also mentioned in the [slash menu overview](/guide/fun/menu/).
+The menu mutual exclusion with `/sends-back` is also mentioned in the [slash menu overview](/guide/fun/menu/preface).
 
 ## Related configuration
 

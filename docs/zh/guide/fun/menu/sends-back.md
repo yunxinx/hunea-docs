@@ -8,13 +8,13 @@ description: 介绍 Hunea 的 /sends-back 斜杠命令的作用
 
 使用过 `Codex CLI` 的话就会很熟悉这个界面。相较于前者，Hunea 在这个细节上做了调整：在该界面使用 `ESC` 只会关闭当前覆盖层，不会继续向上层回溯。我之前被 `Codex CLI` 这个设计坑过，所以在实现时特意做了区分。
 
-这个功能适用于想改某一轮提问再重发、接上某条旧的用户输入继续写，又不想像 [`/tree`](/guide/fun/menu/tree.html) 那样在会话树上精确选节点开分支时。它更偏向“按用户消息改/重发”，侧重点是接上那条用户输入。
+这个功能适用于想改某一轮提问再重发、接上某条旧的用户输入继续写，又不想像 [`/tree`](/guide/fun/menu/tree) 那样在会话树上精确选节点开分支时。它更偏向“按用户消息改/重发”，侧重点是接上那条用户输入。
 
 :::danger 注意
 这个功能更侧重于重写/重发，所以不会保留已有的对话内容。如果你想要保留内容的同时，想回到之前的发送消息处进行重发查看模型的更多回答的话，那么你应该使用 `/tree` 而非该功能。
 :::
 
-> 和 [`/tree`](/guide/fun/menu/tree.html) **不会同时出现在斜杠菜单里**。只有把 `esc_rewind_mode` 配成 `"entry"` 时，菜单才会显示 `/sends-back`；默认 `coarse` 时菜单显示的是 `/tree`。互斥关系也写在[斜杠菜单前言](/guide/fun/menu/)里。
+> 和 [`/tree`](/guide/fun/menu/tree) **不会同时出现在斜杠菜单里**。只有把 `esc_rewind_mode` 配成 `"entry"` 时，菜单才会显示 `/sends-back`；默认 `coarse` 时菜单显示的是 `/tree`。互斥关系也写在[斜杠菜单前言](/guide/fun/menu/preface)里。
 
 该功能效果大致如下图所示：
 
@@ -44,7 +44,7 @@ esc_rewind_mode = "entry"
 
 若提示超时、中间又做了别的操作，或输入框里已有草稿 / 当前仍在流式输出，这次回溯通常不会继续。
 
-> 配置成 `"entry"` 后：菜单显示 `/sends-back`；空输入框连按两次 `Esc` 则改为打开 [`/tree`](/guide/fun/menu/tree.html)。也就是说，菜单项与双击 `Esc` 分别对应两种回溯方式，而不是提供两个相同入口。
+> 配置成 `"entry"` 后：菜单显示 `/sends-back`；空输入框连按两次 `Esc` 则改为打开 [`/tree`](/guide/fun/menu/tree)。也就是说，菜单项与双击 `Esc` 分别对应两种回溯方式，而不是提供两个相同入口。
 
 ## 界面概览
 
@@ -99,17 +99,17 @@ esc_rewind_mode = "entry"
 
 - 若当前仍有进行中的请求，运行时可能拒绝截断，并给出错误提示
 - 回填到输入框的内容**不会**进入输入框的 Ctrl+Z 撤销历史；这是刻意避免“半截草稿被 undo 弄乱”
-- 这和 [`/resend`](/guide/fun/menu/resend.html) 不同：`/resend` 只从**全局**用户历史回填，不改当前会话树；`/sends-back` 会改当前会话可见内容与后续请求上下文
+- 这和 [`/resend`](/guide/fun/menu/resend) 不同：`/resend` 只从**全局**用户历史回填，不改当前会话树；`/sends-back` 会改当前会话可见内容与后续请求上下文
 
 ## 和相邻命令的区别
 
 | 你想做的事 | 更合适的命令 |
 | --- | --- |
 | 按某轮用户消息改/重发，并截掉后面内容 | `/sends-back`（或默认 coarse 下双击 `Esc`） |
-| 在会话树上精确选节点、保留内容并开分支 | [`/tree`](/guide/fun/menu/tree.html) |
-| 只回填以前发过的用户输入，不改当前会话 | [`/resend`](/guide/fun/menu/resend.html) |
-| 从当前会话拷用户/助手消息出去 | [`/copy`](/guide/fun/menu/copy.html) |
-| 清空整段对话、开一条全新会话 | [`/clear`](/guide/fun/menu/clear.html) |
+| 在会话树上精确选节点、保留内容并开分支 | [`/tree`](/guide/fun/menu/tree) |
+| 只回填以前发过的用户输入，不改当前会话 | [`/resend`](/guide/fun/menu/resend) |
+| 从当前会话拷用户/助手消息出去 | [`/copy`](/guide/fun/menu/copy) |
+| 清空整段对话、开一条全新会话 | [`/clear`](/guide/fun/menu/clear) |
 
 简单说：
 
@@ -135,5 +135,5 @@ esc_rewind_mode = "coarse"
 
 - 只想改最近一轮提问：打开后默认已在最新用户消息，直接 `Enter` 即可。
 - 想回到更早的提问：用 `←` 往旧消息走；内容看不清时用 `↑`/`↓` 滚动。
-- 如果后续仍有需要保留的分支内容，优先使用 [`/tree`](/guide/fun/menu/tree.html)，它不会直接截断已有内容。
-- 只是想把旧提示词拷出来或复用、不想动当前会话：用 [`/copy`](/guide/fun/menu/copy.html) 或 [`/resend`](/guide/fun/menu/resend.html)。
+- 如果后续仍有需要保留的分支内容，优先使用 [`/tree`](/guide/fun/menu/tree)，它不会直接截断已有内容。
+- 只是想把旧提示词拷出来或复用、不想动当前会话：用 [`/copy`](/guide/fun/menu/copy) 或 [`/resend`](/guide/fun/menu/resend)。

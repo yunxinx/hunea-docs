@@ -56,4 +56,4 @@ description: 介绍 Hunea 的 /context 斜杠命令的作用
 2. `defaults.context_window`（全局默认）
 3. 内置规则：按模型家族匹配；识别不了的模型会落到一个内置回退值
 
-这些都可以在 `models.toml` 里配置。本地模型上下文长度不标准时，建议在对应 `model_profiles` 里写清楚 `context_window`，否则 `/context` 的预算条可能按偏大的默认上限渲染，导致和真实窗口并不一致。更完整的配置说明见 [配置文件](/guide/start/configuration)。
+这些都可以在 `models.toml` 里配置。本地模型上下文长度不标准时，建议在对应 `model_profiles` 里写清楚 `context_window`，否则 `/context` 的预算条可能按偏大的默认上限渲染，导致和真实窗口并不一致。更完整的配置说明见 [models.toml](/guide/start/configuration/models)。

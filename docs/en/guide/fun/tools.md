@@ -8,7 +8,7 @@ During conversation in Hunea, the model can call a set of built-in tools to read
 
 This page explains what users encounter: which tools exist, which require approval, how path scope is restricted, and how to operate the approval panel.
 
-> Tool usage guidelines participate in prompt assembly in [`/prompt`](/guide/fun/menu/prompt.html); context usage also shows a `Tool definitions` entry in [`/context`](/guide/fun/menu/context.html). This page complements the runtime capability itself.
+> Tool usage guidelines participate in prompt assembly in [`/prompt`](/guide/fun/menu/prompt); context usage also shows a `Tool definitions` entry in [`/context`](/guide/fun/menu/context). This page complements the runtime capability itself.
 
 ## Workspace boundaries
 
@@ -61,7 +61,7 @@ Operations:
 
 Note: the approval panel is at the end of the document. If the viewport is scrolled up to see historical messages, the panel may not be visible temporarily. The interface gives a hint to avoid accidental operation when you can't see the options.
 
-> The debug [`/tool-debug`](/guide/fun/menu/) (requires `debug.enabled = true`) can preview the approval panel UI, but it's not a regular usage path; it may be removed or improved later.
+> The debug [`/tool-debug`](/guide/fun/menu/preface) (requires `debug.enabled = true`) can preview the approval panel UI, but it's not a regular usage path; it may be removed or improved later.
 
 ## Turn limit
 
@@ -73,13 +73,13 @@ In one user request, the Agent can make multiple consecutive rounds of tool call
 tool_max_turns = 32
 ```
 
-See the `[runtime]` section in [Configuration](/guide/start/configuration) for request retry, idle timeout, and other instructions.
+See the `[runtime]` section in [config.toml](/guide/start/configuration/config) for request retry, idle timeout, and other instructions.
 
 ## Relationship to prompts and context
 
-- Which tools are currently enabled, and their guideline content: see the Tools tab in [`/prompt`](/guide/fun/menu/prompt.html). You can also toggle tools off on that tab; when toggled off, they won't enter the assembly for the next new session.
-- Context usage from tool definitions: see [`/context`](/guide/fun/menu/context.html).
-- Tool results enter the session tree, so you can see `tool` nodes in [`/tree`](/guide/fun/menu/tree.html); but [`/copy`](/guide/fun/menu/copy.html) by default only lists user messages and assistant replies, it doesn't include tool / reasoning in the copy list.
+- Which tools are currently enabled, and their guideline content: see the Tools tab in [`/prompt`](/guide/fun/menu/prompt). You can also toggle tools off on that tab; when toggled off, they won't enter the assembly for the next new session.
+- Context usage from tool definitions: see [`/context`](/guide/fun/menu/context).
+- Tool results enter the session tree, so you can see `tool` nodes in [`/tree`](/guide/fun/menu/tree); but [`/copy`](/guide/fun/menu/copy) by default only lists user messages and assistant replies, it doesn't include tool / reasoning in the copy list.
 
 ## Usage tips
 

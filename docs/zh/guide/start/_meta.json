@@ -10,7 +10,7 @@
     "label": "快速开始"
   },
   {
-    "type": "file",
+    "type": "dir",
     "name": "configuration",
     "label": "配置文件"
   },

@@ -10,7 +10,7 @@
     "label": "Getting Started"
   },
   {
-    "type": "file",
+    "type": "dir",
     "name": "configuration",
     "label": "Configuration"
   },

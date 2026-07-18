@@ -1,9 +1,16 @@
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { defineConfig } from '@rspress/core';
+
+const linuxdoSvg = fs.readFileSync(
+  path.join(__dirname, 'docs/public/linuxdo.svg'),
+  'utf-8',
+);
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Hunea',
+  // 默认语言（zh）站点描述；英文见 locales.en.description
   description: 'Hunea 的官方文档',
   lang: 'zh',
   icon: '/notesites.ico',
@@ -31,9 +38,9 @@ export default defineConfig({
         content: 'https://github.com/yunxinx/hunea-docs',
       },
       {
-        // LINUX DO 友情链接：自定义站点 logo，放在 GitHub 图标旁
+        // LINUX DO 友情链接：SVG 源文件在 docs/public/linuxdo.svg
         icon: {
-          svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 90 90" width="100%" height="100%" role="img" aria-label="LINUX DO"><circle fill="#efefef" cx="50" cy="50" r="45"/><path fill="#feb005" d="M50,92.3c16.64,0,31.03-9.61,37.94-23.57H12.06c6.91,13.97,21.3,23.57,37.94,23.57Z"/><path fill="#1e1e20" d="M50,7.7c-16.64,0-31.03,9.61-37.94,23.57h75.88c-6.91-13.97-21.3-23.57-37.94-23.57Z"/></svg>',
+          svg: linuxdoSvg,
         },
         mode: 'link',
         content: 'https://linux.do',

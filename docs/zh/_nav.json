@@ -3,5 +3,10 @@
     "text": "指北",
     "link": "/guide/start/introduction",
     "activeMatch": "/guide/"
+  },
+  {
+    "text": "设计与取舍",
+    "link": "/designs/preface",
+    "activeMatch": "/designs/"
   }
 ]

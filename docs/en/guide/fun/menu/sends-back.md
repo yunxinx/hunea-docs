@@ -8,13 +8,13 @@ description: What the /sends-back slash command does in Hunea
 
 If you've used `Codex CLI`, this interface will feel familiar. Compared to Codex CLI, Hunea adjusts this detail: in this interface, pressing `ESC` only closes the current overlay and doesn't continue bubbling to backtrack further. I've been bitten by that Codex CLI design before, so I made this distinction explicit in implementation.
 
-This feature is useful when you want to modify a question and resend it, or continue writing from an old user input, without needing to precisely select a node and branch on the session tree like [`/tree`](/guide/fun/menu/tree.html). It focuses more on "modify/resend by user message" and continues from that user input.
+This feature is useful when you want to modify a question and resend it, or continue writing from an old user input, without needing to precisely select a node and branch on the session tree like [`/tree`](/guide/fun/menu/tree). It focuses more on "modify/resend by user message" and continues from that user input.
 
 :::danger Note
 This feature focuses on rewriting/resending, so it doesn't preserve existing conversation content. If you want to preserve content and go back to a previous message to get more answers from the model, you should use `/tree` instead of this feature.
 :::
 
-> It and [`/tree`](/guide/fun/menu/tree.html) **don't both appear in the slash menu at the same time**. `/sends-back` only appears in the menu when you set `esc_rewind_mode = "entry"`; with the default `coarse` setting, the menu shows `/tree`. The mutual exclusion is also mentioned in the [slash menu overview](/guide/fun/menu/).
+> It and [`/tree`](/guide/fun/menu/tree) **don't both appear in the slash menu at the same time**. `/sends-back` only appears in the menu when you set `esc_rewind_mode = "entry"`; with the default `coarse` setting, the menu shows `/tree`. The mutual exclusion is also mentioned in the [slash menu overview](/guide/fun/menu/preface).
 
 It roughly looks like this:
 
@@ -44,7 +44,7 @@ With the default `esc_rewind_mode = "coarse"`, there's **no** `/sends-back` item
 
 If the prompt times out, you do something else in between, or the input box already has a draft / there's still streaming output, this backtrack usually won't proceed.
 
-> When configured to `"entry"`: the menu shows `/sends-back`; double-pressing `Esc` in empty input opens [`/tree`](/guide/fun/menu/tree.html) instead. That means the menu item and double-`Esc` correspond to the two backtracking modes separately, not two entries to the same thing.
+> When configured to `"entry"`: the menu shows `/sends-back`; double-pressing `Esc` in empty input opens [`/tree`](/guide/fun/menu/tree) instead. That means the menu item and double-`Esc` correspond to the two backtracking modes separately, not two entries to the same thing.
 
 ## Interface overview
 
@@ -99,17 +99,17 @@ Note:
 
 - If there's still an ongoing request, the runtime may refuse truncation and show an error
 - The content refilled into the input box **won't** go into the input box's Ctrl+Z undo history; this is intentional to avoid "half-drafts getting messed up by undo"
-- This differs from [`/resend`](/guide/fun/menu/resend.html): `/resend` only refills from **global** user history and doesn't change the current session tree; `/sends-back` changes the current session's visible content and the context for subsequent requests
+- This differs from [`/resend`](/guide/fun/menu/resend): `/resend` only refills from **global** user history and doesn't change the current session tree; `/sends-back` changes the current session's visible content and the context for subsequent requests
 
 ## How it differs from related commands
 
 | What you want to do | More appropriate command |
 | --- | --- |
 | Modify/resend a round of user messages, truncate what comes after | `/sends-back` (or double `Esc` in default coarse mode) |
-| Precisely select a node on the session tree, preserve content and open a branch | [`/tree`](/guide/fun/menu/tree.html) |
-| Only refill a previously sent user input, don't change the current session | [`/resend`](/guide/fun/menu/resend.html) |
-| Copy user/assistant messages from current session out | [`/copy`](/guide/fun/menu/copy.html) |
-| Clear the whole conversation, start a brand-new session | [`/clear`](/guide/fun/menu/clear.html) |
+| Precisely select a node on the session tree, preserve content and open a branch | [`/tree`](/guide/fun/menu/tree) |
+| Only refill a previously sent user input, don't change the current session | [`/resend`](/guide/fun/menu/resend) |
+| Copy user/assistant messages from current session out | [`/copy`](/guide/fun/menu/copy) |
+| Clear the whole conversation, start a brand-new session | [`/clear`](/guide/fun/menu/clear) |
 
 In short:
 
@@ -135,5 +135,5 @@ esc_rewind_mode = "coarse"
 
 - You just want to modify the latest question: after opening, it's already on the latest user message by default — just press `Enter`.
 - You want to go back to an older question: use `←` to go to older messages; scroll with `↑`/`↓` if the content isn't fully visible.
-- If you still need to keep branched content later, prefer [`/tree`](/guide/fun/menu/tree.html) — it doesn't directly truncate existing content.
-- If you just want to copy or reuse an old prompt and don't want to modify the current session: use [`/copy`](/guide/fun/menu/copy.html) or [`/resend`](/guide/fun/menu/resend.html).
+- If you still need to keep branched content later, prefer [`/tree`](/guide/fun/menu/tree) — it doesn't directly truncate existing content.
+- If you just want to copy or reuse an old prompt and don't want to modify the current session: use [`/copy`](/guide/fun/menu/copy) or [`/resend`](/guide/fun/menu/resend).

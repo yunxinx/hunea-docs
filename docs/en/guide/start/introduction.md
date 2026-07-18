@@ -19,7 +19,7 @@ I want the same simple, approachable experience for professionals, learners, and
 
 Go to [Getting Started](/guide/start/getting-started) to learn how to work with Hunea.
 
-Or go to [Slow Start](/guide/start/slow/index) if you want to learn from the very beginning.
+Or go to [Slow Start](/guide/start/slow/preface) if you want to learn from the very beginning.
 
 ## Side notes
 

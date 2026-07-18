@@ -38,7 +38,7 @@ Therefore in a monorepo, subdirectories and the repository root can each have th
 ### How it takes effect
 
 - Content enters prompt assembly as an `instructions` source.  
-- Whether it actually writes into the system prompt of **the next new session** depends on whether that source is enabled in [`/prompt`](/guide/fun/menu/prompt.html) and whether it's shadowed by a higher-priority source.  
+- Whether it actually writes into the system prompt of **the next new session** depends on whether that source is enabled in [`/prompt`](/guide/fun/menu/prompt) and whether it's shadowed by a higher-priority source.  
 - **A session that already has content won't automatically re-assemble just because you modified AGENTS.md**. Assembly state targets the next new session (or the current session if it's still empty).
 
 To confirm whether it's working: open `/prompt`, look for `instructions` in the left Active list, check its status (missing / disabled / shadowed), or see if the corresponding content appears in the body preview.
@@ -112,9 +112,9 @@ Other tools in the industry may support more frontmatter (like `allowed-tools`, 
 
 | Usage | Entry | What happens |
 | --- | --- | --- |
-| **Skill discovery (give the model a directory)** | By default participates in skill discovery fragment assembly in [`/prompt`](/guide/fun/menu/prompt.html) | The system side includes the name, description, and path of available skills; the model reads the body with `read` when the task matches. Skills with `disable-model-invocation: true` don't enter this directory |
+| **Skill discovery (give the model a directory)** | By default participates in skill discovery fragment assembly in [`/prompt`](/guide/fun/menu/prompt) | The system side includes the name, description, and path of available skills; the model reads the body with `read` when the task matches. Skills with `disable-model-invocation: true` don't enter this directory |
 | **Long-lived injection** | Enable the skill in the Skill tab of `/prompt` | Writes the skill body into the system assembly of **the next new session** (occupies more context, suitable for a small number of skills that really need to be always included) |
-| **Manual binding for current message** | Type `$` in the input box to open the skill picker (see [Composer](/guide/fun/designs/composer.html)) | Only affects **this current** user message: when sending, the skill body is expanded according to the binding, and a `$skill` visible mark is left in the conversation |
+| **Manual binding for current message** | Type `$` in the input box to open the skill picker (see [Composer](/designs/composer)) | Only affects **this current** user message: when sending, the skill body is expanded according to the binding, and a `$skill` visible mark is left in the conversation |
 
 To clarify:
 

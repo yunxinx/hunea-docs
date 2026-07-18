@@ -22,7 +22,7 @@ npm i -g hunea
 
 That installs an older package instead.
 
-> `-g` means a global install so you can run Hunea from any path (assuming permissions and `PATH` are correct — if `npm` works, this usually works too). If you are not sure what npm is, start with [Slow Start](/guide/start/slow/index).
+> `-g` means a global install so you can run Hunea from any path (assuming permissions and `PATH` are correct — if `npm` works, this usually works too). If you are not sure what npm is, start with [Slow Start](/guide/start/slow/preface).
 
 Hunea is still under active development with no stable release yet. Most energy has gone into making the TUI stable, fast, polished, and easy to use. Features only landed more recently, after that usability and performance foundation felt solid enough.
 
@@ -125,7 +125,7 @@ base_url = "https://xxx/v1"
 models = ["xxx"]
 ```
 
-For complete `models.toml` field documentation, context window configuration, and `config.toml` / `phrases.toml`, see [Configuration](/guide/start/configuration).
+For complete `models.toml` field documentation, context window configuration, see [models.toml](/guide/start/configuration/models); for `config.toml` / `phrases.toml`, see the [Configuration overview](/guide/start/configuration/preface).
 
 After configuring, restart Hunea and run `/models` to open the model picker:
 
@@ -135,7 +135,7 @@ Highlight a model and press Enter to start chatting.
 
 ## Recommended Configuration
 
-For `config.toml`, you generally don't need much configuration — the defaults work for most use cases. For complete field documentation, see [Configuration](/guide/start/configuration).
+For `config.toml`, you generally don't need much configuration — the defaults work for most use cases. For complete field documentation, see [config.toml](/guide/start/configuration/config).
 
 My personal configuration:
 
@@ -147,15 +147,15 @@ show_reasoning_content = true
 reasoning_content_display = "expanded-simplified"
 ```
 
-I stick with the built-in phrases for `phrases.toml` myself; complete examples and documentation are also in [Configuration](/guide/start/configuration).
+I stick with the built-in phrases for `phrases.toml` myself; complete examples and documentation are in [phrases.toml](/guide/start/configuration/phrases).
 
 ## Next steps
 
 At this point, installation, launch, and basic configuration are enough to start using Hunea. To learn more, read according to your needs:
 
-- [Configuration](/guide/start/configuration): complete documentation for `models.toml` / `config.toml` / `phrases.toml`
-- [Slash Menu](/guide/fun/menu/): built-in commands and session-related interactions
+- [Configuration](/guide/start/configuration/preface): complete documentation for `models.toml` / `config.toml` / `phrases.toml`
+- [Slash Menu](/guide/fun/menu/preface): built-in commands and session-related interactions
 - [Tools & Approval](/guide/fun/tools): tools the Agent can call, and operations that require approval
 - [Skills & Instruction Files](/guide/fun/skills): how `$skill`, `AGENTS.md` / `CLAUDE.md` participate in prompt assembly
 - [Keyboard Shortcuts](/guide/fun/shortcuts): common keys for the main interface, input box, and overlays
-- [Design & Trade-offs](/guide/fun/designs/): design explanations for altscreen, composer, and more
+- [Design & Trade-offs](/designs/preface): design explanations for altscreen, composer, and more

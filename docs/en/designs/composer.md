@@ -6,7 +6,7 @@ description: What Hunea’s input box (composer) can do
 
 In Hunea (and in most similar products), the highest-frequency surface is the input box — internally called the **composer**.
 
-It is not a “fixed bottom bar that scrolls inside itself when the draft gets long”. It lives in the **same scrollable document** as the transcript above. Write more lines and it grows downward with you; even when it fills the viewport, it scrolls with the whole document instead of opening a second scroll region inside the box. That matches the altscreen / main-document layout described in the [Overview](/guide/fun/designs/).
+It is not a “fixed bottom bar that scrolls inside itself when the draft gets long”. It lives in the **same scrollable document** as the transcript above. Write more lines and it grows downward with you; even when it fills the viewport, it scrolls with the whole document instead of opening a second scroll region inside the box. That matches the altscreen / main-document layout described in the [Overview](/designs/preface).
 
 When empty you see a placeholder like `Enter to send Prompt` (this copy will be improved later). Prompt styling follows `user_input_style` (`cx` / `cc` / `ms`), but usage is the same: draft here, insert references, refill history, then send.
 
@@ -70,7 +70,7 @@ With a **non-empty draft**, `Ctrl + C` defaults to clearing the draft first (`ct
 
 ## Mouse
 
-The main UI defaults to app-captured mouse (see [Overview](/guide/fun/designs/)), so on the composer you can:
+The main UI defaults to app-captured mouse (see [Overview](/designs/preface)), so on the composer you can:
 
 - **Click**: place the cursor at that character (empty drafts have nothing to hit, so a click will not force a position)
 - **Drag**: create a selection over input text; with a selection, typing / paste / delete use replace-selection semantics
@@ -93,7 +93,7 @@ Several “type a prefix → popup” features live in the composer. They anchor
 
 | Prefix | What it does |
 | --- | --- |
-| `/` (when the whole input looks like a slash command) | Opens the inline [Slash Menu](/guide/fun/menu/); keep typing to filter |
+| `/` (when the whole input looks like a slash command) | Opens the inline [Slash Menu](/guide/fun/menu/preface); keep typing to filter |
 | `@` | File path completion; choosing an image path becomes an image attachment placeholder |
 | `$` | Pick a skill and create a structured binding |
 | `#` | Pick a custom prompt and create a structured binding |
@@ -110,7 +110,7 @@ Selection replaces the current token with a readable name and attaches the match
 
 ### `/` slash menu
 
-The menu only appears when the whole input is in “slash-command query” shape (empty input, type `/`, then filter). Typing `/` in the middle of a long draft does not suddenly open the full menu — same rule as the [Slash Menu](/guide/fun/menu/) docs.
+The menu only appears when the whole input is in “slash-command query” shape (empty input, type `/`, then filter). Typing `/` in the middle of a long draft does not suddenly open the full menu — same rule as the [Slash Menu](/guide/fun/menu/preface) docs.
 
 ## History refill
 

@@ -39,24 +39,24 @@ On the runtime side, it's more like "starting a new session":
   It will generally persist, so you don't need to re-select with `/models` (though you can still change it if you want).
 
 - **Already saved historical sessions**  
-  Previous conversations that were persisted to disk can still be found in the [`/resume`](/guide/fun/menu/resume.html) list; `/clear` is more like "switch to a new empty session" than bulk-deleting archives.
+  Previous conversations that were persisted to disk can still be found in the [`/resume`](/guide/fun/menu/resume) list; `/clear` is more like "switch to a new empty session" than bulk-deleting archives.
 
 - **Global user message history**  
-  The cross-session history used by [`/resend`](/guide/fun/menu/resend.html) is not cleared by `/clear`.
+  The cross-session history used by [`/resend`](/guide/fun/menu/resend) is not cleared by `/clear`.
 
 - **`models.toml`, prompt assembly, configuration files**  
-  Provider/model configuration and the assembly state you maintain in [`/prompt`](/guide/fun/menu/prompt.html) are not directly changed by `/clear`.
+  Provider/model configuration and the assembly state you maintain in [`/prompt`](/guide/fun/menu/prompt) are not directly changed by `/clear`.
 
 ## How it differs from related commands
 
 | What you want to do | More appropriate command |
 | --- | --- |
 | Clear current conversation, start a new session, stay in the app | `/clear` (alias `/new`) |
-| Exit the entire application | [`/exit`](/guide/fun/menu/quit.html) (alias `/quit`) |
-| Go back to a saved old session | [`/resume`](/guide/fun/menu/resume.html) |
-| Only refill a previously sent user input | [`/resend`](/guide/fun/menu/resend.html) |
-| Precisely return to a message node / branch in the current session | [`/tree`](/guide/fun/menu/tree.html) |
-| Check how much context is currently used | [`/context`](/guide/fun/menu/context.html) |
+| Exit the entire application | [`/exit`](/guide/fun/menu/quit) (alias `/quit`) |
+| Go back to a saved old session | [`/resume`](/guide/fun/menu/resume) |
+| Only refill a previously sent user input | [`/resend`](/guide/fun/menu/resend) |
+| Precisely return to a message node / branch in the current session | [`/tree`](/guide/fun/menu/tree) |
+| Check how much context is currently used | [`/context`](/guide/fun/menu/context) |
 
 To put it simply:
 
@@ -66,7 +66,7 @@ To put it simply:
 
 ## Usage tips
 
-- When context is almost full and the model starts "forgetting" or answering off-topic: check [`/context`](/guide/fun/menu/context.html) first, then use `/clear` to start a clean session when needed.
-- After modifying prompt assembly in [`/prompt`](/guide/fun/menu/prompt.html): most changes apply to "the next new session"; close the panel then `/clear` to easily verify the new assembly immediately.
-- If there's content in the current session you want to keep: use [`/copy`](/guide/fun/menu/copy.html) to copy it out first, then `/clear`.
-- If you just want to reuse an old prompt and don't want to discard the current conversation: use [`/resend`](/guide/fun/menu/resend.html), it won't clear the current conversation.
+- When context is almost full and the model starts "forgetting" or answering off-topic: check [`/context`](/guide/fun/menu/context) first, then use `/clear` to start a clean session when needed.
+- After modifying prompt assembly in [`/prompt`](/guide/fun/menu/prompt): most changes apply to "the next new session"; close the panel then `/clear` to easily verify the new assembly immediately.
+- If there's content in the current session you want to keep: use [`/copy`](/guide/fun/menu/copy) to copy it out first, then `/clear`.
+- If you just want to reuse an old prompt and don't want to discard the current conversation: use [`/resend`](/guide/fun/menu/resend), it won't clear the current conversation.

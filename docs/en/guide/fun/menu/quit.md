@@ -21,7 +21,7 @@ Additionally, if there's an unsent draft in the input box, the first `Ctrl + C` 
 
 The current version doesn't print an extra statistical summary or "how to return to your previous session" message after exit; when the process ends, your terminal returns to the state it was in before you launched Hunea.
 
-The session itself is generally stored in the data directory (usually `~/.config/hunea/`). Next time you launch Hunea in the same workspace, you can use [`/resume`](/guide/fun/menu/resume.html) to recover the previous conversation from the list — you don't have to start from scratch.
+The session itself is generally stored in the data directory (usually `~/.config/hunea/`). Next time you launch Hunea in the same workspace, you can use [`/resume`](/guide/fun/menu/resume) to recover the previous conversation from the list — you don't have to start from scratch.
 
 If you just want to **clear the current conversation and start a new session** but don't want to close the app, use `/clear` (alias `/new`) — it serves a different purpose than `/exit`.
 

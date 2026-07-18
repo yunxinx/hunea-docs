@@ -79,7 +79,7 @@ description: 介绍 Hunea 的 /models 斜杠命令的作用
 
 其它 kind 可能仍会出现在面板或配置校验中，但选中后在请求阶段会返回 unsupported。从 `/models` 自动同步模型列表，目前也主要覆盖 OpenAI 兼容这一类。配置供应商时建议优先使用上面三种，避免出现“列表中可见，但请求无法发出”的情况。
 
-更完整的字段说明见[配置文件](/guide/start/configuration)。
+更完整的字段说明见[models.toml](/guide/start/configuration/models)。
 
 ## 刷新模型列表（U）
 
@@ -108,11 +108,11 @@ description: 介绍 Hunea 的 /models 斜杠命令的作用
 
 需要注意：面板中可以看到某个模型，并不表示对该模型的请求一定能够成功。当前可用于对话的 kind 仍以 `openai_compatible` / `openai_responses` / `openai` 为主。
 
-更完整的 `models.toml` 写法、`default`，以及模型上下文窗口等配置，见 [配置文件](/guide/start/configuration)。
+更完整的 `models.toml` 写法、`default`，以及模型上下文窗口等配置，见 [models.toml](/guide/start/configuration/models)。
 
 ## 一点使用建议
 
 - 只想确认“现在用的是哪个模型”：打开 `/models` 看 `Current Model` 一行即可，`Esc` 退出。
 - 模型很多时：先 `←` / `→` 或者 `Tab`/`Shift + Tab` 切到对应 provider，再直接键入 id 关键字过滤，比纯靠上下翻更快。
 - 本地服务刚变过模型列表：先切到该 provider，按 `U` 刷新，再 `Enter` 选择。
-- 想顺带看上下文还剩多少：选好模型后可用 [`/context`](/guide/fun/menu/context.html)；context 上限也和 `models.toml` 里的配置有关。
+- 想顺带看上下文还剩多少：选好模型后可用 [`/context`](/guide/fun/menu/context)；context 上限也和 `models.toml` 里的配置有关。

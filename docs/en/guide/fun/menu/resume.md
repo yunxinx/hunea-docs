@@ -53,7 +53,7 @@ After selection and confirmation, Hunea switches the conversation content in the
 
 Note: this is **switching to another saved session**, not merging the content of two sessions together. The current session doesn't disappear, and it will usually appear as an option in the list when you open `/resume` again later (provided it was stored successfully and is no longer the active session).
 
-If you just want to clear the current context and start a new conversation, `/clear` (alias `/new`) is more appropriate than `/resume`. For exiting the application, see [`/exit`](/guide/fun/menu/quit.html).
+If you just want to clear the current context and start a new conversation, `/clear` (alias `/new`) is more appropriate than `/resume`. For exiting the application, see [`/exit`](/guide/fun/menu/quit).
 
 ## Usage tips
 

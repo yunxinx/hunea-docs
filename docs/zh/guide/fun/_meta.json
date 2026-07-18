@@ -18,10 +18,5 @@
     "type": "file",
     "name": "shortcuts",
     "label": "快捷键一览"
-  },
-  {
-    "type": "dir",
-    "name": "designs",
-    "label": "设计与取舍"
   }
 ]
