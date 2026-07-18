@@ -4,101 +4,101 @@ description: What the /copy slash command does in Hunea
 
 # /copy
 
-`/copy` in Hunea is for picking session messages and copying them to the clipboard.
+Use `/copy` to select messages from the current session and copy them to your system clipboard.
 
-Use it when you want one user turn, one assistant reply, or several messages together — for docs, issues, or continuing the thread elsewhere. Confirming `/copy` opens a full-screen message picker (title similar to `Copy Messages`). Select targets, then choose a copy format.
+It's useful when you need to copy out a question, an assistant reply, or multiple messages together (for example, writing docs, pasting to an issue, or continuing the discussion elsewhere). After typing `/copy` and confirming, it opens a full-screen message selection panel titled `Copy Messages` — just pick your targets and choose a copy format.
 
-## What the list shows
+## List overview
 
-The panel lists **copyable message nodes from the current session**, and **keeps only user and assistant messages**. Tool calls (`tool`) and reasoning (`reasoning`) stay out of this list — they are usually better inspected in-session.
+The panel lists copyable message nodes in **the current session**, and only keeps **user messages and assistant replies**. Tool calls (`tool`) and reasoning processes (`reasoning`) don't appear here because they're usually better viewed in the original session.
 
-Each row roughly shows:
+Each line generally shows:
 
-1. A multi-select mark on the left: after `Tab` multi-select, selected rows show a color block
-2. A role prefix: `user` or `assistant`
-3. A summary of that message (truncated in the list; the real copy uses full content)
+1. Left-side checkmark: after multi-select with `Tab`, selected lines show a color swatch
+2. Message type prefix: `user` or `assistant`
+3. Summary text of the message (truncated in the list; full content is copied)
 
-The title shows position, e.g. `Copy Messages (3 of 12)`.
+The title bar shows your current position, for example `Copy Messages (3 of 12)`, making it easy to see "which item I'm on / how many total".
 
-While loading you may see `Loading copy picker...`. If there are no user/assistant messages yet: `No user or assistant messages`.
+It may show `Loading copy picker...` while loading; if the current session has no copyable user/assistant messages, it will show `No user or assistant messages`.
 
-> The cursor tries to land on the currently relevant message; if that cannot be resolved, it falls back to the newest row. You can often open the panel and copy the latest turn immediately.
+> By default the cursor tries to land on the currently relevant message; if "current line" isn't available, it falls back to the newest item in the list. When you open the panel, you can usually just press the copy key to get the latest round.
 
-Roughly:
+It roughly looks like this:
 
 ![copy](/assets/fun/copy.png)
 
 ## How to operate
 
-Footer shortcuts:
+The bottom shows a shortcut hint. Common operations:
 
-- `↑` / `↓`, or `j` / `k`: move the cursor
-- `←` / `→`, or `h` / `l`: page (helps with long lists)
-- `Tab`: toggle multi-select on the current row
+- `↑` / `↓`, or `j` / `k`: move cursor up/down
+- `←` / `→`, or `h` / `l`: page through (useful when there are many messages)
+- `Tab`: toggle multi-selection state for the current line (select / deselect)
 - `A` (or `Shift + A`):
-  - no multi-select yet → **select all**
-  - already multi-selected → **invert selection**
-- `Space`: full-content **preview** of the current row
+  - If nothing is selected yet: **select all**
+  - If already have selections: **invert selection**
+- `Space`: open a **full content preview** for the message under the cursor
 - `c`: copy in **display** format
 - `C` (or `Shift + C`): copy in **raw** format
 - `Esc`: close the panel
 
-Left-click a row to move the cursor; the click itself does not copy.
+You can also click a line with the left mouse button to move the cursor there; clicking doesn't trigger copying.
 
-With multi-select, the footer also shows something like `· 2 selected`.
+After multi-select, the footer will additionally show something like `· 2 selected`, so you can confirm how many will be copied.
 
-In preview:
+In preview mode:
 
-- `Esc` or `Space`: back to the list
-- `←` / `→` / `↑` / `↓`, plus `h` / `j` / `k` / `l`: page longer content
-- `c` / `C`: still copy (see “Which messages get copied”)
+- `Esc` or `Space`: go back to the list
+- `←` / `→` / `↑` / `↓`, and `h` / `j` / `k` / `l`: page through longer content
+- `c` / `C`: still copies directly (see "Which items get copied" below)
 
-## Which messages get copied
+## Which items get copied
 
-On `c` or `C`, the target set is:
+When you press `c` or `C`, the target set follows these rules:
 
-1. **If you are in preview**: only the **currently previewed** message (list multi-select is ignored)
-2. **If you are in the list with multi-select**: all checked messages, in list order, joined together
-3. **If you are in the list with no multi-select**: the **current cursor row**
+1. **If you're already in preview mode**: only copy **the currently previewed item** (won't include multi-selections from the list)
+2. **If you're in the list and have multi-selections**: all checked messages are concatenated in list order and copied
+3. **If you're in the list and no selections**: copy **the item under the cursor**
 
-When joining multiple messages, blank lines separate them (three newlines in the implementation) so the paste reads as sections, not one blob.
+When multiple messages are concatenated, they're separated by blank lines (three newlines in implementation), so it reads more like segmented excerpts rather than one solid block.
 
-Notes:
+Note:
 
-- After a successful copy the **panel stays open** so you can keep selecting or press `Esc` to leave.
-- List summaries may be truncated for terminal width, but the copy always uses full message text, not the ellipsis on screen.
+- After successful copying, **the panel doesn't close automatically**. You can continue selecting and copying, or press `Esc` to exit.
+- List summaries may be truncated due to terminal width, but the full message text is copied, not the ellipsized version you see on screen.
 
-## raw vs display
+## What's the difference between raw and display
 
-`/copy` offers two formats, matching the footer’s `C copy raw` and `c copy display`:
+`/copy` provides two copy formats, corresponding to `C copy raw` and `c copy display` in the footer:
 
-| Key | Format | Rough meaning |
+| Shortcut | Format | Rough meaning |
 | --- | --- | --- |
-| `C` | **raw** | Closer to the message’s own source text |
-| `c` | **display** | Closer to the human-facing text composed for the UI |
+| `C` | **raw** | Closer to the original text content of the message itself |
+| `c` | **display** | Closer to the composed text that's shown to humans in the interface |
 
-For user messages the two are usually similar. For assistant replies the gap is larger: if the reply has playable tool-call fragments underneath, `display` often folds that presentation text in; `raw` stays closer to the message body.
+For user messages, the difference is usually small. For assistant replies, the difference is more noticeable: if the assistant message has tool calls and other replayable fragments attached, `display` will generally include these display texts together; `raw` leans more towards the original content of the message body itself.
 
 In short:
 
-- **Prefer the original message body** → `C` (raw)
-- **Prefer what you saw in the TUI** → `c` (display)
+- **You want the original message body as much as possible** → use `C` (raw)
+- **You want the readable version closer to what you see in the TUI** → use `c` (display)
 
-When unsure, `Space` preview first, then pick a format.
+When unsure, you can press `Space` to preview first, then decide which format to use.
 
-## After you copy
+## What happens after copying
 
-Hunea writes the assembled text to the clipboard (system clipboard first; some environments fall back to a terminal clipboard protocol). Success usually toasts `Selection copied`; failure: `Copy selection failed`.
+After confirming copy, Hunea writes the concatenated text to the clipboard (prefers system clipboard; falls back to terminal clipboard protocols in some environments). Success typically shows a toast like `Selection copied`; failure shows `Copy selection failed`.
 
-If there is nothing copyable and you still press a copy key: `No user or assistant messages to copy` — nothing empty is written.
+If there are no copyable user/assistant messages but you still press copy, it will toast `No user or assistant messages to copy` and won't write empty content.
 
-On clipboard failure, **existing multi-select is kept** so you can fix the environment and retry without re-checking rows.
+If clipboard write fails, **your existing selections aren't cleared**, so you can retry after checking your environment without re-selecting everything.
 
-## Tips
+## Usage tips
 
-- Just the last assistant reply: open `/copy` — the cursor is usually near the newest message — then `c` or `C`.
-- A full Q&A round: `Tab` the relevant `user` / `assistant` rows, then copy once.
-- Long sessions: page with `h` / `l` instead of line-by-line scrolling.
-- Need to verify first: `Space` preview → `c`/`C` there, or return to the list and copy.
+- You just want "the last assistant reply": after opening `/copy`, the cursor is already near the latest message — just press `c` or `C`.
+- To整理 a full round of Q&A: use `Tab` to check the relevant `user` / `assistant` messages, then copy all at once.
+- For long sessions, paging with `h` / `l` to locate is faster than scrolling one by one through a long list.
+- To confirm content first: `Space` preview → copy directly from preview with `c`/`C`, or go back to the list and copy.
 
-If what you actually want is to **put an old user input back into the composer**, use `/resend`, not `/copy`.
+If you actually want to **refill an old user input back into the input box**, `/resend` is more appropriate than `/copy`.

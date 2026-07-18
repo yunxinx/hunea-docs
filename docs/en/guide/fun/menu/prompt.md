@@ -4,68 +4,68 @@ description: What the /prompt slash command does in Hunea
 
 # /prompt
 
-`/prompt` in Hunea is for inspecting, previewing, and adjusting **Prompt Assembly** for the **next new session**.
+Use `/prompt` to inspect, preview, and adjust the **prompt assembly result for the next new session**.
 
-This is an early form of a core Hunea capability that will keep being refined. It is already usable in a simple form today.
+This is a relatively core feature of Hunea. It's already usable and will continue to be polished.
 
-Use it when you want to see which sources make up the system prompt, temporarily toggle an instructions / skill / tool guide, add a custom prompt, or preview the final system prompt before changing anything. Confirming `/prompt` opens a full-screen panel (title similar to `Prompt Assembly`).
+Open it when you need to confirm which sources the system prompt is assembled from, temporarily toggle instructions/skills/tool guides on/off, add custom prompts, or preview the final complete system prompt before modifying. After typing `/prompt` and confirming, it opens a full-screen panel titled `Prompt Assembly`.
 
-> The menu description is *Inspect prompt assembly for the next new session*. Most edits **do not rewrite a session that already has transcript history**; they target the next new session. If the current session is still empty, closing and persisting may apply to that empty session directly (see “What happens when you close”).
+> The menu description is *Inspect prompt assembly for the next new session*. Most changes **do not rewrite the transcript for the current already-started session**; they target the "next new session". If the current session is still empty, closing and persisting may apply directly to the current empty session (see "What happens after closing" below).
 
-## What the panel shows
+## Panel overview
 
 `/prompt` is a two-column manager, not a single list:
 
-1. **Title row**: `Prompt Assembly` on the left; four candidate tabs on the right
-2. **Left column `Active`**: sources already in the “next new session” assembly result
-3. **Right column (candidates / inventory)**: not fully assembled yet, or toggleable candidates
-4. **Bottom pager line**: position on the focused side, e.g. `Active (2 of 8)`
-5. **Bottom action hints**: change with the selection; often `? more` on the far right
+1. **Title bar**: left is `Prompt Assembly`, right has four candidate tabs
+2. **Left column `Active`**: sources already included in "next new session assembly"
+3. **Right column (candidates / inventory)**: candidate collections not fully assembled, or toggleable
+4. **Bottom pagination line**: shows position on the currently focused side, e.g. `Active (2 of 8)`
+5. **Bottom operation hint**: changes with the currently selected item; `? more` is often on the far right
 
-Roughly:
+It roughly looks like this:
 
 ![prompt](/assets/fun/prompt.png)
 
-### Left: `Active`
+### Left column: `Active`
 
-Header columns roughly:
+The header columns are roughly:
 
 `Sel · Ord · Source · Type · Scope`
 
 | Column | Meaning |
 | --- | --- |
-| `Sel` | Enabled (checked) |
+| `Sel` | Whether enabled (checked state) |
 | `Ord` | Order in the assembly result |
-| `Source` | Title / name; may show `missing`, `shadowed`, `+N shadowed`, etc. |
-| `Type` | Source type (table below) |
-| `Scope` | Usually `project` / `global`; built-ins stand alone |
+| `Source` | Title / name; may have `missing`, `shadowed`, `+N shadowed` tags when needed |
+| `Type` | Source type, see table below |
+| `Scope` | Scope, commonly `project` / `global`; built-ins have their own |
 
-`Type` roughly maps to:
+`Type` roughly corresponds to:
 
-| Display | Roughly |
+| Display | What it is |
 | --- | --- |
-| `system` | Core system prompt (built-in default; overridable by global/project override) |
-| `instructions` | Instruction files such as global `AGENTS.md`, project `AGENTS.md` / `CLAUDE.md` |
-| `custom` | Custom extra prompts |
-| `discovery` | Skill-discovery fragment (generated) |
+| `system` | Core system prompt (built-in default, can be overridden by `global` / `project` `override`) |
+| `instructions` | Instruction files, like global `AGENTS.md`, project `AGENTS.md` / `CLAUDE.md` |
+| `custom` | Custom extra prompt |
+| `discovery` | Skill discovery fragment (generated) |
 | `skill` | Long-lived injected skill |
-| `tools` | Tool-use guidelines (generated) |
-| `dynamic` | Dynamic environment info (base / change) |
+| `tools` | Tool usage guidelines (generated) |
+| `dynamic` | Dynamic environment information (base / changes) |
 
-The focused row has a color mark on the left. If an entry still “covers” other same-name / same-key sources, you may see `+N shadowed`; `Ctrl + E` expands/collapses those shadowed details.
+The currently focused row has a color swatch mark on the left. If an item "shadows" other sources with the same name/key, it may show `+N shadowed`; press `Ctrl + E` to expand/collapse these shadowed details.
 
-### Right: four tabs
+### Right column: four tabs
 
-Top-right tabs (default starts on `Skill`):
+Top-right tabs (defaults to `Skill`):
 
-| Tab | Contents |
+| Tab | Content |
 | --- | --- |
 | `Skill` | Discovered long-lived skill candidates |
-| `Custom Prompts` | Custom prompt candidates; can create new ones |
+| `Custom Prompts` | Custom prompt candidates; can create new |
 | `Tools` | Tool-related candidates / guideline fragments |
-| `Dynamic` | Dynamic environment sources; toggle `Base` / `Change` separately |
+| `Dynamic` | Dynamic environment sources; can toggle `Base` / `Change` separately |
 
-Headers differ slightly by tab, e.g.:
+Headers differ slightly between tabs:
 
 - `Skill` / `Tools`: `Sel` · `Ord` · `Name` · `Scope`
 - `Custom Prompts`: `Sel` · `Name` · `Scope`
@@ -75,125 +75,125 @@ Headers differ slightly by tab, e.g.:
 
 ### Focus and navigation
 
-- `←` / `→`, or `h` / `l`: switch focus between columns  
-  (on the `Dynamic` tab, left/right may also move between the `Base` / `Change` columns)
-- `↑` / `↓`, or `j` / `k`: move selection
-- `PageUp` / `PageDown`: page
-- `Home` / `End`: jump to list start/end
-- `Tab` / `Shift + Tab`: when focus is on the right, cycle the top-right tabs
-- `?`: open/close the more-shortcuts overlay (`More`)
-- `Esc`: close `/prompt` (triggers submit/persist — see below)
+- `←` / `→`, or `h` / `l`: switch focus between left and right columns  
+  (on the `Dynamic` tab, left/right may also move between `Base` / `Change` columns)
+- `↑` / `↓`, or `j` / `k`: move selection up/down
+- `PageUp` / `PageDown`: page through
+- `Home` / `End`: jump to start/end of current list
+- `Tab` / `Shift + Tab`: when focus is on right column, cycle through top-right tabs
+- `?`: toggle more shortcut help (the `More` overlay)
+- `Esc`: close the `/prompt` panel (triggers the commit/persist flow, see later)
 
-Mouse also works:
+You can also use the mouse:
 
-- Click a top-right tab to switch
-- Click a list row to focus and select it
+- Click a top-right tab: switch to that candidate page
+- Click a left/right list row: switch focus and select that row
 
 ### Preview
 
-- `Space`: preview the **selected item** body (single source / skill / tool / dynamic, …)
-- `p`: preview the **fully assembled** system prompt (title similar to `Assembled prompt`)
+- `Space`: preview the content of the **currently selected item** (single source / skill / tool / dynamic, etc.)
+- `p`: preview the **fully assembled system prompt** (titled `Assembled prompt`)
 
-In preview:
+In preview mode:
 
-- `Esc` / `Space` / `p`: back to the main panel
-- `↑` / `↓` / `←` / `→`, plus `h` / `j` / `k` / `l`: page longer content
+- `Esc` / `Space` / `p`: go back to the main panel
+- `↑` / `↓` / `←` / `→`, and `h` / `j` / `k` / `l`: page through longer content
 
-Roughly:
+It roughly looks like this:
 
 ![prompt-preview](/assets/fun/prompt-preview.png)
 
 ![prompt-assembled](/assets/fun/prompt-assembled.png)
 
-### Edit, toggle, reorder
+### Editing, toggling, reordering
 
-Footer actions change with the selection. Common ones:
+The bottom hint changes with the selection. Common actions:
 
-| Key | Action |
+| Shortcut | Action |
 | --- | --- |
-| `e` | Open the current editable item in an external editor (footer may show `e/ctrl+g edit`) |
-| `a` | Create a custom prompt (pick `Project` / `Global` scope first) |
-| `d` | Delete the current deletable item |
-| `x` | Toggle enable/disable (footer often `x disable`) |
-| `J` / `K` (Shift) | Reorder on the `Active` side (up/down) |
+| `e` | Open the currently editable item in external editor (footer may also say `e/ctrl+g edit`) |
+| `a` | Create a new custom prompt (first select `Project` / `Global` scope) |
+| `d` | Delete the currently deletable item |
+| `x` | Toggle enabled/disabled (footer often shows `x disable`) |
+| `J` / `K` (Shift): | Adjust order on the `Active` side (move down / up) |
 | `r` | Depends on selection: restore core system override, or reset discovered skill order |
-| `Ctrl + E` | Expand/collapse shadowed details |
+| `Ctrl + E` | Expand/collapse `shadowed` details |
 
-Not every row supports every action. For example:
+Not every row supports all actions. For example:
 
-- Core `system`, instruction files, generated `discovery` / `tools` / some `dynamic` sources usually **cannot** be `d`-deleted like a custom prompt
-- `e` only appears for editable sources
-- `J/K reorder` only on the `Active` side when reordering is allowed
+- Core `system`, instruction files, generated `discovery` / `tools` / some `dynamic` sources usually **cannot** be directly deleted with `d` like custom prompts
+- Only editable sources show `e`
+- Only on the `Active` side, when reordering is allowed, will you see `J/K reorder`
 
-### Creating a custom prompt
+### Creating a new custom prompt
 
-From the right-side `Custom Prompts` context, press `a`:
+Press `a` when in the `Custom Prompts` context on the right:
 
-1. Scope picker: `[Project] Global` or `Project [Global]`
-2. `←` / `→` (or `h` / `l`) to switch scope
-3. `Enter` confirm, `Esc` cancel
-4. On confirm, an external editor opens for the body; saving writes back to that scope
+1. First pops up scope selection: `[Project] Global` (currently project, global optional) or `Project [Global]` (currently global, project optional)
+2. `←` / `→` (or `h` / `l`) switch scope
+3. `Enter` to confirm, `Esc` to cancel
+4. After confirmation, opens external editor to write content; save and exit, and Hunea writes back to the corresponding scope
 
-Roughly:
+It roughly looks like this:
 
 ![prompt-create](/assets/fun/prompt-create.png)
 
-## What these sources are
+## What are these sources?
 
-Treat the left column as the “system assembly checklist for the next new session”. Common sources:
+You can think of the left column as "the system assembly list that the next new session will carry". Common sources include:
 
 1. **Core system prompt**  
-   Hunea’s built-in core behavior text. Overridable via global/project override; with it selected, `r` can try restoring the default core prompt after a messy edit.
+   Hunea's built-in core behavior instructions. Can be overridden by `global` / `project` `override`; when selected, you can press `r` to restore the default core prompt, which is useful for one-click recovery after messy modifications.
 
 2. **Instructions files**  
-   - Global: `AGENTS.md` under the data directory (usually `~/.config/hunea/AGENTS.md`)  
-   - Project: `AGENTS.md` or `CLAUDE.md` found walking up from the workspace/repo (same directory usually prefers `AGENTS.md`)
+   - Global: `AGENTS.md` in the data directory (usually `~/.config/hunea/AGENTS.md`)  
+   - Project: `AGENTS.md` or `CLAUDE.md` found by searching upward from the workspace/repository (when in the same directory, `AGENTS.md` is usually prioritized)
 
 3. **Custom prompts**  
-   Extra prompt fragments you maintain. Project-level files usually live under `.hunea/prompts/custom/`, with assembly state in `.hunea/prompt-assembly.toml`.
+   Your own maintained extra prompt fragments. Project-level usually lives in `.hunea/prompts/custom/`, and assembly state is recorded by `.hunea/prompt-assembly.toml`.
 
 4. **Skill discovery / long-lived skills**  
-   Discovery fragments and skills that can stay injected long-term. Not the same as a one-turn `@` / `$skill` attach in the session.
+   Skill discovery fragments, and long-lived injectable skills. This is different from temporary `@` / `$skill` injections that are "only attached for this round" in a session.
 
 5. **Tool guidelines**  
-   Tool-use instructions generated from currently available tools.
+   Tool usage instructions generated based on currently available tools.
 
 6. **Dynamic environment**  
-   Environment info:  
-   - `Base`: more first-turn baseline  
-   - `Change`: more later-turn deltas  
-   Toggle each in the right-side `Dynamic` tab.
+   Environment information:  
+   - `Base`: more for first-round baseline  
+   - `Change`: more for incremental changes in subsequent rounds  
+   You can check these separately in the right `Dynamic` tab.
 
-## What “shadowed” means
+## What does `shadowed` mean?
 
-Same-name or same-conflict-key sources may exist at project / global / builtin layers at once. Assembly usually lets only the **higher-priority** one take effect; the rest are marked `shadowed`.
+Sources with the same name or conflicting keys may exist at `project` / `global` / `builtin` levels simultaneously. During assembly, only the **higher-priority** one actually takes effect, and the others are marked `shadowed`.
 
-Priority roughly:
+Priority roughly is:
 
 `project` > `global` > `builtin`
 
-So an `Active` row may show `+1 shadowed`, meaning another same-key source is covered underneath. Expand with `Ctrl + E` to see which layer actually wins.
+So you may see an `Active` item with `+1 shadowed`, meaning there's another same-key source covered underneath. Expand with `Ctrl + E` to verify which layer is actually active.
 
-## What happens when you close
+## What happens after closing
 
-On `Esc`, Hunea tries to submit/persist the panel’s working copy rather than “look once and throw away”.
+When you press `Esc` to close `/prompt`, Hunea tries to commit/persist the working copy from this panel, rather than "just look and discard".
 
-Toasts/messages depend on the effective scope:
+The success feedback depends on the effective scope:
 
-| Situation | Typical feedback |
+| Case | Common feedback |
 | --- | --- |
 | Mainly affects the next new session | Toast: `Prompt updated. Applies to next new session.` |
-| Current session is still empty and can update immediately | System message: `Prompt updated for current empty session.` |
+| Current session is still empty, can update current session assembly | System message: `Prompt updated for current empty session.` |
 
-Notes:
+Note:
 
-- A **current session that already has content** generally will not have its whole transcript rewritten because you changed assembly in `/prompt`.
-- To bring most edits fully into the next conversation, close `/prompt` then `/clear` (alias `/new`) for a new session.
-- If opening `/prompt` never successfully began an edit session (e.g. begin failed), the panel may close without going through submit.
+- **For the current session that already has conversation content**, modifying assembly in `/prompt` generally won't rewrite the entire historical transcript.
+- To get most changes into the next round completely, the safest approach is: after closing `/prompt`, use `/clear` (alias `/new`) to start a new session.
+- If opening `/prompt` fails to enter the editing session (e.g., begin fails), the panel may close directly without going through the commit flow.
 
-## Where config lands
+## Where is configuration persisted
 
-Project-level locations commonly:
+Common locations for project-level:
 
 ```text
 .hunea/prompt-assembly.toml
@@ -201,26 +201,26 @@ Project-level locations commonly:
 .hunea/prompts/custom/
 ```
 
-Global state ties to Hunea’s data directory (usually `~/.config/hunea/`) — e.g. global `AGENTS.md` and global prompt-assembly state managed via the session store / data directory, not only workspace files.
+Global side is related to Hunea's data directory (usually `~/.config/hunea/`), for example global `AGENTS.md`, and global prompt assembly state (managed by session store / data directory, not just current workspace files).
 
-You do not need to hand-write every file before using `/prompt`: many custom items can be created/edited with `a` / `e` in the panel and written back by Hunea.
+You don't need to manually write all files before using `/prompt`: many custom items can be created and edited with `a` / `e` in the panel, then Hunea writes them back.
 
-## Compared with nearby commands
+## How it differs from related commands
 
-| What you want | Better command |
+| What you want to do | More appropriate command |
 | --- | --- |
-| Inspect/adjust the system assembly checklist for the next new session | `/prompt` |
-| See how much context is used / left | [`/context`](/guide/fun/menu/context.html) |
-| Switch the current session’s model | [`/models`](/guide/fun/menu/models.html) |
-| Clear the current conversation and start a new one | `/clear` (alias `/new`) |
-| Copy user/assistant messages from the current session | [`/copy`](/guide/fun/menu/copy.html) |
+| Inspect/adjust the system assembly list for the next new session | `/prompt` |
+| Check how much context is used / remaining | [`/context`](/guide/fun/menu/context.html) |
+| Switch model for current session | [`/models`](/guide/fun/menu/models.html) |
+| Clear current conversation, start a new session | `/clear` (alias `/new`) |
+| Copy user/assistant messages from current session | [`/copy`](/guide/fun/menu/copy.html) |
 
-`/context` answers “how much budget is left”; `/prompt` answers “which sources build the system side of that budget, and can I change them”.
+`/context` answers "how much budget is left"; `/prompt` answers "among this budget, what sources make up the system side, and can it be modified".
 
-## Tips
+## Usage tips
 
-- Only check what the next turn will carry: open and press `p` for `Assembled prompt` — often faster than opening items one by one.
-- Project has `AGENTS.md` / `CLAUDE.md` but it feels ignored: find `instructions` on the left — is it `missing`, `disabled`, or `shadowed` by a higher-priority source?
-- Add a long-lived note for this repo: right tab `Custom Prompts`, `a` → `Project`, then confirm it appears in left `Active`.
-- After reordering or toggling, `p` preview, then `Esc` to persist; use `/clear` when you want a clean context to verify.
-- When shortcuts are fuzzy, `?` for `More` beats guessing footer abbreviations.
+- You just want to confirm "what exactly will the next round carry": open and press `p` to see the `Assembled prompt`, which is usually faster than opening one by one.
+- Your project has `AGENTS.md` / `CLAUDE.md` but it doesn't seem to take effect: look for `instructions` in the left column, check if it's `missing`, `disabled`, or `shadowed` by a higher-priority source.
+- You want to add a long-term instruction just for the current repository: switch right to `Custom Prompts`, `a` select `Project`, after writing confirm it appears in the left `Active` list.
+- After changing order or toggling, preview with `p` first, then `Esc` to close and persist; if you need to verify immediately in clean context, then `/clear` to start a new session.
+- If you can't remember all shortcuts, press `?` to see `More` — easier than guessing footer abbreviations.

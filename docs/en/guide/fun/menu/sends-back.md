@@ -4,136 +4,136 @@ description: What the /sends-back slash command does in Hunea
 
 # /sends-back
 
-`/sends-back` in Hunea is for returning to a **previously sent user message**, putting it back into the input, and truncating the conversation after that message. With default settings this menu item is **hidden**; on the main conversation view, when nothing is streaming, double-`Esc` is the usual way in.
+`/sends-back` goes back to a **sent user message**, refills it into the input box, and truncates the conversation after that message. In the default configuration, this menu item doesn't appear in the slash menu. You can double-click `ESC` on the main conversation interface (when there's no streaming output) to open it.
 
-If you have used Codex CLI, the surface will feel familiar. Hunea differs in a few details — for example, `Esc` in this view does not keep selecting further upward. That change came from being burned by Codex CLI once; I no longer remember the exact failure, but when I implemented this I deliberately separated the behaviors.
+If you've used `Codex CLI`, this interface will feel familiar. Compared to Codex CLI, Hunea adjusts this detail: in this interface, pressing `ESC` only closes the current overlay and doesn't continue bubbling to backtrack further. I've been bitten by that Codex CLI design before, so I made this distinction explicit in implementation.
 
-Use it when you want to edit a particular turn and resend, or continue writing from an old user input, without the precise node/branch workflow of [`/tree`](/guide/fun/menu/tree.html). It is oriented toward “edit/resend a user message” and reconnecting that user input.
+This feature is useful when you want to modify a question and resend it, or continue writing from an old user input, without needing to precisely select a node and branch on the session tree like [`/tree`](/guide/fun/menu/tree.html). It focuses more on "modify/resend by user message" and continues from that user input.
 
 :::danger Note
-This flow is rewrite/resend-oriented, so it does **not** keep the later conversation content. If you want to keep existing content while going back near an earlier send to explore more model answers, use `/tree` instead.
+This feature focuses on rewriting/resending, so it doesn't preserve existing conversation content. If you want to preserve content and go back to a previous message to get more answers from the model, you should use `/tree` instead of this feature.
 :::
 
-> It and [`/tree`](/guide/fun/menu/tree.html) **never appear in the slash menu at the same time**. Only with `esc_rewind_mode = "entry"` does the menu show `/sends-back`; the default `coarse` menu shows `/tree`. The mutual exclusion is also described in the [Slash Menu overview](/guide/fun/menu/).
+> It and [`/tree`](/guide/fun/menu/tree.html) **don't both appear in the slash menu at the same time**. `/sends-back` only appears in the menu when you set `esc_rewind_mode = "entry"`; with the default `coarse` setting, the menu shows `/tree`. The mutual exclusion is also mentioned in the [slash menu overview](/guide/fun/menu/).
 
-Roughly:
+It roughly looks like this:
 
 ![sends-back](/assets/fun/sends-back.png)
 
-The selected prior user message is highlighted.
+The selected previously sent message is highlighted.
 
 ## How to open
 
 ### 1. Slash menu (entry mode only)
 
-Configure:
+First configure:
 
 ```toml
 [tui]
 esc_rewind_mode = "entry"
 ```
 
-Then with an empty input type `/`, select `/sends-back`, and press `Enter`.
+Then type `/` when the input box is empty, select `/sends-back`, and press `Enter`.
 
-### 2. Double `Esc` on empty input (default coarse mode)
+### 2. Double-press `Esc` in empty input (default coarse mode)
 
-With the default `esc_rewind_mode = "coarse"`, the menu has **no** `/sends-back` item, but double `Esc` on an empty input enters the **same** “rewind by user message” interaction:
+With the default `esc_rewind_mode = "coarse"`, there's **no** `/sends-back` item in the menu, but double-pressing `Esc` in an empty input box enters the **same** "backtrack by user message" interaction:
 
-1. First `Esc`: status shows `Press Esc again to edit previous message`
-2. Second `Esc`: opens a full-screen conversation overlay and highlights the latest user message
+1. First `Esc`: status bar shows `Press Esc again to edit previous message`
+2. Second `Esc`: opens a full-screen conversation overlay, with the latest user message highlighted
 
-If the hint times out, you do something else in between, the input has a draft, or a stream is still running, the rewind usually does not continue.
+If the prompt times out, you do something else in between, or the input box already has a draft / there's still streaming output, this backtrack usually won't proceed.
 
-> After switching to `"entry"`: the menu shows `/sends-back`; empty-input double `Esc` opens [`/tree`](/guide/fun/menu/tree.html) instead. Think of the menu item and double `Esc` as complementary rewind modes, not duplicates.
+> When configured to `"entry"`: the menu shows `/sends-back`; double-pressing `Esc` in empty input opens [`/tree`](/guide/fun/menu/tree.html) instead. That means the menu item and double-`Esc` correspond to the two backtracking modes separately, not two entries to the same thing.
 
-## What you see after opening
+## Interface overview
 
-A **full-screen conversation overlay** (reuses the transcript overlay) — not `/tree`’s separate session-tree list.
+When opened, it's a **full-screen conversation overlay** (reuses the transcript overlay), not a separate session tree list like `/tree`.
 
-Roughly:
+You'll generally see:
 
-1. The current session’s full visible conversation
-2. The **currently selected user message** highlighted
-3. A footer similar to:
+1. The full visible conversation content of the current session
+2. The **currently selected user message** is highlighted
+3. The bottom shows a hint like:
 
 `Enter edit · ← older · → newer · ↑↓ scroll · Esc close`
 
-The default landing is the **latest user message**. If the session has no user messages yet, opening via the menu may toast `No previous user message` and skip the panel.
+By default, it tries to land on the **latest user message**. If the current session has no user messages yet, opening via the menu may show `No previous user message` and won't enter the panel.
 
 ## How to operate
 
-Common keys:
+Common operations:
 
 - `←`: select an older user message
 - `→`: select a newer user message
-- `↑` / `↓`, plus `PgUp` / `PgDn`, `Home` / `End`: scroll the conversation (**does not** change which user message is selected)
-- `Enter`: confirm this user message and enter the edit/resend flow
-- `Esc`: close the overlay with no changes
+- `↑` / `↓`, and `PgUp` / `PgDn`, `Home` / `End`: scroll the conversation (**doesn't change** the selected user message)
+- `Enter`: confirm selecting this user message, enter the "modify/resend" flow
+- `Esc`: close the overlay without changes
 
-`Ctrl + T` or `Ctrl + C` can also close the overlay (same as a normal full-screen transcript view).
+You can also use `Ctrl + T` or `Ctrl + C` to close the overlay (same as full-screen transcript viewing).
 
-Notes:
+Note:
 
-- You only walk **user messages** — not assistant / tool result / reasoning rows
-- Left/right change which user message is selected; up/down mainly scroll
+- Here we **only iterate over user messages**, it doesn't switch step-by-step between assistant replies / tool results / reasoning lines
+- Left/right change the user message; up/down are mainly for scrolling the window
 
-## After you confirm
+## What happens after confirmation
 
-On a selected user message + `Enter`, Hunea roughly:
+After selecting a user message in the overlay and pressing `Enter`, Hunea roughly does:
 
 1. Closes the overlay
-2. **Removes that user message and everything after it** from the visible conversation
-3. **Refills** that user message’s full body into the input (attachments kept when possible)
-4. Truncates the provider-facing history so later requests align with the context **before** that user message
-5. **Does not auto-send** — edit, then send yourself
+2. **Deletes this user message and everything after it** from the visible conversation
+3. **Refills the full content** of this user message into the input box (tries to preserve attachment information when present)
+4. Synchronously truncates the session history sent to providers, so subsequent requests align with the context before this user message
+5. **Doesn't auto-send**; you can edit and send it yourself
 
-So it is closer to:
+So it's more like:
 
-> “Go back to that question, void what came after, edit, then send”
+> "Go back to a question, discard what comes after, edit, then send again"
 
-than:
+Rather than:
 
-> “Open a new branch on the session tree while keeping the old content”
+> "Open a new branch on the session tree, keep all the old content"
 
-Notes:
+Note:
 
-- An in-flight request may refuse truncation and surface an error
-- Text refilled into the input does **not** enter the composer’s Ctrl+Z undo history — deliberate, so a half draft is not scrambled by undo
-- Unlike [`/resend`](/guide/fun/menu/resend.html): `/resend` only refills from **global** user history and does not change the current session tree; `/sends-back` changes visible content and subsequent request context
+- If there's still an ongoing request, the runtime may refuse truncation and show an error
+- The content refilled into the input box **won't** go into the input box's Ctrl+Z undo history; this is intentional to avoid "half-drafts getting messed up by undo"
+- This differs from [`/resend`](/guide/fun/menu/resend.html): `/resend` only refills from **global** user history and doesn't change the current session tree; `/sends-back` changes the current session's visible content and the context for subsequent requests
 
-## Compared with nearby commands
+## How it differs from related commands
 
-| What you want | Better command |
+| What you want to do | More appropriate command |
 | --- | --- |
-| Edit/resend a particular user turn and drop what followed | `/sends-back` (or double `Esc` under default coarse) |
-| Precisely pick a node on the session tree, keep content, open a branch | [`/tree`](/guide/fun/menu/tree.html) |
-| Only refill a prior user input without changing the current session | [`/resend`](/guide/fun/menu/resend.html) |
-| Copy user/assistant messages out of the current session | [`/copy`](/guide/fun/menu/copy.html) |
-| Clear the whole conversation and start fresh | [`/clear`](/guide/fun/menu/clear.html) |
+| Modify/resend a round of user messages, truncate what comes after | `/sends-back` (or double `Esc` in default coarse mode) |
+| Precisely select a node on the session tree, preserve content and open a branch | [`/tree`](/guide/fun/menu/tree.html) |
+| Only refill a previously sent user input, don't change the current session | [`/resend`](/guide/fun/menu/resend.html) |
+| Copy user/assistant messages from current session out | [`/copy`](/guide/fun/menu/copy.html) |
+| Clear the whole conversation, start a brand-new session | [`/clear`](/guide/fun/menu/clear.html) |
 
 In short:
 
-- **Edit “that last question” and send again** → `/sends-back` / double `Esc`
-- **Land near a specific assistant / tool node and branch** → `/tree`
-- **Reuse an old prompt without touching the session** → `/resend`
+- **You want to modify "the last question" and resend** → `/sends-back` / double `Esc`
+- **You want to precisely go back to an assistant / tool node and open a branch** → `/tree`
+- **You just want to reuse an old prompt, don't touch the session** → `/resend`
 
-## Related config
+## Related configuration
 
 ```toml
 [tui]
 # Default coarse:
-# - menu shows /tree
-# - empty-input double Esc: this page's "edit/resend user message" interaction
+# - Menu shows /tree
+# - Double-press Esc in empty input: enters "modify/resend by user message" from this document
 #
-# entry mode:
-# - menu shows /sends-back
-# - empty-input double Esc: opens /tree instead
+# When set to entry:
+# - Menu shows /sends-back
+# - Double-press Esc in empty input: opens /tree instead
 esc_rewind_mode = "coarse"
 ```
 
-## Tips
+## Usage tips
 
-- Only the latest turn: open and `Enter` — you are usually already on the newest user message.
-- Older questions: `←`; scroll with `↑`/`↓` when content is hard to read.
-- Later branch content you still need: prefer [`/tree`](/guide/fun/menu/tree.html); do not truncate with `/sends-back`.
-- Only copy or reuse an old prompt without touching the session: [`/copy`](/guide/fun/menu/copy.html) or [`/resend`](/guide/fun/menu/resend.html).
+- You just want to modify the latest question: after opening, it's already on the latest user message by default — just press `Enter`.
+- You want to go back to an older question: use `←` to go to older messages; scroll with `↑`/`↓` if the content isn't fully visible.
+- If you still need to keep branched content later, prefer [`/tree`](/guide/fun/menu/tree.html) — it doesn't directly truncate existing content.
+- If you just want to copy or reuse an old prompt and don't want to modify the current session: use [`/copy`](/guide/fun/menu/copy.html) or [`/resend`](/guide/fun/menu/resend.html).

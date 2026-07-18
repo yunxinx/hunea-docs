@@ -4,101 +4,115 @@ description: What the /models slash command does in Hunea
 
 # /models
 
-`/models` in Hunea is for choosing a model for the current session.
+Type `/models` to select a model for the current session.
 
-Use it to switch providers, pick another model, or confirm which model is selected right now. Confirming `/models` opens an inline panel near the input (it takes over the input area) for browsing enabled providers and their models.
+Open it when you want to switch providers, change to a different model to continue chatting, or just confirm which model is currently selected. After confirmation, it opens an inline panel near the input area (replacing the original input box) to browse all enabled providers and models.
 
-## What the panel shows
+## Panel overview
 
-Top to bottom, roughly:
+The panel generally includes from top to bottom:
 
 1. **Providers tab row**  
-   Like `Providers: [Local]  DeepSeek  OpenAI`. The active provider is marked with brackets.
+   Formatted like `Providers: [Local]  DeepSeek  OpenAI`. The currently selected provider is marked with brackets.
 
 2. **Current Model**  
-   The model already selected for this session, e.g. `[Local] qwen3`; `none` if nothing is selected yet.
+   The model selected for the current session, for example `[Local] qwen3`; shows `none` if nothing has been selected yet.
 
 3. **Provider Details**  
-   Summary for the active provider, commonly:
-   - `Model Source`: where the list came from — `configured`, `synced from /v1/models`, `not loaded`, …
-   - `Endpoint`: that provider’s `base_url`; `not configured` when missing
+   Summary information for the current provider, commonly two items:
+   - `Model Source`: where the model list comes from, e.g. `configured`, `synced from /v1/models`, `not loaded`
+   - `Endpoint`: the `base_url` for this provider; shows `not configured` if not set.
 
 4. **Available Models**  
-   Models under the active provider. Title is like `Available Models(Type to Search):` until you type, then `Search: <query>`.  
-   The cursor row has a `➜` mark; the already-selected model is also visually emphasized. Descriptions, when present, appear under the model id.
+   List of selectable models under the current provider. Before searching, the title is `Available Models (Type to Search):`; after you start typing, it changes to `Search: <your search term>`.  
+   The current cursor row is marked with `➜` on the left; if an item is already the currently selected model, it will be more prominent in display. If there's a description, it appears below the model id.
 
-A fixed footer of shortcuts:
+The bottom has a fixed shortcut hint:
 
 `Enter select · U refresh · Esc clear/exit · ←→/Tab providers · ↑↓ navigate`
 
-With no enabled providers: Providers shows `[No Providers]`, and the model area may be `No enabled models`. An empty provider list may show `No models available for this provider`; a prior sync failure may show `Sync failed: ...` directly.
+If no providers are enabled, Providers shows `[No Providers]` and the model area may show `No enabled models`. If a provider has an empty list, it may show `No models available for this provider`; if sync failed previously, you may directly see `Sync failed: ...`.
 
-Roughly:
+It roughly looks like this:
 
 ![models](/assets/fun/models.png)
 
 ## How to operate
 
-Common keys:
+Common operations:
 
-- `←` / `→`, or `Tab` / `Shift + Tab`: cycle providers
-- `↑` / `↓`: move in the current provider’s model list
-- **Type characters**: live search/filter (no need to press `/` first)
+- `←` / `→`, or `Tab` / `Shift + Tab`: switch between providers (cycles)
+- `↑` / `↓`: move up/down in the model list of the current provider
+- **Type directly**: instantly search and filter the model list (no need to press `/` to enter search mode first)
 - `Backspace` (or `Ctrl + H`): delete one search character
-- `Ctrl + U`: clear the search query
+- `Ctrl + U`: clear the current search term
 - `Enter`: select the current model
-- `U` (or `Shift + U`): refresh the **current** provider’s model list
+- `U` (or `Shift + U`): refresh the model list for the **current** provider
 - `Esc`:
-  - while searching: clear the search first
-  - with an empty search: close the panel
+  - If searching: clear search first
+  - If search is empty: close the panel
 
-Search matches model id and description (case-insensitive). No hits → `No models match search`. Switching provider usually clears the search.
+Search matches model id and description (case-insensitive). If no matches, it shows `No models match search`. Switching to another provider generally clears the search term.
 
-> Note: navigation here is mainly arrow keys — there is **no** `j` / `k` binding like some full-screen lists. Mouse click is also not implemented; I treated this as a lower-frequency path and kept the interaction simple.
+> Note: Vertical navigation uses arrow keys, `j` / `k` are **not** bound like in some full-screen lists. Mouse clicking isn't implemented either, because I consider this a low-frequency operation so the design doesn't need overly complex interaction.
 
-## After you select
+## What happens after selection
 
-On `Enter`, Hunea:
+After selecting a model in the list and pressing `Enter`, Hunea will:
 
-1. Sets that model as the one for the **current session**
-2. Closes the `/models` panel
-3. Toasts something like `Model selected: [Local] qwen3`
-4. Tries to write the choice back to `models.toml` as `default` (`provider/model`) so the next launch lands on the same selection
+1. Set this model as the one used by the **current session**
+2. Close the `/models` panel
+3. Show a toast like `Model selected: [Local] qwen3`
+4. Try to write this selection back to `default` in `models.toml` (in the form `provider/model`), so the same selection persists on next startup
 
-So it affects both “what this session uses next” and the default model config when possible. Historical messages are not rewritten when you switch; only subsequent requests use the new model.
+Therefore it affects both "what model to use for future rounds" and updates the default model configuration when possible. Historical messages themselves aren't rewritten when you change models; only subsequent requests use the newly selected model.
 
-If saving the default fails, you usually see `Failed to save default model: ...`. The in-UI selection may already have changed even when the config file did not.
+If writing back the default model fails, you'll generally see an error like `Failed to save default model: ...`; the current selection in the UI may have already changed, but the configuration file may not have updated successfully.
 
-## Refreshing the list (U)
+## Relationship to actual request capabilities
 
-`U` refreshes the **current** provider’s available models. Useful when:
+Multiple `kind` types can be configured in `models.toml` (configuration parsing recognizes these names), but **currently only these can actually initiate chat / streaming replies**:
 
-- a local model server just loaded/unloaded models
-- you omitted the `models` whitelist and want to re-sync from remote `/models`
-- a previous sync failed and you want to retry
+- `openai_compatible` (must configure `base_url`, usually includes `/v1`)
+- `openai_responses` (Responses API; also requires `base_url`)
+- `openai` (uses official OpenAI base URL by default, you can configure `base_url` yourself)
 
-On success you often see `Models refreshed: <provider display name>` and the list updates. If the previously selected model is gone from the new list, selection may be cleared and you need to pick again.
+Other kinds may still appear in the panel and configuration validation, but will return "unsupported" at the request stage when selected. Automatic model list syncing from `/models` currently covers mostly OpenAI-compatible providers. When configuring providers, it's recommended to prioritize the three types above to avoid "visible in list but can't send request" situations.
 
-On failure, the existing list is usually kept, with a toast like `Failed to refresh models for Local: connection refused`; the panel’s `Sync failed: ...` may update too. A second refresh while one is running may toast `Model refresh is already running`.
+For more complete field documentation, see [Configuration](/guide/start/configuration).
 
-## Where models come from
+## Refreshing the model list (U)
 
-`/models` shows Hunea’s loaded, **enabled** provider catalog from `models.toml`, typically:
+Press `U` to request a refresh of the available models for the **current provider**. Useful when:
+
+- Your local model service just loaded/unloaded new models
+- You omitted the `models` allowlist and want to sync again from remote `/models`
+- Previous sync failed and you want to retry
+
+On successful refresh, you'll typically see `Models refreshed: <provider display name>` and the list updates to the new results. If the currently selected model is no longer in the new list after refresh, the selection may be cleared and you'll need to pick again.
+
+If refresh fails, the existing list is generally preserved as much as possible, and you'll see an error like `Failed to refresh models for Local: connection refused`; the `Sync failed: ...` message in the panel may also update. If a refresh task is already running, triggering it again may show `Model refresh is already running`.
+
+## Where do models come from
+
+`/models` shows Hunea's loaded and **enabled** provider directory, with configuration from `models.toml`. Common locations:
 
 - Global: `~/.config/hunea/models.toml`
-- Or workspace: `.hunea/models.toml` (workspace wins)
+- Or current workspace: `.hunea/models.toml` (workspace takes precedence)
 
-At the config level:
+At the configuration level, you can think of it like this:
 
-- `models = [...]` on a provider → usually shown as that whitelist (source more like `configured`)
-- omit `models` → OpenAI-compatible providers often sync from `{base_url}/models` (source more like `synced from /v1/models`)
-- list not loaded yet → may show `not loaded`
+- If you write `models = [...]` in the provider: it generally follows this allowlist (source is more like `configured`)
+- If you omit `models`: OpenAI-compatible / OpenAI providers will often try to sync from `{base_url}/models` (source is more like `synced from /v1/models`)
+- Before the list is fetched: it may show `not loaded`
 
-Full `models.toml` syntax, `default`, and per-model context windows: [Getting Started](/guide/start/getting-started).
+Note that seeing a model in the panel doesn't guarantee requests for that model will succeed. Currently, only `openai_compatible` / `openai_responses` / `openai` kinds work for chat.
 
-## Tips
+For more complete `models.toml` writing, `default`, and context window configuration, see [Configuration](/guide/start/configuration).
 
-- Only check the active model: open `/models`, read `Current Model`, `Esc` out.
-- Many models: `←` / `→` or `Tab`/`Shift + Tab` to the provider, then type an id keyword — faster than pure scrolling.
-- Local server just changed its list: switch to that provider, `U` refresh, then `Enter`.
-- Want remaining context after picking: [`/context`](/guide/fun/menu/context.html); the context limit also depends on `models.toml`.
+## Usage tips
+
+- You just want to confirm "which model are we using now": open `/models` and check the `Current Model` line, then `Esc` to exit.
+- When there are many models: first `←` / `→` or `Tab`/`Shift + Tab` to the right provider, then type id keywords directly to filter — faster than scrolling up and down.
+- Local service just changed model list: switch to that provider, press `U` to refresh, then `Enter` to select.
+- You also want to check how much context remains: after selecting a model, you can use [`/context`](/guide/fun/menu/context.html); the context upper limit also depends on configuration in `models.toml`.

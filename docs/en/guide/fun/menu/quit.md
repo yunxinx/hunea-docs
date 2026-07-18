@@ -4,32 +4,30 @@ description: What the /exit slash command does in Hunea
 
 # /exit
 
-`/exit` in Hunea is for quitting the app.
+`/exit` exits the Hunea application. `/quit` is an alias — typing `/exit` or `/quit` has exactly the same effect. The alias exists mainly for easier transition from other CLI products, since both names are common.
 
-`/quit` is an alias. Either name completes to the same action: typing `/quit` still quits; typing `/exit` does the same. The alias exists mainly for people coming from other CLIs — both names are common.
-
-Use it when you are done with Hunea and want a clean exit. With an empty input, type `/`, select `/exit` (or match it via `/quit`), then press `Enter`.
+Use it when you're done chatting and want to close the app normally. Type `/` in an empty input box, select `/exit`, and press `Enter` to exit.
 
 ## Difference from Ctrl + C
 
-You can also quit with `Ctrl + C`, but the behavior differs:
+You can also exit with `Ctrl + C`, but there are some differences:
 
-- **`/exit` / `/quit`**: exits **immediately** after you confirm the command — no second confirmation.
-- **`Ctrl + C`**: to reduce accidental exits, you must press it **again**. The first press shows `Press again to exit` in the status area; a second `Ctrl + C` within about one second actually exits. After the timeout the hint disappears and you start over.
+- **`/exit` / `/quit`**: after confirming the command, **exits directly** with no second confirmation.
+- **`Ctrl + C`**: to avoid accidental exits, by default you need to **press a second time** to actually exit. The first press shows `Press again to exit` in the status bar; press `Ctrl + C` again within about 1 second to exit; if you timeout, the prompt disappears and you need to start over.
 
-Also, if the input still has an unsent draft, the first `Ctrl + C` usually **clears the input** instead of starting the exit confirm; only later presses enter the double-press exit flow. For a clean quit, prefer `/quit` (or `/exit`). `Ctrl + C` fits the “clear draft first, then confirm exit” habit.
+Additionally, if there's an unsent draft in the input box, the first `Ctrl + C` will usually **clear the input** first and won't immediately enter exit confirmation; only subsequent presses enter the double-confirmation flow. Therefore: for a clean exit, `/quit` (or `/exit`) is more recommended; `Ctrl + C` is better for the "clear input first / confirm exit later" habit.
 
-## After exit
+## After exiting
 
-This version does not print usage stats or “how to get back to the last session” hints on exit. When the process ends, the terminal returns to whatever state it had before you launched Hunea.
+The current version doesn't print an extra statistical summary or "how to return to your previous session" message after exit; when the process ends, your terminal returns to the state it was in before you launched Hunea.
 
-Sessions are typically stored under the data directory (usually `~/.config/hunea/`). Next time you start Hunea in the same workspace, use [`/resume`](/guide/fun/menu/resume.html) to pick a prior conversation instead of starting from zero.
+The session itself is generally stored in the data directory (usually `~/.config/hunea/`). Next time you launch Hunea in the same workspace, you can use [`/resume`](/guide/fun/menu/resume.html) to recover the previous conversation from the list — you don't have to start from scratch.
 
-If you only want to **clear the current conversation and open a new one** without leaving the app, use `/clear` (alias `/new`), not `/exit`.
+If you just want to **clear the current conversation and start a new session** but don't want to close the app, use `/clear` (alias `/new`) — it serves a different purpose than `/exit`.
 
-## Possible later changes
+## Possible future changes
 
-Exit may later print extra information, similar to Claude Code or Codex CLI:
+In the future, we may output some additional information on exit, similar to Claude Code or Codex CLI:
 
-- how to quickly reopen the session you just left
-- token usage and other stats
+- Hints on how to quickly return to the session before exit
+- Statistics like token usage

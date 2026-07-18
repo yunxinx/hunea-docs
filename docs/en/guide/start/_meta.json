@@ -10,6 +10,11 @@
     "label": "Getting Started"
   },
   {
+    "type": "file",
+    "name": "configuration",
+    "label": "Configuration"
+  },
+  {
     "type": "dir",
     "name": "slow",
     "label": "Slow Start"

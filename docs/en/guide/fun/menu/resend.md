@@ -4,82 +4,82 @@ description: What the /resend slash command does in Hunea
 
 # /resend
 
-`/resend` in Hunea is for refilling a previously sent message into the input.
+`/resend` refills a previously sent message back into the input box.
 
-Use it when you want an old prompt back in the composer — edit and send again, reuse a phrasing, or continue from a past draft. Confirming `/resend` opens a full-screen message history panel (title similar to `Message history`) where you pick the entry to refill.
+Use it when you want to reuse an old prompt, modify it and send again, or continue writing from an old draft. After typing `/resend` and confirming, it opens a full-screen message history panel titled `Message history` — just pick the message you want to refill.
 
-You can also open the same panel with `Ctrl + R` when nothing else is covering the UI. Unlike the slash command path, `Ctrl + R` **does not clear** an existing draft; typing `/resend` through the menu occupies the input, so the field is usually empty after you confirm the command.
+You can also press `Ctrl + R` directly to open the same panel when no other panel is blocking. It differs slightly from the slash command: when opened via `Ctrl + R`, it **doesn't clear** the existing draft in the input box; when opened via `/resend` from the menu, the input box is already consumed by the command, so it's usually empty when confirmed.
 
-## What the list shows
+## List overview
 
-This is **global** user-message history, not “only messages from the current session”. Prompts you sent in other project directories still appear here if they are still retained.
+The panel lists **global** user message history, not just user messages from the current session. That means: content you sent in other project directories can still be found here as long as it's still kept in this history.
 
-Notes:
+Note:
 
-- Only **user inputs you sent** are stored — no assistant replies
-- Pure whitespace is not stored
-- Two consecutive sends with identical body usually do not create a duplicate adjacent entry
+- Only records **user inputs you've sent**, assistant replies don't appear here
+- Pure blank content isn't stored
+- Two consecutive sends with exactly the same content won't store the adjacent duplicate again
 
-Each row roughly shows:
+Each line generally shows:
 
-1. Relative time (`now`, `5m`, `2h`, `1d`, …)
-2. A summary of that user message (truncated in the list; refill/copy use full content)
+1. Relative time (e.g. `now`, `5m`, `2h`, `1d`)
+2. Summary text of the user message (truncated in the list; full content is used for refill/copy)
 
-The title shows position, e.g. `Message history (2 of 10)`.
+The title bar shows your current position, for example `Message history (2 of 10)`, making it easy to see "which item I'm on / how many total".
 
-While loading: `Loading message history...`. With no history yet: `No sent messages yet`.
+It may show `Loading message history...` while loading; if there's no refillable history yet, it shows `No sent messages yet`.
 
-> The list is oldest → newest, and the cursor defaults to the **newest** entry. You can usually open and `Enter` to refill the last send immediately.
+> The list is ordered from oldest to newest, and the cursor defaults to the **newest** item. After opening, you can usually just press `Enter` to refill the latest send.
 
-Roughly:
+It roughly looks like this:
 
 ![resend](/assets/fun/resend.png)
 
 ## How to operate
 
-Footer shortcuts:
+The bottom shows a shortcut hint. Common operations:
 
-- `↑` / `↓`, or `j` / `k`: move selection
-- `←` / `→`, or `h` / `l`: page (helps with long history)
-- `/`: enter search mode and keep typing to filter
-- `Enter`: **refill** the selected message into the input
-- `c`: copy the selected message’s full text
-- `Space`: full-content **preview** of the selection
-- `Esc`: close; if searching, first leaves search, second closes
+- `↑` / `↓`, or `j` / `k`: move selection up/down
+- `←` / `→`, or `h` / `l`: page through (useful when there's lots of history)
+- `/`: enter search mode, keep typing to filter the list
+- `Enter`: **refill the selected message** into the input box
+- `c`: copy the full text of the selected message
+- `Space`: open a **full content preview** for the selected message
+- `Esc`: close the panel; if searching, exit search first, then close on second press
 
-Left-click a row to move the cursor; the click itself does not refill.
+You can also click a line with the left mouse button to move the cursor there; clicking doesn't trigger refill.
 
-Search matches full message text (case-insensitive). No hits → `No messages match search`. In search mode:
+Search matches the full message text (case-insensitive). If no matches, it shows `No messages match search`. In search mode:
 
-- `Backspace`: delete a character
-- `Ctrl + U`: clear the query
-- ordinary letters are search input — e.g. `c` / `j` / `k` no longer copy or move
+- `Backspace`: delete characters
+- `Ctrl + U`: clear the current search content
+- Ordinary letters are treated as search terms, so `c`, `j`/`k` won't trigger copy or movement
 
-In preview:
+In preview mode:
 
-- `Esc` or `Space`: back to the list
-- `←` / `→` / `↑` / `↓`, plus `h` / `j` / `k` / `l`: page longer content
-- `c`: still copy the previewed entry
+- `Esc` or `Space`: go back to the list
+- `←` / `→` / `↑` / `↓`, and `h` / `j` / `k` / `l`: page through longer content
+- `c`: still copies the currently previewed item directly
 
-There is **no** `Enter` refill inside preview — return to the list first.
+There is **no** `Enter` refill in preview; to refill you need to go back to the list and press `Enter`.
 
-## After you refill
+## What happens after refill
 
-On `Enter`, Hunea:
+After selecting and pressing `Enter`, Hunea will:
 
-1. Closes the panel
-2. Writes the selected message’s **full body** into the input (cursor usually at the end)
-3. **Does not auto-send** — edit further, then send yourself
+1. Close the panel
+2. Write the **full content** of the selected message into the input box (cursor generally moves to the end)
+3. **Doesn't auto-send**; you can continue editing, then send it yourself
 
-If the input still had an unsent draft when the panel opened (typical for `Ctrl + R`), that draft is preferably recorded into message history before being replaced by the selected entry. Half-finished work is less likely to vanish when you switch to reusing an old message.
+If there was an unsent draft in the input box when you opened the panel (typically the `Ctrl + R` path), Hunea will try to save this draft to message history before replacing it with your selection. This prevents losing half-written drafts when you "abandon writing to reuse an old message".
 
-Important: this **refills the input** — it does not re-send, and it does not rewind the session to an old message. The session tree is unchanged by `/resend`.
+Note: this is **refilling the input box**, not resending, nor rewinding the session to an old message. The session tree itself isn't changed by `/resend`.
 
-List summaries may truncate for width; refill and `c` always use full text. Copy success/failure toasts match other copy paths (`Selection copied` / `Copy selection failed`).
+List summaries may be truncated due to terminal width, but refill and `c` copy both get the full text, not the ellipsized version you see on screen. Success/failure toasts for copying match other copy paths (similar to `Selection copied` / `Copy selection failed`).
 
 ## How much history is kept
 
-Global history has a size cap:
+This global history has an item limit, configured by:
 
 ```toml
 [tui]
@@ -87,16 +87,16 @@ message_history_limit = 100
 ```
 
 - Default `100`
-- Configurable roughly from `100` to `1000`
-- When over the limit, older entries are dropped first
+- Configurable range is roughly `100` to `1000`
+- When the limit is exceeded, older items are dropped first to keep newer ones
 
-Data lives under Hunea’s data directory (usually `~/.config/hunea/`) and is **shared across projects**, not one file per workspace.
+The data lives in Hunea's data directory (usually `~/.config/hunea/`), and it's **cross-project** global history — not a separate list per workspace.
 
-## Tips
+## Usage tips
 
-- Reuse “that last one”: the cursor is usually already on the newest entry — just `Enter`.
-- Long history: search with `/` instead of pure scrolling.
-- Half a draft already typed, but you want to check an old message: open with `Ctrl + R` so the draft stays; confirming a refill also tries to save the draft first.
-- Want the text without refilling the input: press `c` in the list or preview.
+- You just want to quickly reuse "the last one": after opening, the cursor is already on the newest item — just press `Enter`.
+- When history is long, searching for keywords with `/` is faster than scrolling up and down.
+- You already have a half-written input and want to compare with an old message: open with `Ctrl + R`, your draft is kept; and before refill, your draft will be saved to history anyway.
+- You just want the text, don't want to refill the input: press `c` to copy in the list or preview.
 
-If you want to **copy user/assistant messages from the current session**, use [`/copy`](/guide/fun/menu/copy.html), not `/resend`.
+If you actually want to **select and copy user/assistant messages from the current session**, [`/copy`](/guide/fun/menu/copy.html) is more appropriate than `/resend`.

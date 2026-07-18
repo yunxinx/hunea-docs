@@ -5,6 +5,21 @@
     "label": "Slash Menu"
   },
   {
+    "type": "file",
+    "name": "tools",
+    "label": "Tools & Approval"
+  },
+  {
+    "type": "file",
+    "name": "skills",
+    "label": "Skills & Instruction Files"
+  },
+  {
+    "type": "file",
+    "name": "shortcuts",
+    "label": "Keyboard Shortcuts"
+  },
+  {
     "type": "dir",
     "name": "designs",
     "label": "Design & Trade-offs"

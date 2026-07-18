@@ -4,71 +4,69 @@ description: What the /clear slash command does in Hunea
 
 # /clear
 
-`/clear` in Hunea is for clearing the current conversation context and starting a new session.
+`/clear` clears the current conversation context and starts a brand-new session. `/new` is an alias — typing `/clear` or `/new` has exactly the same effect.
 
-`/new` is an alias. Either name matches the same item: typing `/new` still clears the current conversation; typing `/clear` does the same.
+Use it when your current session is getting long, context is almost full, and you want to continue chatting from a clean slate without quitting the app. Just type `/` in an empty input box, select `/clear`, and press `Enter`.
 
-Use it when the session is long, context is full, or you want a clean starting point without quitting the app. With an empty input, type `/`, select `/clear` (or match it via `/new`), then press `Enter`.
+> The current version **does not ask for confirmation**: selecting and pressing `Enter` executes immediately. It's unlikely we'll add a confirmation step later.
 
-> This version has **no second confirmation**: selecting and pressing `Enter` runs immediately. A confirm step may never be added.
+## What happens after execution
 
-## What happens after it runs
+After confirming `/clear`, Hunea does roughly two things:
 
-After you confirm `/clear`, Hunea roughly does two things:
+1. **Restores the TUI to a state close to fresh launch**
+2. **Resets the runtime session**, so subsequent requests go through a new, clean conversation context
 
-1. **Reset the TUI surface close to a fresh launch**
-2. **Reset the runtime session** so later requests use a new, clean conversation context
+Common UI changes include:
 
-UI-side changes commonly include:
-
-- Visible conversation history for the current session is cleared
+- The visible conversation history of the current session is cleared
 - The startup banner reappears
-- The input draft is cleared
-- Overlays / inline panels are closed when possible (model picker, session resume, session tree, copy panel, approval panel, file/skill pickers, …)
-- Streaming state, selection, light toasts, and similar UI chrome are cleared too
+- The draft in the input box is cleared
+- Most overlays/panels are closed (model selection, session resume, session tree, copy panel, approval panel, file/skill picker, etc.)
+- Any in-flight streaming state, selections, toasts, etc. are also cleared
 
-Runtime-side it is more like “open a new session”:
+On the runtime side, it's more like "starting a new session":
 
-- An in-flight request is usually interrupted / cancelled
-- History sent to the provider is cleared
-- The next send prepares as a **new session** (including re-taking the “next new session” prompt-assembly result)
+- If there was an ongoing request, it will typically be interrupted/canceled
+- The historical context sent to providers is cleared
+- The next send will be prepared as a **new session** (including reapplying prompt assembly for the next new session)
 
-## What it does not clear
+## What won't be cleared
 
-`/clear` clears the **current conversation context**, not all of Hunea’s data. It usually does **not** throw away:
+`/clear` only clears **the current conversation context** — it doesn't wipe all Hunea data. You won't usually lose:
 
-- **The currently selected model**  
-  It generally keeps working; you do not have to `/models` again (you still can).
+- **Your currently selected model**  
+  It will generally persist, so you don't need to re-select with `/models` (though you can still change it if you want).
 
 - **Already saved historical sessions**  
-  Prior chats that were persisted usually still appear in [`/resume`](/guide/fun/menu/resume.html). `/clear` is “switch to a new empty session”, not bulk-delete archives.
+  Previous conversations that were persisted to disk can still be found in the [`/resume`](/guide/fun/menu/resume.html) list; `/clear` is more like "switch to a new empty session" than bulk-deleting archives.
 
-- **Global user-message history**  
-  The cross-project history used by [`/resend`](/guide/fun/menu/resend.html) is not emptied by `/clear`.
+- **Global user message history**  
+  The cross-session history used by [`/resend`](/guide/fun/menu/resend.html) is not cleared by `/clear`.
 
-- **`models.toml`, prompt assembly, config files**  
-  Provider/model config and the assembly state you maintain in [`/prompt`](/guide/fun/menu/prompt.html) are not rewritten by `/clear`.
+- **`models.toml`, prompt assembly, configuration files**  
+  Provider/model configuration and the assembly state you maintain in [`/prompt`](/guide/fun/menu/prompt.html) are not directly changed by `/clear`.
 
-## Compared with nearby commands
+## How it differs from related commands
 
-| What you want | Better command |
+| What you want to do | More appropriate command |
 | --- | --- |
-| Clear the current conversation and start a new session, stay in the app | `/clear` (alias `/new`) |
-| Quit the whole app | [`/exit`](/guide/fun/menu/quit.html) (alias `/quit`) |
-| Return to a saved older session | [`/resume`](/guide/fun/menu/resume.html) |
-| Only refill a prior user input | [`/resend`](/guide/fun/menu/resend.html) |
-| Precisely return to a message node / open a branch in the current session | [`/tree`](/guide/fun/menu/tree.html) |
-| See roughly how much context is used | [`/context`](/guide/fun/menu/context.html) |
+| Clear current conversation, start a new session, stay in the app | `/clear` (alias `/new`) |
+| Exit the entire application | [`/exit`](/guide/fun/menu/quit.html) (alias `/quit`) |
+| Go back to a saved old session | [`/resume`](/guide/fun/menu/resume.html) |
+| Only refill a previously sent user input | [`/resend`](/guide/fun/menu/resend.html) |
+| Precisely return to a message node / branch in the current session | [`/tree`](/guide/fun/menu/tree.html) |
+| Check how much context is currently used | [`/context`](/guide/fun/menu/context.html) |
 
-In short:
+To put it simply:
 
-- **Still want Hunea; the chat is just messy/full** → `/clear`
-- **Done for now; close the program** → `/exit`
-- **Not discarding this chat — recovering an older session** → `/resume`
+- **You still want to use Hunea, the conversation is just too messy/full** → `/clear`
+- **You're done chatting and want to close the program** → `/exit`
+- **You don't want to discard the current conversation, you just want to recover an old session** → `/resume`
 
-## Tips
+## Usage tips
 
-- Context almost full, model “forgets” or answers off-topic: glance at [`/context`](/guide/fun/menu/context.html), then `/clear` when you need a clean session.
-- Just changed prompt assembly in [`/prompt`](/guide/fun/menu/prompt.html): most edits target the next new session; close the panel then `/clear` to verify the new assembly sooner.
-- Still need something from the current session: [`/copy`](/guide/fun/menu/copy.html) it out first, then `/clear`.
-- Only want to reuse an old prompt without dropping the current conversation: [`/resend`](/guide/fun/menu/resend.html), not `/clear`.
+- When context is almost full and the model starts "forgetting" or answering off-topic: check [`/context`](/guide/fun/menu/context.html) first, then use `/clear` to start a clean session when needed.
+- After modifying prompt assembly in [`/prompt`](/guide/fun/menu/prompt.html): most changes apply to "the next new session"; close the panel then `/clear` to easily verify the new assembly immediately.
+- If there's content in the current session you want to keep: use [`/copy`](/guide/fun/menu/copy.html) to copy it out first, then `/clear`.
+- If you just want to reuse an old prompt and don't want to discard the current conversation: use [`/resend`](/guide/fun/menu/resend.html), it won't clear the current conversation.

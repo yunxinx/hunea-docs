@@ -4,56 +4,56 @@ description: What the /context slash command does in Hunea
 
 # /context
 
-`/context` in Hunea is for inspecting how much of the current session’s context window is used.
+Type `/context` to view the current session's context usage. It helps you understand how much of the context window your current session is using, how much space remains, and which parts contribute most to the usage.
 
-Use it when you want a sense of how full the window is, how much room is left, and roughly which categories are consuming it. Confirming `/context` opens an inline panel near the input (title `Context Usage`).
+After confirmation, it opens an inline panel near the input area titled `Context Usage`.
 
-Roughly:
+It roughly looks like this:
 
 ![context](/assets/fun/context.png)
 
-> Numbers here are **estimates**. The panel also marks them with `~` so they are not read as exact accounting.
+> The numbers here are **estimates**. The panel uses `~` to indicate they are estimates, not exact actual values.
 
-## What the panel shows
+## Panel overview
 
-While loading you may see `Loading context budget...`. When ready, you typically get:
+It may show `Loading context budget...` while loading. Once ready, you'll generally see:
 
 1. **Summary line**  
-   Something like `model id · ~used/limit tokens (percent)`, e.g. `gpt-4o · ~32k/128k tokens (25.0%)`. The limit comes from the current model’s context-window config (see “Where the limit comes from”).
+   Formatted as `model id · ~used/total tokens (percentage)`, for example `gpt-4o · ~32k/128k tokens (25.0%)`. The total comes from the current model's context window configuration (see "Where does the total come from" below).
 
-2. **Heatmap (color grid)**  
-   Colored blocks proportional to each category’s share of the total window, with free space styled separately. It is not “message N owns cell M” precision — just a visual of whether system prompt, tool definitions, or conversation messages dominate.
+2. **Heatmap (colored grid)**  
+   Uses colored blocks to proportionally display the share of each usage category in the total window; free space is also marked with a separate style. It doesn't map "which message occupies which cell" exactly — it's just a visualization of proportions: whether system prompts, tool definitions, or conversation messages themselves are the main contributors.
 
 3. **Legend**  
-   Categories roughly include (only items with estimated usage > 0, plus free space):
+   Currently there are several categories (only shows items with estimate > 0, plus free space):
 
    | Label | Roughly includes |
    | --- | --- |
-   | `System prompt` | System prompt / prompt prefixes |
-   | `Skill discovery` | Skill-discovery fragments |
+   | `System prompt` | System prompts, prompt prefixes, etc. |
+   | `Skill discovery` | Fragments related to skill discovery |
    | `Tool definitions` | Tool definitions |
-   | `Messages` | User messages, assistant replies, tool results, reasoning, and other dialogue-side content |
-   | `Free space` | Room left under the context limit |
+   | `Messages` | User messages, assistant replies, tool results, reasoning, and other conversation content |
+   | `Free space` | Remaining space relative to the context window upper limit |
 
-Each legend row usually has a color mark, category name, estimated tokens, and share of the total. Press `Esc` to close. There are no extra interaction shortcuts in the current version. On a very narrow terminal the panel may say there is not enough space; widen the window and open it again.
+Each legend line typically includes a color swatch, category name, estimated token count, and percentage of the total. Press `Esc` to close the panel. The current version doesn't have additional interactive shortcuts. If your terminal is too narrow, it may indicate insufficient space to display the full budget panel; just resize the terminal wider and open it again.
 
-## What it estimates
+## What does it estimate?
 
-`/context` estimates how the **next request prepared for the provider**, based on the current session state, would occupy context.
+`/context` estimates how the **next request to be sent to the provider** would occupy the context window, based on the current session state.
 
-So it folds in system-side content, tool definitions, history (including related tool results / reasoning), and so on. If the runtime already has a provider-reported total context size, the displayed “used total” may be calibrated against that so percentages track real request size more closely — category breakdowns remain estimates either way.
+Therefore it includes system content, tool definitions, historical messages (and related tool results / reasoning, etc.) in segmented estimation. If the runtime already has context total information from the provider, the "total used" display may be calibrated accordingly to make the percentage closer to the actual request size, but the segmented breakdown remains an estimate.
 
 In short:
 
-- **“Can I keep chatting / should I `/clear`?”** → look at used/limit and percent on the summary line
-- **“What is eating the window?”** → heatmap + legend
+- **To check "Can I keep chatting / should I use `/clear`?"** → Look at the used/total and percentage in the summary line
+- **To check "What exactly is using up the context?"** → Look at the heatmap + legend breakdown
 
-## Where the limit comes from
+## Where does the total come from?
 
-The **limit** on the right (or summary line) is resolved per model, roughly:
+The **total** (shown in the summary line or on the right side of the panel) is parsed from the model's context window, with roughly this priority:
 
 1. `providers.<id>.model_profiles.<model>.context_window` (most specific)
 2. `defaults.context_window` (global default)
-3. Built-in rules by model family; unrecognized models hit a built-in fallback
+3. Built-in rules: match by model family; unrecognized models fall back to a built-in default value
 
-All of that is configurable in `models.toml`. For local models with non-standard windows, set `context_window` under the matching `model_profiles` entry; otherwise `/context` may render against a too-large default. Full configuration notes live in [Getting Started](/guide/start/getting-started).
+All of these can be configured in `models.toml`. If the context length of your local model is non-standard, it's recommended to explicitly set `context_window` in the corresponding `model_profiles`, otherwise the `/context` budget bar may render with a larger default upper limit that doesn't match the real window. For more complete configuration instructions, see [Configuration](/guide/start/configuration).
