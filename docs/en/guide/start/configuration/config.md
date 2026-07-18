@@ -1,5 +1,5 @@
 ---
-description: Hunea config.toml: tui / runtime / debug fields, defaults, and examples
+description: "config.toml reference for Hunea TUI, runtime, and debug options: fields, defaults, and complete examples"
 ---
 
 # config.toml

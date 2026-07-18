@@ -1,5 +1,5 @@
 ---
-description: What the /context slash command does in Hunea
+description: /context shows estimated context-window usage by model, tokens used, remaining budget, and source breakdown
 ---
 
 # /context

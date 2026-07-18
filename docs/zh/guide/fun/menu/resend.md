@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /resend 斜杠命令的作用
+description: /resend 与 Ctrl+R 打开全局用户消息历史，挑选以往提示词并重新填回输入框以便修改后重发
 ---
 
 # /resend

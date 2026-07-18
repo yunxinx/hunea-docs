@@ -1,5 +1,5 @@
 ---
-description: What the /clear slash command does in Hunea
+description: /clear (alias /new) resets the current Hunea session and starts a clean conversation without quitting
 ---
 
 # /clear

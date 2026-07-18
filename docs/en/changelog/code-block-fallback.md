@@ -1,5 +1,5 @@
 ---
-description: 2026-07-17 update — align plain-text and highlight-failure fenced code blocks to a no-background fallback
+description: Unify plain-text and highlight-failure fenced code blocks to a no-background fallback style in the transcript
 ---
 
 # Fenced code block no-background fallback

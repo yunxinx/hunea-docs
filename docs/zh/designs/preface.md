@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的一些设计和取舍
+description: Hunea 设计取舍：alternate screen 全屏画布、文档流布局，以及主界面交互背后的考虑
 ---
 
 # 前言

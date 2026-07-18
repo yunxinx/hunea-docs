@@ -1,5 +1,5 @@
 ---
-description: Overview of Hunea's "Slow Start" docs. This series is for first-time users of tools like this — progressive walkthroughs, real examples, and toolchain explanations so non-specialists can get productive with Hunea or similar agents.
+description: Slow Start series overview for first-time agent users — progressive walkthroughs beyond the quick start guide
 ---
 
 # Overview

@@ -1,5 +1,5 @@
 ---
-description: 说明 Hunea config.toml：tui / runtime / debug 字段、默认值与示例
+description: Hunea config.toml 参考：tui / runtime / debug 字段、默认值与完整配置示例
 ---
 
 # config.toml

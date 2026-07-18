@@ -1,5 +1,5 @@
 ---
-description: How to install and use Hunea
+description: Install the Hunea alpha via npm, start the TUI agent, pick a model, and complete your first conversation
 ---
 
 # Getting Started

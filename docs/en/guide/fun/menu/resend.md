@@ -1,5 +1,5 @@
 ---
-description: What the /resend slash command does in Hunea
+description: /resend and Ctrl+R reopen global user-message history so you can refill a past prompt into the input box
 ---
 
 # /resend

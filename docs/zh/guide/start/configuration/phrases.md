@@ -1,5 +1,5 @@
 ---
-description: 说明 Hunea phrases.toml：等待回复提示文案的 mode、order 与示例
+description: Hunea phrases.toml：等待 AI 回复时的提示文案 mode、order 与自定义 phrases 示例
 ---
 
 # phrases.toml

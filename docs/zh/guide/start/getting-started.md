@@ -1,5 +1,5 @@
 ---
-description: 了解 Hunea 的安装和使用方式
+description: 通过 npm 安装 Hunea alpha 版本，启动终端 AI Agent，选择模型并完成第一次完整对话
 ---
 
 # 快速开始

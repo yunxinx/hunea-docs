@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /context 斜杠命令的作用
+description: /context 查看当前会话上下文占用估算：模型上限、已用 tokens、剩余预算，以及各来源占用拆分
 ---
 
 # /context

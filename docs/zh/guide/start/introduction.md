@@ -1,5 +1,5 @@
 ---
-description: 介绍 hunea 的命名、想法和一些规划打算等。
+description: Hunea 是什么：基于 Rust + Ratatui 的 TUI Agent，命名源于 human 与 easy，以及产品愿景与方向
 ---
 
 # 介绍

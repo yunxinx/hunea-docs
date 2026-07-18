@@ -1,5 +1,5 @@
 ---
-description: What the /prompt slash command does in Hunea
+description: "/prompt inspects and edits next-session prompt assembly: instructions, skills, tools, and custom sources"
 ---
 
 # /prompt

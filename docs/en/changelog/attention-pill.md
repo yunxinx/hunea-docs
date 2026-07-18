@@ -1,5 +1,5 @@
 ---
-description: 2026-07-17 update — keep viewport when unpinned, and show a left attention pill for new messages and approvals
+description: Keep the viewport when unpinned, and show a left attention pill for unread messages and pending approvals
 ---
 
 # Keep viewport + attention pill

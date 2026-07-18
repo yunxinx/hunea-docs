@@ -1,5 +1,5 @@
 ---
-description: How Hunea loads models.toml, config.toml, and phrases.toml: locations, merge rules, and section index
+description: Where Hunea loads models.toml, config.toml, and phrases.toml — user vs project paths, merge rules, portable mode
 ---
 
 # Configuration

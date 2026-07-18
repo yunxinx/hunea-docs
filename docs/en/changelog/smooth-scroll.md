@@ -1,5 +1,5 @@
 ---
-description: 2026-07-17 update — smooth mouse-wheel scrolling and six scroll_animation feel tiers
+description: Smooth mouse-wheel scrolling on the main document with six configurable scroll_animation feel tiers
 ---
 
 # Smooth mouse-wheel scrolling

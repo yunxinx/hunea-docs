@@ -1,5 +1,5 @@
 ---
-description: The naming, ideas, and some plans behind Hunea.
+description: "What Hunea is: a Rust + Ratatui TUI agent named for human + easy, with goals, audience, and product direction"
 ---
 
 # Introduction

@@ -1,5 +1,5 @@
 ---
-description: What the /tree slash command does in Hunea
+description: /tree opens the session tree so you can jump to any message node, branch, edit, or resend while keeping history
 ---
 
 # /tree

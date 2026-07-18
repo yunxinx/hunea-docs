@@ -1,5 +1,5 @@
 ---
-description: Hunea models.toml: providers, models, context_window, and examples
+description: models.toml reference for Hunea providers, models, context_window, API keys, and OpenAI-compatible setups
 ---
 
 # models.toml

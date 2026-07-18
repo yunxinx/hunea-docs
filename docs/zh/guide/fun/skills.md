@@ -1,5 +1,5 @@
 ---
-description: 说明 Hunea 中的 Agent Skills 与 AGENTS.md / CLAUDE.md 指令文件：含义、存放位置、SKILL.md 格式与使用方式
+description: Hunea 中的 Agent Skills 与 AGENTS.md / CLAUDE.md：发现路径、SKILL.md 格式与提示词组装
 ---
 
 # 技能与指令文件

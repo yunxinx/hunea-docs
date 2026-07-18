@@ -1,5 +1,5 @@
 ---
-description: What the /models slash command does in Hunea
+description: /models browses enabled providers and switches the model for the current Hunea session
 ---
 
 # /models

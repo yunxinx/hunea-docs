@@ -1,5 +1,5 @@
 ---
-description: Overview of common keyboard shortcuts for Hunea's main interface, input box, overlays, and tool approval
+description: Keyboard shortcuts for Hunea input, slash menu, full-screen panels, Esc rewind, and tool approval flows
 ---
 
 # Keyboard Shortcuts

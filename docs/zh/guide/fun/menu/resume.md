@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /resume 斜杠命令的作用
+description: /resume 列出当前工作区已保存的会话摘要与时间信息，选择后恢复此前的 Hunea 对话并继续聊天
 ---
 
 # /resume

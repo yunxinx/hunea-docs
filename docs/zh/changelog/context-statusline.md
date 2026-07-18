@@ -1,5 +1,5 @@
 ---
-description: 2026-07-16 更新：状态栏新增显示上下文已用/剩余百分比选项
+description: 状态栏新增 context-used 与 context-remaining，在请求成功后显示上下文窗口已用/剩余百分比
 ---
 
 # 状态栏添加上下文使用率

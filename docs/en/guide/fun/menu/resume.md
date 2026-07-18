@@ -1,5 +1,5 @@
 ---
-description: What the /resume slash command does in Hunea
+description: /resume lists saved sessions for the current workspace and restores an earlier Hunea conversation
 ---
 
 # /resume

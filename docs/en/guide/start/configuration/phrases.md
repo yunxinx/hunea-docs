@@ -1,5 +1,5 @@
 ---
-description: Hunea phrases.toml: waiting-phrase mode, order, and examples
+description: phrases.toml for Hunea waiting-reply phrases — mode, order, and custom phrase list examples while the model runs
 ---
 
 # phrases.toml

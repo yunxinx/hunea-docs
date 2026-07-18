@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /prompt 斜杠命令的作用
+description: /prompt 查看并调整下一次新会话的提示词组装结果，包括指令、技能、工具指南以及自定义来源的启停
 ---
 
 # /prompt

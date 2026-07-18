@@ -1,5 +1,5 @@
 ---
-description: What Hunea’s input box (composer) can do
+description: "How the Hunea composer works: document-flow input, send keys, draft checks, external editor, and status lines"
 ---
 
 # Composer

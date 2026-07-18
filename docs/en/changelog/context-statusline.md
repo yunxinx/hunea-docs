@@ -1,5 +1,5 @@
 ---
-description: 2026-07-16 update — statusline gains context-used and context-remaining items
+description: Add context-used and context-remaining statusline items to show context window usage after each request
 ---
 
 # Status line context usage

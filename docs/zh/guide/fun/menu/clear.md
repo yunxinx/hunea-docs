@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /clear 斜杠命令的作用
+description: /clear（别名 /new）立即清空当前 Hunea 会话上下文并重置界面，不退出应用即可开启全新干净对话
 ---
 
 # /clear

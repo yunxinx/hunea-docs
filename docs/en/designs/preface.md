@@ -1,5 +1,5 @@
 ---
-description: Some of Hunea’s design choices and trade-offs
+description: "Hunea design choices: alternate-screen full-canvas TUI, document-flow layout, and trade-offs behind the UI"
 ---
 
 # Overview

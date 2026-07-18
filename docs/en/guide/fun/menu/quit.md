@@ -1,5 +1,5 @@
 ---
-description: What the /exit slash command does in Hunea
+description: /exit (alias /quit) leaves Hunea cleanly; compare with Ctrl+C and /clear when you only want a new session
 ---
 
 # /exit

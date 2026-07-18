@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /models 斜杠命令的作用
+description: /models 浏览已启用的供应商与模型列表，确认当前选中项，并为当前 Hunea 会话切换继续对话的模型
 ---
 
 # /models

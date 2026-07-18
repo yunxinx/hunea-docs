@@ -1,5 +1,5 @@
 ---
-description: 2026-07-16 更新：request_timeout_seconds 从整轮超时改为单次请求空闲超时
+description: request_timeout_seconds 改为 provider HTTP 空闲超时，限制连接等待与流式响应相邻数据块间隔
 ---
 
 # 请求超时改为空闲超时

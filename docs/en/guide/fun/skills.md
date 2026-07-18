@@ -1,5 +1,5 @@
 ---
-description: Explanation of Agent Skills and AGENTS.md / CLAUDE.md instruction files in Hunea: meaning, locations, SKILL.md format and usage
+description: Agent Skills and AGENTS.md / CLAUDE.md in Hunea — discovery paths, SKILL.md format, and prompt assembly
 ---
 
 # Skills & Instruction Files

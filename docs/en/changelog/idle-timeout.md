@@ -1,5 +1,5 @@
 ---
-description: 2026-07-16 update — request_timeout_seconds is now a provider HTTP idle timeout, not a total turn time cap
+description: request_timeout_seconds is now a provider HTTP idle timeout between stream chunks, not a total turn time cap
 ---
 
 # Request timeout changed to idle timeout

@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /exit 斜杠命令的作用
+description: /exit（别名 /quit）正常退出 Hunea；并对比 Ctrl+C 与仅想开新会话时的 /clear
 ---
 
 # /exit

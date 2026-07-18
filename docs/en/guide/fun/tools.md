@@ -1,5 +1,5 @@
 ---
-description: Introduction to Hunea Agent's built-in tool list, workspace boundaries, and tool approval interaction
+description: Hunea built-in tools, workspace path limits, which actions need approval, and how the approval panel works
 ---
 
 # Tools & Approval

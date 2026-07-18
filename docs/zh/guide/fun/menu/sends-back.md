@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /sends-back 斜杠命令的作用
+description: /sends-back（或默认下双击 Esc）回到已发送用户消息、回填输入框，并截断该条之后的对话内容
 ---
 
 # /sends-back

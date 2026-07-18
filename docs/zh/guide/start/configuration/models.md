@@ -1,5 +1,5 @@
 ---
-description: 说明 Hunea models.toml：供应商、模型、context_window 与示例配置
+description: Hunea models.toml 参考：供应商、模型、context_window、密钥与 OpenAI 兼容配置示例
 ---
 
 # models.toml

@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /tree 斜杠命令的作用
+description: /tree 打开当前会话的消息树面板，精确定位任意消息节点，在保留已有历史的同时进行分支、编辑或重发
 ---
 
 # /tree

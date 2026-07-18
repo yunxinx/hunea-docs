@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 的 /copy 斜杠命令的作用
+description: /copy 打开全屏多选面板，挑选当前会话里的用户消息与助手回复，再将完整正文复制到系统剪贴板中使用
 ---
 
 # /copy

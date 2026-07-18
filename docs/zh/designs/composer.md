@@ -1,5 +1,5 @@
 ---
-description: 介绍 Hunea 输入框（composer）能做什么
+description: Hunea 输入框（composer）能力说明：文档流布局、发送与换行快捷键、草稿检查、外部编辑器与状态行
 ---
 
 # 输入框

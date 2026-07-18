@@ -1,5 +1,5 @@
 ---
-description: What the /sends-back slash command does in Hunea
+description: /sends-back (or double Esc) rewinds to a sent user message, refills it, and truncates later conversation turns
 ---
 
 # /sends-back

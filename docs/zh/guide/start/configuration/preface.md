@@ -1,5 +1,5 @@
 ---
-description: 说明 Hunea 配置文件的位置、合并规则，以及 models / config / phrases 三个文件的导航
+description: Hunea 如何加载 models.toml、config.toml、phrases.toml：全局与项目路径、合并规则与便携模式
 ---
 
 # 配置文件

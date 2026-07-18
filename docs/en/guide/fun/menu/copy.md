@@ -1,5 +1,5 @@
 ---
-description: What the /copy slash command does in Hunea
+description: /copy opens a multi-select panel to copy user and assistant messages from the current session to the clipboard
 ---
 
 # /copy

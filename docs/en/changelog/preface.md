@@ -1,5 +1,5 @@
 ---
-description: Hunea changelog overview — browse recent user-facing product changes as separate entries
+description: Hunea changelog of user-facing product changes — browse recent TUI, runtime, and interaction updates by date
 ---
 
 # Changelog

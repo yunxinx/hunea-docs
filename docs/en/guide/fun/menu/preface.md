@@ -1,5 +1,5 @@
 ---
-description: Built-in slash menu items in Hunea and what they do
+description: Hunea slash menu overview — open with / on an empty input and jump to each built-in command’s docs
 ---
 
 # Overview
