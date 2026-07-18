@@ -1,6 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { defineConfig } from '@rspress/core';
+import { transformerNotationHighlight } from '@shikijs/transformers';
 
 const linuxdoSvg = fs.readFileSync(
   path.join(__dirname, 'docs/public/linuxdo.svg'),
@@ -30,6 +31,11 @@ export default defineConfig({
       description: 'Official documentation for Hunea',
     },
   ],
+  markdown: {
+    shiki: {
+      transformers: [transformerNotationHighlight()],
+    },
+  },
   themeConfig: {
     socialLinks: [
       {

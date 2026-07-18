@@ -1,0 +1,32 @@
+[
+  {
+    "type": "file",
+    "name": "preface",
+    "label": "前言"
+  },
+  {
+    "type": "file",
+    "name": "smooth-scroll",
+    "label": "滚轮平滑滚动"
+  },
+  {
+    "type": "file",
+    "name": "code-block-fallback",
+    "label": "代码块无背景回退"
+  },
+  {
+    "type": "file",
+    "name": "attention-pill",
+    "label": "Attention pill"
+  },
+  {
+    "type": "file",
+    "name": "idle-timeout",
+    "label": "Idle timeout"
+  },
+  {
+    "type": "file",
+    "name": "context-statusline",
+    "label": "上下文状态行"
+  }
+]

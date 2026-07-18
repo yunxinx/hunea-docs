@@ -8,5 +8,10 @@
     "text": "Design & Trade-offs",
     "link": "/designs/preface",
     "activeMatch": "/designs/"
+  },
+  {
+    "text": "Changelog",
+    "link": "/changelog/preface",
+    "activeMatch": "/changelog/"
   }
 ]

@@ -8,5 +8,10 @@
     "text": "设计与取舍",
     "link": "/designs/preface",
     "activeMatch": "/designs/"
+  },
+  {
+    "text": "更新日志",
+    "link": "/changelog/preface",
+    "activeMatch": "/changelog/"
   }
 ]
