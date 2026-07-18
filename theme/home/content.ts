@@ -19,8 +19,7 @@ export const homeContent = {
     titleBefore: 'Hunea',
     titleAccent: 'built for',
     titleAfter: ' your workflow.',
-    description:
-      'Building a polished, easy-to-use terminal agent experience.',
+    description: 'Building a polished, easy-to-use terminal agent experience.',
     tryCommand: 'npm install -g hunea@alpha',
     tryCopy: 'Copy',
     tryCopied: 'Copied',

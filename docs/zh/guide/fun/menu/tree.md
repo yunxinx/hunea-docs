@@ -4,17 +4,17 @@ description: 介绍 Hunea 的 /tree 斜杠命令的作用
 
 # /tree
 
-`/tree` 在 Hunea 中的设计为精确回溯到某个会话消息节点时使用。这也是我认为的 Hunea 的一个特色功能。灵感来源于 pi，非常感谢。
+`/tree` 用来精确回溯到当前会话中的某个消息节点。这是 Hunea 的一个特色功能，灵感来源于 pi，在此感谢。
 
-适用于想回到某一条用户消息、助手回复，或某次工具结果附近，然后从那里接着聊、改口重发、或切到另一条分支时使用。输入 `/tree` 并确认后，会打开一个全屏的会话树面板（标题类似 `Session Tree`）。
+当你想回到某一条用户消息、助手回复，或者某次工具结果附近，从那里接着聊、修改后重发，或者切换到另一条分支，都可以使用它。输入 `/tree` 确认后，会打开一个全屏的会话树面板，标题是 `Session Tree`。
 
-默认配置下，空输入框时连续按两次 `Esc`，也会进入同一类**用户消息节点级**回溯交互；菜单里此时显示的是 `/tree`。
+默认 `esc_rewind_mode = "coarse"` 时，斜杠菜单中显示的是 `/tree`。需要注意：空输入框连按两次 `Esc` **并不会**打开 `/tree`，而是会进入另一套「按某轮用户消息编辑/重发」的交互（截断该条之后的内容，并将正文回填到输入框，见 [`/sends-back`](/guide/fun/menu/sends-back.html)）。
 
-但若你把 `esc_rewind_mode` 配成 `"entry"`，菜单会改成显示 `/sends-back`，那是另一套更偏“改某轮用户消息”的交互，二者不会同时出现在斜杠菜单里。
+只有将 `esc_rewind_mode` 配置为 `"entry"` 时，双击 `Esc` 才会打开 `/tree`；与此同时菜单会改为显示 `/sends-back`，二者不会同时出现在斜杠菜单中。也就是说，菜单项与双击 `Esc` 分别对应两种回溯方式，修改配置只是交换入口。
 
-> 简单区分：`/tree` 更像在会话树上精确选点、保留已有内容并开分支；`/sends-back` 更偏向按某轮用户消息去改/重发。
+> 简单区分：`/tree` 用于在会话树上精确选择节点、保留已有内容并创建分支；`/sends-back`（以及默认 coarse 下的双击 `Esc`）更偏向按某轮用户消息进行编辑/重发。
 
-## 列表里能看到什么
+## 列表概览
 
 面板展示的是**当前会话**的逻辑消息树，不是全局历史。
 
@@ -157,7 +157,7 @@ branch_picker_list_rows = 7
 | 你想做的事 | 更合适的命令 |
 | --- | --- |
 | 在当前会话里精确回到某个消息节点 / 开分支 | `/tree` |
-| 按某轮用户消息去改/重发（`esc_rewind_mode = "entry"` 时菜单显示） | [`/sends-back`](/guide/fun/menu/sends-back.html) |
+| 按某轮用户消息去改/重发（默认 coarse 下双击 `Esc`；`entry` 时菜单显示 `/sends-back`） | [`/sends-back`](/guide/fun/menu/sends-back.html) |
 | 只回填以前发过的用户输入，不改会话树 | [`/resend`](/guide/fun/menu/resend.html) |
 | 从当前会话挑用户/助手消息复制出去 | [`/copy`](/guide/fun/menu/copy.html) |
 | 切换到另一条已保存会话 | [`/resume`](/guide/fun/menu/resume.html) |
@@ -168,11 +168,16 @@ branch_picker_list_rows = 7
 
 ```toml
 [tui]
-# 默认 coarse：空输入框连续 Esc 走节点级回溯，菜单显示 /tree
-# 配成 entry 时：改为更偏“用户消息项”的回溯，菜单显示 /sends-back
+# 默认 coarse：
+# - 菜单显示 /tree
+# - 空输入框连按两次 Esc：进入「按用户消息编辑/重发」（见 /sends-back）
+#
+# 配置为 entry 时：
+# - 菜单显示 /sends-back
+# - 空输入框连按两次 Esc：打开 /tree
 esc_rewind_mode = "coarse"
 
-# /tree 里 Tab 打开的分支浮窗可见行数（3..14，默认 7）
+# /tree 中 Tab 打开的分支浮窗可见行数（3..14，默认 7）
 branch_picker_list_rows = 7
 ```
 

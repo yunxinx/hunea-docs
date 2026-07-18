@@ -4,11 +4,11 @@ description: 介绍 Hunea 的 /models 斜杠命令的作用
 
 # /models
 
-`/models` 在 Hunea 中的设计为当前会话选择模型时使用。
+输入 `/models` 可以为当前会话选择模型。
 
-适用于想切换供应商、换一个模型继续聊，或者确认“现在到底选中了哪个模型”时使用。输入 `/models` 并确认后，会在输入区附近打开一块内联面板（会占住原本输入框的位置），用来浏览已启用的 provider 与模型列表。
+如果你想切换供应商、换一个模型继续聊天，或者只是想确认一下当前选中的是哪个模型，都可以打开它。确认后会在输入区附近打开一块内联面板，占据原来输入框的位置，用来浏览你已经启用的所有 provider 和模型列表。
 
-## 面板里能看到什么
+## 面板概览
 
 面板大致从上到下包括：
 
@@ -69,6 +69,18 @@ description: 介绍 Hunea 的 /models 斜杠命令的作用
 
 若写回默认模型失败，一般会看到类似 `Failed to save default model: ...` 的错误提示；此时界面上的当前选择可能已经变了，但配置文件未必更新成功。
 
+## 与实际请求能力的关系
+
+`models.toml` 中可以配置多种 `kind`（配置解析会识别这些名称），但**当前实际能够发起 chat / 流式回复的**主要是：
+
+- `openai_compatible`（必须配置 `base_url`，通常包含 `/v1`）
+- `openai_responses`（Responses API；同样需要 `base_url`）
+- `openai`（默认使用官方 OpenAI base URL，也可以自行配置 `base_url`）
+
+其它 kind 可能仍会出现在面板或配置校验中，但选中后在请求阶段会返回 unsupported。从 `/models` 自动同步模型列表，目前也主要覆盖 OpenAI 兼容这一类。配置供应商时建议优先使用上面三种，避免出现“列表中可见，但请求无法发出”的情况。
+
+更完整的字段说明见[配置文件](/guide/start/configuration)。
+
 ## 刷新模型列表（U）
 
 按 `U` 会请求刷新**当前 provider** 的可用模型列表。适合：
@@ -91,10 +103,12 @@ description: 介绍 Hunea 的 /models 斜杠命令的作用
 配置层面大致可以这样理解：
 
 - 在 provider 里写了 `models = [...]`：通常按这份白名单展示（来源更像 `configured`）
-- 省略 `models`：OpenAI 兼容类 provider 往往会尝试从 `{base_url}/models` 同步（来源更像 `synced from /v1/models`）
+- 省略 `models`：OpenAI 兼容 / OpenAI 一类往往会尝试从 `{base_url}/models` 同步（来源更像 `synced from /v1/models`）
 - 还没拉到列表时：可能先是 `not loaded`
 
-更完整的 `models.toml` 写法、`default`、以及配置模型的上下文窗口等，见 [快速开始](/guide/start/getting-started)。
+需要注意：面板中可以看到某个模型，并不表示对该模型的请求一定能够成功。当前可用于对话的 kind 仍以 `openai_compatible` / `openai_responses` / `openai` 为主。
+
+更完整的 `models.toml` 写法、`default`，以及模型上下文窗口等配置，见 [配置文件](/guide/start/configuration)。
 
 ## 一点使用建议
 

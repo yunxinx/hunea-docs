@@ -5,6 +5,21 @@
     "label": "斜杠菜单"
   },
   {
+    "type": "file",
+    "name": "tools",
+    "label": "工具与审批"
+  },
+  {
+    "type": "file",
+    "name": "skills",
+    "label": "技能与指令文件"
+  },
+  {
+    "type": "file",
+    "name": "shortcuts",
+    "label": "快捷键一览"
+  },
+  {
     "type": "dir",
     "name": "designs",
     "label": "设计与取舍"
