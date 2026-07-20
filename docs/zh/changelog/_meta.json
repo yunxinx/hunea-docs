@@ -6,6 +6,16 @@
   },
   {
     "type": "file",
+    "name": "command-menu-mode",
+    "label": "命令菜单触发方式"
+  },
+  {
+    "type": "file",
+    "name": "uax14-linebreak",
+    "label": "UAX #14 换行"
+  },
+  {
+    "type": "file",
     "name": "smooth-scroll",
     "label": "滚轮平滑滚动"
   },
@@ -17,16 +27,21 @@
   {
     "type": "file",
     "name": "attention-pill",
-    "label": "Attention pill"
+    "label": "非贴底保留视口与左侧提示"
   },
   {
     "type": "file",
     "name": "idle-timeout",
-    "label": "Idle timeout"
+    "label": "请求超时改为空闲超时"
   },
   {
     "type": "file",
     "name": "context-statusline",
     "label": "上下文状态行"
+  },
+  {
+    "type": "file",
+    "name": "tool-enablement",
+    "label": "工具级启用/禁用"
   }
 ]

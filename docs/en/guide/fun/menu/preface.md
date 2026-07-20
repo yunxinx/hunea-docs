@@ -8,9 +8,36 @@ Hunea ships with a **slash menu**. With an empty input, type `/` and the menu ap
 
 ![menu](/assets/fun/menu.png)
 
-> Note: today the slash menu only opens when the **input is empty**. Typing `/` mid-draft does not open this menu. That may improve later.
+> Note: the inline `/` slash menu today only opens when the **input is empty**. Typing `/` mid-draft does not open this menu. That may improve later.
 
 Use the up/down arrow keys, or keep typing to filter, then press `Enter` on the selected item.
+
+## Two ways to open the menu
+
+Since `0.12.1-alpha.2`, how the command menu is triggered can be configured via `command_menu_mode` under `[tui]`, with three options:
+
+| `command_menu_mode` | `/` inline menu | `Ctrl+O` floating menu |
+| --- | --- | --- |
+| `slash` (default) | Yes | No |
+| `floating` | No (`/` is plain text) | Yes |
+| `both` | Yes | Yes |
+
+- **`/` inline menu**: the default described above, triggered only when the composer is empty and starts with `/`.
+- **`Ctrl+O` floating menu**: independent of whether the input is empty; invoke it any time with `Ctrl+O`. The floating menu scrolls up and down, and shows a scrollbar on the right when there are more commands than fit; the visible row count is controlled by `command_menu_rows` (range `7..21`, default `7`). Handy if you want to type `/` as a literal character, or prefer invoking commands with a fixed shortcut.
+
+### How to interact with the `Ctrl+O` floating menu
+
+Beyond the keyboard, the floating menu also supports mouse click and scroll:
+
+- **Keyboard**: `↑` / `↓` moves the selection up and down (the list auto-scrolls to follow when it overflows the visible area), keep typing to filter/match, `Enter` triggers the selected command, and `Esc` closes the menu.
+- **Mouse click**: click a command row directly to select and trigger it, without first moving there with the arrow keys.
+- **Mouse wheel**: when there are more commands than the `command_menu_rows` limit, scroll the wheel over the popup to page up and down; the scrollbar on the right reflects your current position.
+
+The `Ctrl+O` floating menu looks like this:
+
+![menu-2](/assets/fun/menu-2.png)
+
+> Both menus share the same items, filtering, and selection behavior; only the trigger differs. For configuration and value ranges see [config.toml · command_menu_mode](/guide/start/configuration/config), and for key bindings see [Keyboard Shortcuts](/guide/fun/shortcuts).
 
 Built-in commands (click a **Command** cell to open its page):
 

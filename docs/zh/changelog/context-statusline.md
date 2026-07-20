@@ -27,6 +27,10 @@ status_line = [
 | `context-used` | `Context 42% used` | 最近一次成功请求后的已用百分比 |
 | `context-remaining` | `Context 58% left` | 最近一次成功请求后的剩余百分比 |
 
+效果如下：
+
+![context-used-remaining](/assets/changelog/context-used-remaining.png)
+
 ## 行为说明
 
 1. 数值来自请求完成时返回的 `context_usage`，获取后刷新状态栏显示。

@@ -59,7 +59,21 @@ Ask 工具弹出时，常见选项为：
 - `Esc` 取消本次审批交互；请求不会继续执行
 - `write` / `edit` 会显示文件 diff 预览；内容较长时可进入全屏预览后滚动查看
 
-需要注意：审批面板位于文档尾部区域。如果视口滚到上方查看历史消息，面板可能暂时不在可见范围内。此时界面会给出提示，避免在看不到选项时误操作。
+需要注意：审批面板位于文档尾部区域。如果视口滚到上方查看历史消息，面板可能暂时不在可见范围内。
+
+### 左侧提示条（attention pill）
+
+当视口不在底部时，左侧会显示常驻提示条，告知下方有未查看内容，避免在看不到选项时误操作：
+
+- **新消息计数**：视口离开底部后有新的助手消息完成。
+
+  ![new-message](/assets/changelog/new-message.png)
+
+- **审批待办**：审批面板已打开但当前不可见（被全屏层遮挡，或因滚动不在可视区域）。
+
+  ![wating-tool-approval](/assets/changelog/wating-tool-approval.png)
+
+两种提示条都可以**鼠标左键直接点击**，一键回到底部：点击后会先关闭遮挡的非审批类全屏层，再将视口跳回底部（恢复贴底跟随）并清除对应提示条；点击**审批待办**提示条时，回到底部后内联审批面板会重新可见并获得输入焦点。更多说明见[非贴底保留视口与左侧提示](/changelog/attention-pill)。
 
 > 调试用的 [`/tool-debug`](/guide/fun/menu/preface)（需 `debug.enabled = true`）可以预览审批面板界面，但不属于常规使用路径；后续也可能移除或继续完善。
 
@@ -77,7 +91,7 @@ tool_max_turns = 32
 
 ## 和提示词、上下文的关系
 
-- 当前启用了哪些工具、对应 guidelines 的内容：见 [`/prompt`](/guide/fun/menu/prompt) 的 Tools 页签。也可以在该页签中关闭工具；关闭后不会进入下一次新会话的组装结果。
+- 当前启用了哪些工具、对应 guidelines 的内容：见 [`/prompt`](/guide/fun/menu/prompt) 的 Tools 页签。该页签的 `On` 列可逐工具启用/禁用（禁用后不会出现在发送给模型的工具列表中），`Guide` 列控制是否注入该工具的使用指南；启停状态会持久化，主要面向下一次新会话。详见[工具级启用/禁用](/changelog/tool-enablement)。
 - 工具定义占用的上下文：见 [`/context`](/guide/fun/menu/context)。
 - 工具结果会进入会话树，因此 [`/tree`](/guide/fun/menu/tree) 中可以看到 `tool` 节点；但 [`/copy`](/guide/fun/menu/copy) 默认只列出用户消息与助手回复，不会把 tool / reasoning 一并列入拷贝列表。
 

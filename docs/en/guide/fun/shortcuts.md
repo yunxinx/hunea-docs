@@ -21,6 +21,7 @@ Default send semantics (you can swap Enter with Shift+Enter / Ctrl+J using `swap
 | `Esc` | During streaming: interrupt the current request after `esc_interrupt_presses` (default 2) presses; with empty input and no streaming: double-press enters backtracking (see below) |
 | `Ctrl + G` | Edit the current draft in an external editor |
 | `Ctrl + R` | Open global message history (same as [`/resend`](/guide/fun/menu/resend)) |
+| `Ctrl + O` | Open the floating command menu (requires `command_menu_mode` = `floating` or `both`) |
 | `Ctrl + T` | Open full-screen transcript details |
 | `Ctrl + Z` / `Ctrl + Y` | Undo draft edit / yank most recent kill |
 | `PageUp` / `PageDown` | Prioritize scrolling the document, then handle paging inside the input box |
@@ -48,6 +49,8 @@ Common operations inside popups: continue typing to filter, `↑` / `↓` to mov
 
 ## Slash Menu
 
+By default, typing `/` in an empty composer triggers the menu inline. You can change the trigger with `command_menu_mode` (`slash` / `floating` / `both`): under `floating`, `/` is plain text and you open the floating menu with `Ctrl+O`; under `both`, both work. The floating menu's visible row count is controlled by `command_menu_rows` (default 7), and extra rows scroll.
+
 | Key | Action |
 | --- | --- |
 | `↑` / `↓` | Move |
@@ -55,6 +58,8 @@ Common operations inside popups: continue typing to filter, `↑` / `↓` to mov
 | `Tab` | Complete to current match |
 | `Enter` | Execute |
 | `Esc` | Close menu |
+
+The `Ctrl+O` floating menu also supports the mouse: click a command row to select and trigger it, and scroll the wheel over the popup to page through when there are more commands than fit.
 
 See the [slash menu overview](/guide/fun/menu/preface) for the full command list.
 

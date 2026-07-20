@@ -59,7 +59,21 @@ Operations:
 - `Esc` cancels this approval interaction; the request won't execute
 - `write` / `edit` shows a file diff preview; for long content you can enter full-screen preview and scroll
 
-Note: the approval panel is at the end of the document. If the viewport is scrolled up to see historical messages, the panel may not be visible temporarily. The interface gives a hint to avoid accidental operation when you can't see the options.
+Note: the approval panel is at the end of the document. If the viewport is scrolled up to see historical messages, the panel may not be visible temporarily.
+
+### Left attention pill
+
+When the viewport isn't at the bottom, a persistent pill appears on the left to tell you there's unread content below, so you don't act blindly when the options aren't in view:
+
+- **New-message count**: new assistant messages have finished while you were reading up higher.
+
+  ![new-message](/assets/changelog/new-message.png)
+
+- **Approval pending**: a tool approval panel is open but currently not visible (covered by a fullscreen layer, or off-screen because you're not at the bottom).
+
+  ![wating-tool-approval](/assets/changelog/wating-tool-approval.png)
+
+Both pills are **clickable with the left mouse button** to jump straight back to the bottom: clicking first closes any non-approval fullscreen layer in the way, then scrolls the viewport back to the bottom (restoring bottom-following) and clears that pill; clicking the **approval pending** pill also brings the inline approval panel back into view and gives it input focus. See [Keep viewport + attention pill](/changelog/attention-pill) for more.
 
 > The debug [`/tool-debug`](/guide/fun/menu/preface) (requires `debug.enabled = true`) can preview the approval panel UI, but it's not a regular usage path; it may be removed or improved later.
 
@@ -77,7 +91,7 @@ See the `[runtime]` section in [config.toml](/guide/start/configuration/config) 
 
 ## Relationship to prompts and context
 
-- Which tools are currently enabled, and their guideline content: see the Tools tab in [`/prompt`](/guide/fun/menu/prompt). You can also toggle tools off on that tab; when toggled off, they won't enter the assembly for the next new session.
+- Which tools are currently enabled, and their guideline content: see the Tools tab in [`/prompt`](/guide/fun/menu/prompt). The `On` column enables/disables each tool (a disabled tool won't appear in the tool list sent to the model), and the `Guide` column controls whether that tool's usage guidelines are injected; the state is persisted and mainly targets the next new session. See [Per-tool enable / disable](/changelog/tool-enablement).
 - Context usage from tool definitions: see [`/context`](/guide/fun/menu/context).
 - Tool results enter the session tree, so you can see `tool` nodes in [`/tree`](/guide/fun/menu/tree); but [`/copy`](/guide/fun/menu/copy) by default only lists user messages and assistant replies, it doesn't include tool / reasoning in the copy list.
 

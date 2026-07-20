@@ -31,6 +31,17 @@ motion = "full"
 # Note: when `motion = "reduced"`, scrolling is instantaneous regardless of this setting.
 scroll_animation = "smooth"
 
+# `command_menu_mode` controls how the command menu (slash commands) is triggered.
+# - "slash": only triggers the inline slash command menu when the composer starts with `/`; this is the default.
+# - "floating": `/` no longer triggers the menu (treated as plain text); open the floating command menu with `Ctrl+O` instead.
+# - "both": both work at once; the inline `/` menu and the `Ctrl+O` floating menu don't interfere with each other.
+command_menu_mode = "slash"
+
+# `command_menu_rows` controls how many command rows the `Ctrl+O` floating command menu shows at once;
+# extra commands scroll, with a scrollbar on the right of the popup.
+# Range 7..21, default 7 rows.
+command_menu_rows = 7
+
 # Possible values:
 # `user_input_style` controls the display style for "in-progress user input" and "sent user messages".
 # - "cx": current framed style. Composer and user messages get a surface frame when the window is tall enough.

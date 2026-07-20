@@ -62,14 +62,30 @@ Top-right tabs (defaults to `Skill`):
 | --- | --- |
 | `Skill` | Discovered long-lived skill candidates |
 | `Custom Prompts` | Custom prompt candidates; can create new |
-| `Tools` | Tool-related candidates / guideline fragments |
+| `Tools` | Tool candidates / guideline fragments; per-tool enable/disable (see below) |
 | `Dynamic` | Dynamic environment sources; can toggle `Base` / `Change` separately |
 
 Headers differ slightly between tabs:
 
-- `Skill` / `Tools`: `Sel` · `Ord` · `Name` · `Scope`
+- `Skill`: `Sel` · `Ord` · `Name` · `Scope`
+- `Tools`: `On` · `Guide` · `Ord` · `Name` · `Scope` (On/Guide are dual-column switches, see below)
 - `Custom Prompts`: `Sel` · `Name` · `Scope`
 - `Dynamic`: `Base` · `Change` · `Source` · `Scope`
+
+#### `Tools` tab: On / Guide dual columns
+
+Each row on the `Tools` tab has two checkbox columns:
+
+| Column | Meaning |
+| --- | --- |
+| `On` | Whether the tool itself is enabled. When off, the tool won't appear in the tool list sent to the model, so the model can't call it |
+| `Guide` | Whether the tool's usage guidelines are injected into the system prompt |
+
+How to operate: `←` / `→` moves between the `On` / `Guide` columns (the active column is highlighted), and `x` toggles the switch in the current column. Note: when a tool's `On` is off, its `Guide` column becomes non-operable (dimmed) and `x` is a no-op there; tools without guidelines also have a no-op `Guide` column. Disabled tools are filtered from both the model request and the session tool registry, and the state is persisted (`tool_enablement`). See [Per-tool enable / disable](/changelog/tool-enablement).
+
+It looks roughly like this:
+
+![tool-off-on](/assets/changelog/tool-off-on.png)
 
 ## How to operate
 

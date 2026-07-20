@@ -25,6 +25,19 @@ When you're not at the bottom, a persistent attention pill appears on the left t
 | New-message count | New assistant messages have finished while you were reading up higher |
 | Approval pending | A tool approval panel is waiting, but it's not visible (either covered by a fullscreen layer, or off-screen because you're not at the bottom) |
 
+The new-message pill looks like this:
+
+![new-message](/assets/changelog/new-message.png)
+
+The pending-approval pill looks like this:
+
+![wating-tool-approval](/assets/changelog/wating-tool-approval.png)
+
+Both pills are **clickable with the left mouse button** to jump straight back to the bottom:
+
+- Clicking first closes any non-approval fullscreen layer that's in the way, then scrolls the viewport back to the bottom (restoring bottom-following) and clears that pill.
+- Clicking the **approval pending** pill also brings the inline approval panel back into view and gives it input focus once you're at the bottom, so you can act on it right away.
+
 When you scroll back to the bottom, the new-message count clears. The approval pill clears when you handle or cancel the approval, or when the panel becomes visible again.
 
 ## Approval panel behavior updates

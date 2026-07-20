@@ -27,6 +27,10 @@ status_line = [
 | `context-used` | `Context 42% used` | Percentage used after your last successful request |
 | `context-remaining` | `Context 58% left` | Percentage remaining after your last successful request |
 
+It looks like this:
+
+![context-used-remaining](/assets/changelog/context-used-remaining.png)
+
 ## Behavior details
 
 1. Numbers come from the `context_usage` reported when a request finishes (on the `MessageFinished` path), then the status line refreshes.

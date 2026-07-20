@@ -6,6 +6,16 @@
   },
   {
     "type": "file",
+    "name": "command-menu-mode",
+    "label": "Command menu trigger"
+  },
+  {
+    "type": "file",
+    "name": "uax14-linebreak",
+    "label": "UAX #14 wrapping"
+  },
+  {
+    "type": "file",
     "name": "smooth-scroll",
     "label": "Smooth scrolling"
   },
@@ -28,5 +38,10 @@
     "type": "file",
     "name": "context-statusline",
     "label": "Context status line"
+  },
+  {
+    "type": "file",
+    "name": "tool-enablement",
+    "label": "Per-tool enable/disable"
   }
 ]
